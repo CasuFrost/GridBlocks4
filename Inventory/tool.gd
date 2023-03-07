@@ -23,7 +23,7 @@ var equiped : bool
 func _ready():
 	#SpriteOffsetSetting=SpriteOffset
 	scaleValue = $Sprite2D.scale.x
-	#cum
+	#sborra
 func _draw():
 	pass
 func _process(delta):
