@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://i3y6fjludpv3"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_1og0f"]
+[ext_resource type="Texture2D" uid="uid://b3owun45f62rk" path="res://Sprites/Swords/mazza.png" id="2_ost3q"]
+
+[node name="Mazza" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+visible = false
+script = ExtResource("1_1og0f")
+icon = ExtResource("2_ost3q")
+inventoryIndex = 6
+ToolSprite = NodePath("Sprite2D")
+type = "Sword"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("2_ost3q")

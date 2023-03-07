@@ -9,7 +9,7 @@ var maxTileInfoStored=150
 var mouse  = Vector2()
 var cell :Vector2
 var gravity = 13
-var maxDistBlocksRange = 140
+var maxDistBlocksRange = 120
 
 var speed = 20
 var maxSpeed = 100
@@ -24,6 +24,8 @@ func _ready():
 	jumps_available= maxConsecutiveJumps
 	
 func _process(delta):
+	if $Inventory.getToolType()=="None":
+		get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null
 	toolRotation=get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
 	pickacxePower=$Inventory.getPickaxePower()
 	toolPosition = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").global_position
@@ -73,12 +75,14 @@ func _physics_process(delta):
 	
 func update_animation():
 	if Input.is_action_pressed("rClick"):
+		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool".show()
 		if $Inventory.getToolType()=="Pickaxe" or $Inventory.getToolType()=="Sword":
 			up_animation.play("toolSwing")
 		if $Inventory.getToolType()=="PointingWeapon":
 			pass#$Sprites/Up/FrontArm.look_at(Vector2.ZERO)
 			
 	else:
+		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool".hide()
 		$dirtPickaxing.emitting=false
 	if velocity.x<0:
 		$Sprites/Down.scale.x=-1
