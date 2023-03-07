@@ -1,7 +1,7 @@
 extends Node2D
 var maxPoints : int =15
 @export var active = false
-var speed = 35
+var speed = 20
 var followPos : Vector2 = Vector2(500,500)
 func _ready():
 	pass#print(active) # Replace with function body.
@@ -18,9 +18,12 @@ func _physics_process(delta):
 		$Line2D.add_point($Sprite2D.global_position)
 		if len($Line2D.points)>maxPoints:
 			$Line2D.remove_point(0)
-		if $Sprite2D.global_position.distance_to(followPos) < 160:
-			speed=15
+			
+		if $Sprite2D.global_position.distance_to(followPos) < 35:
+			speed=7
 			$AnimationPlayer.play("deActive")
+		else:
+			speed=20
 	else:
 		$Sprite2D.hide()
 		$Line2D.clear_points()

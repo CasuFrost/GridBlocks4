@@ -14,7 +14,7 @@ func _process(delta):
 					if !i.active:
 						var x = rng.randi_range(-precision,precision)
 						var y = rng.randi_range(-precision,precision)
-						print(i.name)
+						#print(i.name)
 						if get_parent().get_node("Timer").time_left==0:
 							get_parent().get_node("Timer").start()
 							i.activate(get_global_mouse_position()+Vector2(x,y))

@@ -225,3 +225,12 @@ position = Vector2(-125, 93)
 
 [node name="ViolenceBookPunch3" parent="ProjectilePool" instance=ExtResource("6_ywplx")]
 position = Vector2(-125, 93)
+
+[node name="ViolenceBookPunch4" parent="ProjectilePool" instance=ExtResource("6_ywplx")]
+position = Vector2(-125, 93)
+
+[node name="ViolenceBookPunch5" parent="ProjectilePool" instance=ExtResource("6_ywplx")]
+position = Vector2(-125, 93)
+
+[node name="ViolenceBookPunch6" parent="ProjectilePool" instance=ExtResource("6_ywplx")]
+position = Vector2(-125, 93)
