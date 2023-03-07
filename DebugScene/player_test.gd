@@ -168,7 +168,7 @@ func switchTexture(texture,editedScale):
 	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=texture
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture)
 func print_information():
-	print(mouseOnPlayer)
+	#print(mouseOnPlayer)
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").get_children())
 	pass#print(toolRotation)
 	
