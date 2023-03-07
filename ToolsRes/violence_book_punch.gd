@@ -19,7 +19,7 @@ func _physics_process(delta):
 		if len($Line2D.points)>maxPoints:
 			$Line2D.remove_point(0)
 			
-		if $Sprite2D.global_position.distance_to(followPos) < 35:
+		if $Sprite2D.global_position.distance_to(followPos) < 100:
 			speed=7
 			$AnimationPlayer.play("deActive")
 		else:
