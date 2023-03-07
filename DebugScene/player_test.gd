@@ -18,12 +18,21 @@ var jumps_available
 @export var maxConsecutiveJumps = 1
 var destrct_array = {}
 var pickacxePower = 1
+
+func _input(event):
+	if event.is_action_pressed("zoomIn"):
+		$Camera2D.zoom+=Vector2(0.1,0.1)
+		
+	if event.is_action_pressed("zoomout"):
+		$Camera2D.zoom-=Vector2(0.1,0.1)
+		
 func _ready():
 	#$Sprites/UpAnimationManager.play("toolSwing")
 	$dirtPickaxing.emitting=false
 	jumps_available= maxConsecutiveJumps
 	
 func _process(delta):
+	$Camera2D.zoom=clamp($Camera2D.zoom,Vector2(1,1),Vector2(3,3))
 	if $Inventory.getToolType()=="None":
 		get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null
 	toolRotation=get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
@@ -69,6 +78,7 @@ func isTileValidPosition(tile):
 			return true
 	return false
 func _physics_process(delta):
+	
 	movement()
 	update_animation()
 	move_and_slide()

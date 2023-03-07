@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bw5hbcrchri6n" path="res://ParticlesEffect/light.png" id="3_6ukur"]
 
 [sub_resource type="Gradient" id="Gradient_sfwoi"]
-colors = PackedColorArray(0.921569, 0, 0.121569, 0.32549, 1, 0, 0.101961, 1)
+colors = PackedColorArray(0.921569, 0.14902, 0.145098, 0.490196, 1, 0, 0.101961, 0.647059)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqc02"]
 radius = 41.0122
@@ -37,6 +37,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Line2D:gradient")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("Gradient_sfwoi"), SubResource("Gradient_sfwoi")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("Line2D:gradient:colors")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [PackedColorArray(0.921569, 0.721569, 0, 0.490196, 1, 0, 0.101961, 1), PackedColorArray(0.921569, 0.721569, 0, 0, 1, 0, 0.101961, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_fofmq"]
 length = 0.001
@@ -64,6 +100,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Line2D:gradient")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_sfwoi")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("Line2D:gradient:colors")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedColorArray(0.921569, 0.721569, 0, 0.490196, 1, 0, 0.101961, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_su841"]
 _data = {
@@ -72,7 +144,6 @@ _data = {
 }
 
 [node name="ViolenceBookPunch" type="Node2D" groups=["Redpunch"]]
-texture_filter = 1
 script = ExtResource("2_dbb2k")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -88,6 +159,7 @@ antialiased = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 2
+texture_filter = 3
 scale = Vector2(0.507, 0.507)
 texture = ExtResource("1_8x08j")
 

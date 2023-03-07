@@ -36,6 +36,7 @@ func activate(pos):
 		$Sprite2D.show()
 		speed=30
 		modulate.a=160
+		
 		$Sprite2D/Area2D/CollisionShape2D.disabled=false
 		active=true
 		followPos=pos
