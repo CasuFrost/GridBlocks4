@@ -143,8 +143,10 @@ inventoryIndex = 1
 rotationTool = 51.0
 
 [node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
+editedScale = Vector2(0, 0)
 
 [node name="DebugRedGun" parent="Objects" instance=ExtResource("6_fdy80")]
+editedScale = Vector2(0, 0)
 type = "PointingWeapon"
 
 [node name="ViolenceBook" parent="Objects" instance=ExtResource("7_r4pd8")]

@@ -31,7 +31,6 @@ func manageSelectedInventory(i):
 			k.frame=1
 		else:
 			k.frame=0
-
 func changeSelected():
 	setIconInv()
 	if Input.is_key_pressed(KEY_1):
@@ -53,7 +52,7 @@ func changeSelected():
 		if i.inventoryIndex==selected:
 			NothingIsSelected=false
 			i.equiped=true
-			get_parent().switchTexture(i.icon)
+			get_parent().switchTexture(i.icon,i.editedScale)
 			currentToolSelected=i
 		else:
 			i.equiped=false

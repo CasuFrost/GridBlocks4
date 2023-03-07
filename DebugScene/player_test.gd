@@ -140,8 +140,10 @@ func movement():
 		down_animation.play("jump")
 		jumps_available-=1
 		velocity.y=jump
-func switchTexture(texture):
+func switchTexture(texture,editedScale):
 	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null
+	if editedScale!=Vector2.ZERO:
+		get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").scale=editedScale
 	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=texture
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture)
 func print_information():

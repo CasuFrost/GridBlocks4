@@ -4,6 +4,7 @@
 class_name tool
 extends Node2D
 var scaleValue 
+@export var editedScale : Vector2 
 @export var pickAxepower : int
 @export var rotationTool : float =51
 @export  var icon : Texture2D
