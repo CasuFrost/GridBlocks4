@@ -30,7 +30,7 @@ func _draw():
 func _process(delta):
 	
 	manageSpriteScale()
-	
+
 	if !equiped:
 		hide()
 	else:
@@ -38,6 +38,7 @@ func _process(delta):
 			show()
 		else:
 			hide()
+
 func manageSpriteScale():
 	global_position=player.toolPosition+SpriteOffsetSetting
 	rotation=player.rotation
@@ -46,7 +47,7 @@ func manageSpriteScale():
 	else:
 		$Sprite2D.scale.x=-scaleValue
 	if $Sprite2D.scale.x>0:
-		$Sprite2D.rotation=rotationTool+playerToolMarkerRotation
+		$Sprite2D.rotation=rotationTool#+player.toolRotation
 		SpriteOffsetSetting=SpriteOffsetM
 	else:
 		$Sprite2D.rotation=-rotationTool

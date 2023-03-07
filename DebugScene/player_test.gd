@@ -1,7 +1,8 @@
 extends CharacterBody2D
 var maxTileInfoStored=150
+@onready var toolMarker = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition")
 @onready var toolPosition = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").global_position
-@onready var toolRotation = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
+@onready var toolRotation : float = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
 @onready var tileMap = get_parent().get_node("TileMap")
 @onready var up_animation = get_node("Sprites/UpAnimationManager")
 @onready var down_animation = get_node("Sprites/DownAnimationManager")
@@ -22,7 +23,7 @@ func _ready():
 	jumps_available= maxConsecutiveJumps
 	
 func _process(delta):
-	
+	toolRotation=get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
 	pickacxePower=$Inventory.getPickaxePower()
 	toolPosition = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").global_position
 	print_information()
@@ -122,12 +123,15 @@ func movement():
 		down_animation.play("jump")
 		jumps_available-=1
 		velocity.y=jump
-	
+		
+
 func print_information():
+	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").get_children())
+	pass#print(toolRotation)
 	
-	get_parent().get_node("CanvasLayer/Label").set_text(str(toolRotation))
+	#get_parent().get_node("CanvasLayer/Label").set_text(str(toolRotation))
 	#print(destrct_array)
-	Node2D
+	
 func valid_distance():
 	if get_global_mouse_position().distance_to(global_position)<maxDistBlocksRange:
 		return true
