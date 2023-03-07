@@ -17,6 +17,7 @@ var scaleValue
 var SpriteOffsetSetting : Vector2
 @onready var inventory=get_parent().get_parent()
 @onready var player = get_parent().get_parent().get_parent()
+@onready var playerToolMarkerRotation = get_parent().get_parent().get_parent().get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
 var equiped : bool 
 @onready  var centeredInventory=get_parent().get_parent().get_node("CanvasLayer/start")
 @export var type : String
@@ -27,6 +28,7 @@ func _ready():
 func _draw():
 	pass
 func _process(delta):
+	
 	manageSpriteScale()
 	
 	if !equiped:
@@ -44,7 +46,7 @@ func manageSpriteScale():
 	else:
 		$Sprite2D.scale.x=-scaleValue
 	if $Sprite2D.scale.x>0:
-		$Sprite2D.rotation=rotationTool
+		$Sprite2D.rotation=rotationTool+playerToolMarkerRotation
 		SpriteOffsetSetting=SpriteOffsetM
 	else:
 		$Sprite2D.rotation=-rotationTool

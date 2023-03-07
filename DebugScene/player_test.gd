@@ -1,14 +1,15 @@
 extends CharacterBody2D
 var maxTileInfoStored=150
-
 @onready var toolPosition = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").global_position
+@onready var toolRotation = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
 @onready var tileMap = get_parent().get_node("TileMap")
 @onready var up_animation = get_node("Sprites/UpAnimationManager")
 @onready var down_animation = get_node("Sprites/DownAnimationManager")
-var mouse :Vector2 = get_global_mouse_position()
+var mouse  = Vector2()
 var cell :Vector2
 var gravity = 13
 var maxDistBlocksRange = 140
+
 var speed = 20
 var maxSpeed = 100
 var jump = -300
@@ -17,8 +18,6 @@ var jumps_available
 var destrct_array = {}
 var pickacxePower = 1
 func _ready():
-	
-	
 	$dirtPickaxing.emitting=false
 	jumps_available= maxConsecutiveJumps
 	
@@ -125,8 +124,10 @@ func movement():
 		velocity.y=jump
 	
 func print_information():
-	pass#get_parent().get_node("CanvasLayer/Label").set_text("FPS: "+str(Engine.get_frames_per_second()))
+	
+	get_parent().get_node("CanvasLayer/Label").set_text(str(toolRotation))
 	#print(destrct_array)
+	Node2D
 func valid_distance():
 	if get_global_mouse_position().distance_to(global_position)<maxDistBlocksRange:
 		return true
