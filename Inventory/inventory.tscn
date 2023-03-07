@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=10 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbslbm1emedoj" path="res://ToolsRes/bloody_butcher_swords.tscn" id="5_bl4rx"]
 [ext_resource type="PackedScene" uid="uid://i3y6fjludpv3" path="res://ToolsRes/mazza.tscn" id="5_vrr8u"]
 [ext_resource type="PackedScene" uid="uid://crfqdaaab5sgs" path="res://ToolsRes/debug_red_gun.tscn" id="6_fdy80"]
+[ext_resource type="PackedScene" uid="uid://cs1m5l566fl3h" path="res://Inventory/violence_book.tscn" id="7_r4pd8"]
 
 [sub_resource type="Gradient" id="Gradient_0io4t"]
 offsets = PackedFloat32Array(0)
@@ -145,3 +146,5 @@ rotationTool = 51.0
 
 [node name="DebugRedGun" parent="Objects" instance=ExtResource("6_fdy80")]
 type = "PointingWeapon"
+
+[node name="ViolenceBook" parent="Objects" instance=ExtResource("7_r4pd8")]

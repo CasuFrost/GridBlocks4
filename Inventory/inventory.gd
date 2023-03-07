@@ -12,7 +12,7 @@ func setIconInv():
 	for i in $Objects.get_children():
 		for j in InventoryMarker.get_children():
 			if str(i.inventoryIndex)==j.name:
-				print(j.name)
+				#print(j.name)
 				j.get_child(0).texture=i.icon
 				
 				#j.get_child(0).position = i.iconOffset

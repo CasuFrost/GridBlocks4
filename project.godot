@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/mcasu/OneDrive/Desktop/a.avi"
+
 [input]
 
 move_right={

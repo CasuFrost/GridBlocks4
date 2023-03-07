@@ -35,7 +35,6 @@ func _process(delta):
 	if !equiped:
 		hide()
 	else:
-		
 		if Input.is_action_pressed("rClick"):
 			used()
 			
