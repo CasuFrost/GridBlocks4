@@ -19,6 +19,7 @@ var jumps_available
 var destrct_array = {}
 var pickacxePower = 1
 func _ready():
+	#$Sprites/UpAnimationManager.play("toolSwing")
 	$dirtPickaxing.emitting=false
 	jumps_available= maxConsecutiveJumps
 	
@@ -123,8 +124,10 @@ func movement():
 		down_animation.play("jump")
 		jumps_available-=1
 		velocity.y=jump
-		
-
+func switchTexture(texture):
+	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null
+	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=texture
+	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture)
 func print_information():
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").get_children())
 	pass#print(toolRotation)

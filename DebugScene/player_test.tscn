@@ -659,7 +659,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.5708, 1.5708]
+"values": [2.39285, 2.66686]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -1057,6 +1057,9 @@ texture = ExtResource("3_y48kf")
 
 [node name="ToolPosition" type="Marker2D" parent="Sprites/Up/FrontArm/NewPiskel-3png"]
 position = Vector2(3.23116, 6.79397)
+
+[node name="ActiveSelectedTool" type="Sprite2D" parent="Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition"]
+z_index = -1
 
 [node name="BackArm" type="Marker2D" parent="Sprites/Up"]
 position = Vector2(8, -6)

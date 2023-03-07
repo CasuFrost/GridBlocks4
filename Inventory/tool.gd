@@ -22,6 +22,7 @@ var equiped : bool
 @onready  var centeredInventory=get_parent().get_parent().get_node("CanvasLayer/start")
 @export var type : String
 func _ready():
+	used()
 	#SpriteOffsetSetting=SpriteOffset
 	scaleValue = $Sprite2D.scale.x
 	#sborra
@@ -29,15 +30,17 @@ func _draw():
 	pass
 func _process(delta):
 	
-	manageSpriteScale()
+	#manageSpriteScale()
 
 	if !equiped:
 		hide()
 	else:
+		
 		if Input.is_action_pressed("rClick"):
-			show()
-		else:
-			hide()
+			used()
+			
+		
+			
 
 func manageSpriteScale():
 	global_position=player.toolPosition+SpriteOffsetSetting
@@ -53,7 +56,8 @@ func manageSpriteScale():
 		$Sprite2D.rotation=-rotationTool
 		SpriteOffsetSetting=SpriteOffsetL
 func used():
-	pass
+	pass#rotation=lerp(rotation,0,0.1)
+	
 	
 func invIndexToPos():
 	var pos = get_parent().get_parent().get_node("CanvasLayer/centerInventory/"+str(inventoryIndex)).global_position+iconOffset
