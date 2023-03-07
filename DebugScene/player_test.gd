@@ -79,7 +79,9 @@ func update_animation():
 		if $Inventory.getToolType()=="Pickaxe" or $Inventory.getToolType()=="Sword":
 			up_animation.play("toolSwing")
 		if $Inventory.getToolType()=="PointingWeapon":
-			pass#$Sprites/Up/FrontArm.look_at(Vector2.ZERO)
+			$Sprites/Up/FrontArm.look_at(get_global_mouse_position())
+			#$Sprites/Up/FrontArm.rotation-=75
+			up_animation.play("Pointing")
 			
 	else:
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool".hide()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://crfqdaaab5sgs"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_xjatc"]
+[ext_resource type="Texture2D" uid="uid://dqjr72y5use1x" path="res://Sprites/Guns/BloodyButcherSword-3.png.png" id="2_c3buv"]
+
+[node name="DebugRedGun" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+visible = false
+script = ExtResource("1_xjatc")
+icon = ExtResource("2_c3buv")
+objectId = 4
+rarity = "common"
+inventoryIndex = 5
+ToolSprite = NodePath("Sprite2D")
+type = "Sword"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_c3buv")
