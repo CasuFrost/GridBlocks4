@@ -10,7 +10,7 @@ var mouse  = Vector2()
 var cell :Vector2
 var gravity = 13
 var maxDistBlocksRange = 120
-
+var mouseOnPlayer : bool = false
 var speed = 20
 var maxSpeed = 100
 var jump = -300
@@ -20,11 +20,13 @@ var destrct_array = {}
 var pickacxePower = 1
 
 func _input(event):
+	
 	if event.is_action_pressed("zoomIn"):
-		$Camera2D.zoom+=Vector2(0.1,0.1)
+		$Inventory.selected+=1
 		
 	if event.is_action_pressed("zoomout"):
-		$Camera2D.zoom-=Vector2(0.1,0.1)
+		$Inventory.selected-=1
+		
 		
 func _ready():
 	#$Sprites/UpAnimationManager.play("toolSwing")
@@ -32,7 +34,9 @@ func _ready():
 	jumps_available= maxConsecutiveJumps
 	
 func _process(delta):
-	$Camera2D.zoom=clamp($Camera2D.zoom,Vector2(1,1),Vector2(3,3))
+	
+	$mousePointer.global_position=get_global_mouse_position()
+	$Camera2D.zoom=clamp($Camera2D.zoom,Vector2(1.5,1.5),Vector2(3.5,3.5))
 	if $Inventory.getToolType()=="None":
 		get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null
 	toolRotation=get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
@@ -49,9 +53,9 @@ func interactWithTilemap():
 		destrct_array.erase(destrct_array.keys()[0])
 	mouse  = Vector2i(get_global_mouse_position())
 	$dirtPickaxing.global_position=mouse
-	if Input.is_action_pressed("lClick") and valid_distance() and get_global_mouse_position().distance_to(global_position)>20:
+	if Input.is_action_pressed("lClick") and valid_distance() and !mouseOnPlayer:
 		var tile = tileMap.local_to_map(get_global_mouse_position())
-		if isTileValidPosition(tile):
+		if isTileValidPosition(tile) and !mouseOnPlayer:
 			tileMap.set_cell(0,tile,2,Vector2i(0,0))
 			#tileMap.set_cells_terrain_connect(0,[Vector2i(0,0),Vector2i(1,0),Vector2i(2,0),Vector2i(0,1),Vector2i(1,1),Vector2i(2,1),Vector2i(0,2),Vector2i(1,2),Vector2i(2,2),Vector2i(0,3),Vector2i(1,3)],0,0)
 	if Input.is_action_pressed("rClick") and valid_distance() and $Inventory.isSelectedPickaxe():
@@ -78,7 +82,10 @@ func isTileValidPosition(tile):
 			return true
 	return false
 func _physics_process(delta):
-	
+	if Input.is_action_pressed("plus"):
+		$Camera2D.zoom+=Vector2(0.1,0.1)
+	if Input.is_action_pressed("minus"):
+		$Camera2D.zoom-=Vector2(0.1,0.1)
 	movement()
 	update_animation()
 	move_and_slide()
@@ -115,6 +122,7 @@ func update_animation():
 			down_animation.play("jump")
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Idle")
+			
 	if get_global_mouse_position()>global_position:
 		$Sprites/Up.scale.x=1
 		$Sprites/Down.position.x=0.5
@@ -160,6 +168,7 @@ func switchTexture(texture,editedScale):
 	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=texture
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture)
 func print_information():
+	print(mouseOnPlayer)
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").get_children())
 	pass#print(toolRotation)
 	
@@ -171,3 +180,13 @@ func valid_distance():
 		return true
 	else:
 		return false
+
+
+func _on_blocko_forbidden_place_area_entered(area):
+	if area.is_in_group("mouse"):
+		mouseOnPlayer=true
+
+
+func _on_blocko_forbidden_place_area_exited(area):
+	if area.is_in_group("mouse"):
+		mouseOnPlayer=false

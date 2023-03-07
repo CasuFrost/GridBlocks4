@@ -181,7 +181,7 @@ gradient = SubResource("Gradient_nwwl6")
 [node name="DebugScene" type="Node2D"]
 
 [node name="PlayerTest" parent="." instance=ExtResource("2_7m6yp")]
-position = Vector2(125, 105)
+position = Vector2(139, 85)
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -4

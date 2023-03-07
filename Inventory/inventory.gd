@@ -22,7 +22,7 @@ func checkInvFreeSpace():
 		freeSpace[i.inventoryIndex-1]=true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	selected=clamp(selected,1,7)
 	changeSelected()#centInventory.global_position=get_window().size*0.5
 	#print(freeSpace)
 func manageSelectedInventory(i):

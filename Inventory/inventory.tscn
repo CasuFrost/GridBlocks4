@@ -26,10 +26,12 @@ script = ExtResource("1_4ep7e")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="centerInventory" type="Marker2D" parent="CanvasLayer"]
 z_index = 3
-position = Vector2(576, 550)
+position = Vector2(606.787, 615.453)
 scale = Vector2(0.812, 0.812)
 
 [node name="4" type="Sprite2D" parent="CanvasLayer/centerInventory"]
@@ -124,14 +126,15 @@ scale = Vector2(0.5, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 z_index = 2
-offset_left = 384.0
-offset_top = 569.0
-offset_right = 835.0
-offset_bottom = 630.0
+offset_left = 414.787
+offset_top = 634.453
+offset_right = 865.787
+offset_bottom = 695.453
+size_flags_horizontal = 4
 texture = SubResource("GradientTexture1D_6ht3v")
 
 [node name="start" type="Marker2D" parent="CanvasLayer"]
-position = Vector2(382, 577.474)
+position = Vector2(412.787, 642.927)
 scale = Vector2(0.812, 0.812)
 
 [node name="Objects" type="Node" parent="."]
@@ -143,10 +146,8 @@ inventoryIndex = 1
 rotationTool = 51.0
 
 [node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
-editedScale = Vector2(0, 0)
 
 [node name="DebugRedGun" parent="Objects" instance=ExtResource("6_fdy80")]
-editedScale = Vector2(0, 0)
 type = "PointingWeapon"
 
 [node name="ViolenceBook" parent="Objects" instance=ExtResource("7_r4pd8")]
