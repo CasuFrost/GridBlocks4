@@ -6,7 +6,6 @@
 [node name="DebugRedGun" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 visible = false
 script = ExtResource("1_xjatc")
-editedScale = null
 icon = ExtResource("2_c3buv")
 objectId = 4
 rarity = "common"

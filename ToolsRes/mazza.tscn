@@ -6,7 +6,6 @@
 [node name="Mazza" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 visible = false
 script = ExtResource("1_1og0f")
-editedScale = null
 icon = ExtResource("2_ost3q")
 inventoryIndex = 6
 ToolSprite = NodePath("Sprite2D")

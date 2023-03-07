@@ -104,7 +104,7 @@ func update_animation():
 			up_animation.play("Walk")
 	elif velocity.x>0:
 		$Sprites/Down.scale.x=1
-		$Sprites/Up.scale.x=1
+		#$Sprites/Up.scale.x=1
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Walk")
 		down_animJumpWalk()
@@ -115,6 +115,19 @@ func update_animation():
 			down_animation.play("jump")
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Idle")
+	if get_global_mouse_position()>global_position:
+		$Sprites/Up.scale.x=1
+		$Sprites/Down.position.x=0.5
+		if $Sprites/Down.scale.x>0:
+			$Sprites/Down.position.x=-1.5
+		else:
+			$Sprites/Down.position.x=3
+	else:
+		$Sprites/Up.scale.x=-1
+		if $Sprites/Down.scale.x>0:
+			$Sprites/Down.position.x=-3
+		else:
+			$Sprites/Down.position.x=0.5
 func down_animJumpWalk():
 	if is_on_floor():
 		down_animation.play("Walk")
