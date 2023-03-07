@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbslbm1emedoj"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_c60vx"]
+[ext_resource type="Texture2D" uid="uid://brrkqsqev5gja" path="res://Sprites/Swords/BloodyButcherSword.png" id="2_scwd0"]
+
+[node name="BloodyButcherSwords" type="Node2D"]
+visible = false
+z_index = 2
+scale = Vector2(0.793, 0.793)
+script = ExtResource("1_c60vx")
+rotationTool = 0.0
+icon = ExtResource("2_scwd0")
+objectId = 2
+inventoryIndex = 2
+iconOffset = Vector2(0, -1.159)
+type = "Sword"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_scwd0")

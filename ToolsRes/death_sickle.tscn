@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dheu3h1fm0qgv"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_baym3"]
+[ext_resource type="Texture2D" uid="uid://c37nosxcdc4al" path="res://Sprites/DebugSickle.png" id="2_5xhwr"]
+
+[node name="DeathSickle" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+visible = false
+texture_filter = 1
+position = Vector2(525, 208)
+rotation = 45.0
+script = ExtResource("1_baym3")
+pickAxepower = 1
+icon = ExtResource("2_5xhwr")
+inventoryIndex = 3
+ToolSprite = NodePath("Sprite2D")
+type = "Pickaxe"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_5xhwr")

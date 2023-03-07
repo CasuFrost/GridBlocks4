@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcg2dupaynq2l"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_b7sqh"]
+
+[node name="Tool" type="Node2D"]
+visible = false
+z_index = 5
+texture_filter = 1
+position = Vector2(525, 208)
+script = ExtResource("1_b7sqh")

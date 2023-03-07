@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://lj3inpq4m08q"]
+
+[ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
+[ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
+[ext_resource type="PackedScene" uid="uid://dheu3h1fm0qgv" path="res://ToolsRes/death_sickle.tscn" id="3_djbx4"]
+[ext_resource type="PackedScene" uid="uid://b2bvomij41tf6" path="res://ToolsRes/bone_pickaxe.tscn" id="4_b3lc8"]
+[ext_resource type="PackedScene" uid="uid://cbslbm1emedoj" path="res://ToolsRes/bloody_butcher_swords.tscn" id="5_bl4rx"]
+
+[sub_resource type="Gradient" id="Gradient_0io4t"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.831373, 0.419608, 0.376471)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ht3v"]
+gradient = SubResource("Gradient_0io4t")
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ep7e")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="centerInventory" type="Marker2D" parent="CanvasLayer"]
+z_index = 3
+position = Vector2(576, 550)
+scale = Vector2(0.812, 0.812)
+
+[node name="4" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon" type="Sprite2D" parent="CanvasLayer/centerInventory/4"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="5" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+position = Vector2(80, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon2" type="Sprite2D" parent="CanvasLayer/centerInventory/5"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="3" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+position = Vector2(-80, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon3" type="Sprite2D" parent="CanvasLayer/centerInventory/3"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="2" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+position = Vector2(-160, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon4" type="Sprite2D" parent="CanvasLayer/centerInventory/2"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="6" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+position = Vector2(160, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon5" type="Sprite2D" parent="CanvasLayer/centerInventory/6"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="7" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+position = Vector2(240, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon6" type="Sprite2D" parent="CanvasLayer/centerInventory/7"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="1" type="Sprite2D" parent="CanvasLayer/centerInventory"]
+texture_filter = 1
+position = Vector2(-240, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n5dab")
+centered = false
+hframes = 2
+
+[node name="toolIcon7" type="Sprite2D" parent="CanvasLayer/centerInventory/1"]
+texture_filter = 1
+position = Vector2(15.147, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+z_index = 2
+offset_left = 384.0
+offset_top = 569.0
+offset_right = 835.0
+offset_bottom = 630.0
+texture = SubResource("GradientTexture1D_6ht3v")
+
+[node name="start" type="Marker2D" parent="CanvasLayer"]
+position = Vector2(382, 577.474)
+scale = Vector2(0.812, 0.812)
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="DeathSickle" parent="Objects" instance=ExtResource("3_djbx4")]
+inventoryIndex = 1
+
+[node name="BonePickaxe" parent="Objects" instance=ExtResource("4_b3lc8")]
+inventoryIndex = 7
+
+[node name="BloodyButcherSwords" parent="Objects" instance=ExtResource("5_bl4rx")]
+rotationTool = 51.0

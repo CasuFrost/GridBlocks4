@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2bvomij41tf6"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_gwgoo"]
+[ext_resource type="Texture2D" uid="uid://cyhx7ubh6wxtf" path="res://Sprites/Pickaxe/BonePickaxe.png" id="2_i70ep"]
+
+[node name="BonePickaxe" type="Node2D"]
+visible = false
+script = ExtResource("1_gwgoo")
+pickAxepower = 2
+rotationTool = 45.0
+icon = ExtResource("2_i70ep")
+objectId = 1
+type = "Pickaxe"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_i70ep")
