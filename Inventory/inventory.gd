@@ -5,6 +5,7 @@ var selected = 2
 var currentToolSelected = null
 var freeSpace = [false,false,false,false,false,false,false]
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
 	for i in $CanvasLayer/LifeBarStart.get_children():
 		var n = Array(i.name.split())
@@ -18,10 +19,7 @@ func setIconInv():
 	for i in $Objects.get_children():
 		for j in InventoryMarker.get_children():
 			if str(i.inventoryIndex)==j.name:
-				#print(j.name)
 				j.get_child(0).texture=i.icon
-				
-				#j.get_child(0).position = i.iconOffset
 
 func checkInvFreeSpace():
 	for i in $Objects.get_children():
@@ -37,6 +35,7 @@ func manageSelectedInventory(i):
 			k.frame=1
 		else:
 			k.frame=0
+
 func changeSelected():
 	setIconInv()
 	if Input.is_key_pressed(KEY_1):
@@ -86,7 +85,7 @@ func getToolType():
 		return currentToolSelected.type
 	else:
 		return "None"
-	
+		
 func reset_heart(hearthToShow):
 	for i in $CanvasLayer/LifeBarStart.get_children():
 		var n = Array(i.name.split())

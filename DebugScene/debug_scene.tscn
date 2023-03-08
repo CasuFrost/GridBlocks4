@@ -757,4 +757,3 @@ position = Vector2(-125, 93)
 position = Vector2(-125, 93)
 
 [node name="DemoAlien" parent="." instance=ExtResource("10_oehhb")]
-position = Vector2(1147, -13)

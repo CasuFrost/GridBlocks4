@@ -121,7 +121,6 @@ func manageSpriteDownPos():
 			downSprites.position.x=1
 			
 func update_animation():
-	
 	manageSpriteDownPos()
 	if Input.is_action_pressed("rClick"):
 		if get_global_mouse_position()>global_position:
