@@ -1558,9 +1558,14 @@ shape = SubResource("CapsuleShape2D_m2h1v")
 wait_time = 3.0
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
+[node name="Area2D" type="Area2D" parent="." groups=["damage", "enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_yery8")
 
+[node name="KnockBack" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="KnockBack" to="." method="_on_knock_back_timeout"]

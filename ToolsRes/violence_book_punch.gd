@@ -41,3 +41,13 @@ func activate(pos):
 		active=true
 		followPos=pos
 		$Sprite2D.look_at(followPos)
+
+
+func _on_area_2d_area_entered(area):
+	pass
+#	if area.is_in_group("enemy"):
+#		if area.global_position.x-$Sprite2D/Area2D.global_position.x>0:
+#			area.get_parent().KnockBack(1)
+#		else:
+#			area.get_parent().KnockBack(-1)
+		
