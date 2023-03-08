@@ -52,7 +52,6 @@ func _process(delta):
 	clampingValues() 
 	hearthToShow=int(Hp/10) #this variable manage the hearth shown in the UI
 	$mousePointer.global_position=get_global_mouse_position() #I have a node called mousePointer that is an area that follows mouse position
-	
 	if inventory.getToolType()=="None":
 		activeSelectedTools.texture=null
 	pickacxePower=inventory.getPickaxePower()
