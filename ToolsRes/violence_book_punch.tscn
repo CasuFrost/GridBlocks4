@@ -148,7 +148,7 @@ script = ExtResource("2_dbb2k")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
-points = PackedVector2Array(-83, -4, -50, 33, -21, -36, -54, -22, -61, -3, 40, 16)
+points = PackedVector2Array(-44, -22)
 width = 15.0
 gradient = SubResource("Gradient_sfwoi")
 joint_mode = 2

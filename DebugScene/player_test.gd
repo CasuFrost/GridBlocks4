@@ -38,7 +38,7 @@ func _ready():
 	#$Sprites/UpAnimationManager.play("toolSwing")
 	$dirtPickaxing.emitting=false
 	jumps_available= maxConsecutiveJumps
-	
+	TileMap
 func _process(delta):
 	#$"Sprites/Up/Head/NewPiskel-2png".material.set_shader_parameter("base_scroll_speed",10)
 	$mousePointer.global_position=get_global_mouse_position()
