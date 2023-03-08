@@ -6,6 +6,12 @@ var currentToolSelected = null
 var freeSpace = [false,false,false,false,false,false,false]
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for i in $CanvasLayer/LifeBarStart.get_children():
+		var n = Array(i.name.split())
+		var sum=0
+		for k in n :
+			sum+=int(k)
+		i.position.x+=40*sum
 	manageSelectedInventory(selected)
 	checkInvFreeSpace()
 func setIconInv():
@@ -81,3 +87,14 @@ func getToolType():
 	else:
 		return "None"
 	
+func reset_heart(hearthToShow):
+	for i in $CanvasLayer/LifeBarStart.get_children():
+		var n = Array(i.name.split())
+		var sum=0
+		for k in n :
+			sum+=int(k)+1
+			if sum>hearthToShow:
+				i.hide()
+			else:
+				i.show()
+		

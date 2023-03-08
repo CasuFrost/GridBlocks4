@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dfhhnoal64ncc"]
+[gd_scene load_steps=37 format=3 uid="uid://dfhhnoal64ncc"]
 
 [ext_resource type="Script" path="res://DebugScene/player_test.gd" id="1_c3738"]
 [ext_resource type="Shader" path="res://DebugScene/player_test.gdshader" id="2_2jwxw"]
@@ -1292,6 +1292,10 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mocm"]
 size = Vector2(36, 65)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yjdx5"]
+radius = 12.0
+height = 56.0
+
 [node name="PlayerTest" type="CharacterBody2D"]
 script = ExtResource("1_c3738")
 
@@ -1426,5 +1430,17 @@ position = Vector2(1, -3.5)
 shape = SubResource("RectangleShape2D_7mocm")
 disabled = true
 
+[node name="PlayerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_yjdx5")
+
+[node name="RegenTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="area_entered" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_area_entered"]
 [connection signal="area_exited" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_area_exited"]
+[connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

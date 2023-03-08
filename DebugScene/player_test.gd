@@ -21,6 +21,9 @@ var onAir = false
 var destrct_array = {}
 var pickacxePower = 1
 var testArray = []
+var Hp = 100
+var MaxHp = 100
+var hearthToShow=0
 func _input(event):
 	
 	if event.is_action_pressed("zoomIn"):
@@ -40,6 +43,8 @@ func _ready():
 	jumps_available= maxConsecutiveJumps
 	TileMap
 func _process(delta):
+	Hp=clamp(Hp,0,MaxHp)
+	hearthToShow=int(Hp/10)
 	#$"Sprites/Up/Head/NewPiskel-2png".material.set_shader_parameter("base_scroll_speed",10)
 	$mousePointer.global_position=get_global_mouse_position()
 	$Camera2D.zoom=clamp($Camera2D.zoom,Vector2(1.5,1.5),Vector2(5,5))
@@ -97,6 +102,7 @@ func _physics_process(delta):
 	movement()
 	update_animation()
 	move_and_slide()
+	
 func manageSpriteDownPos():
 	if $Sprites/Down.scale.x>0:
 		if $Sprites/Up.scale.x>0:
@@ -108,6 +114,7 @@ func manageSpriteDownPos():
 			$Sprites/Down.position.x=3
 		else:
 			$Sprites/Down.position.x=1
+			
 func update_animation():
 	manageSpriteDownPos()
 	if Input.is_action_pressed("rClick"):
@@ -146,12 +153,13 @@ func update_animation():
 	else: 
 		if is_on_floor():
 			down_animation.play("Idle")
-			#$Sprites/GeneralAnimationManager.play("RESET")
+			$Sprites/GeneralAnimationManager.play("RESET")
 		else:
 			down_animation.play("jump")
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Idle")
-			#$Sprites/GeneralAnimationManager.play("RESET")
+			
+			$Sprites/GeneralAnimationManager.play("RESET")
 			
 func down_animJumpWalk():
 	if is_on_floor():
@@ -193,7 +201,7 @@ func print_information():
 	#print(get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").get_children())
 	pass#print(toolRotation)
 	
-	#get_parent().get_node("CanvasLayer/Label").set_text(str(toolRotation))
+	#get_parent().get_node("CanvasLayer/Label").set_text(str(hearthToShow))
 	#print(destrct_array)
 	
 func valid_distance():
@@ -216,3 +224,14 @@ func resetNearTiles(tile):
 	for singleTile in tmpArr:
 		if tileMap.get_cell_tile_data(0,singleTile):
 			tileMap.set_cells_terrain_connect(0,[singleTile],0,selectedTerrain)
+
+
+func _on_player_area_area_entered(area):
+	if area.is_in_group("damage"):
+		Hp-=area.get_parent().damage
+		$Inventory.reset_heart(hearthToShow)
+
+
+func _on_regen_timer_timeout():
+	Hp+=5
+	$Inventory.reset_heart(hearthToShow)

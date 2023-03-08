@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=11 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
+[ext_resource type="Texture2D" uid="uid://btb2vuc0pm1nc" path="res://Sprites/heart.png" id="3_46bvj"]
 [ext_resource type="PackedScene" uid="uid://dheu3h1fm0qgv" path="res://ToolsRes/death_sickle.tscn" id="3_djbx4"]
 [ext_resource type="PackedScene" uid="uid://cbslbm1emedoj" path="res://ToolsRes/bloody_butcher_swords.tscn" id="5_bl4rx"]
 [ext_resource type="PackedScene" uid="uid://i3y6fjludpv3" path="res://ToolsRes/mazza.tscn" id="5_vrr8u"]
@@ -136,6 +137,49 @@ texture = SubResource("GradientTexture1D_6ht3v")
 [node name="start" type="Marker2D" parent="CanvasLayer"]
 position = Vector2(412.787, 642.927)
 scale = Vector2(0.812, 0.812)
+
+[node name="LifeBarStart" type="Marker2D" parent="CanvasLayer"]
+position = Vector2(35.3333, 36.6667)
+
+[node name="H0" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H2" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H3" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H4" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H5" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H6" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H7" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H8" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H9" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
+
+[node name="H1" type="Sprite2D" parent="CanvasLayer/LifeBarStart"]
+texture_filter = 1
+texture = ExtResource("3_46bvj")
 
 [node name="Objects" type="Node" parent="."]
 
