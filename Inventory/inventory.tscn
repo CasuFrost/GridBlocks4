@@ -187,6 +187,7 @@ texture = ExtResource("3_46bvj")
 inventoryIndex = 1
 
 [node name="BloodyButcherSwords" parent="Objects" instance=ExtResource("5_bl4rx")]
+KnockBack = 0
 rotationTool = 51.0
 
 [node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
