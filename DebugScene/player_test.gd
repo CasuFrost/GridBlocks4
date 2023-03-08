@@ -15,6 +15,7 @@ var speed = 20
 var maxSpeed = 100
 var jump = -300
 var jumps_available 
+var onAir = false
 @export var maxConsecutiveJumps = 1
 var destrct_array = {}
 var pickacxePower = 1
@@ -34,9 +35,9 @@ func _ready():
 	jumps_available= maxConsecutiveJumps
 	
 func _process(delta):
-	
+	#$"Sprites/Up/Head/NewPiskel-2png".material.set_shader_parameter("base_scroll_speed",10)
 	$mousePointer.global_position=get_global_mouse_position()
-	$Camera2D.zoom=clamp($Camera2D.zoom,Vector2(1.5,1.5),Vector2(3.5,3.5))
+	$Camera2D.zoom=clamp($Camera2D.zoom,Vector2(1.5,1.5),Vector2(5,5))
 	if $Inventory.getToolType()=="None":
 		get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null
 	toolRotation=get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").rotation
@@ -89,9 +90,24 @@ func _physics_process(delta):
 	movement()
 	update_animation()
 	move_and_slide()
-	
+func manageSpriteDownPos():
+	if $Sprites/Down.scale.x>0:
+		if $Sprites/Up.scale.x>0:
+			$Sprites/Down.position.x=-1.5
+		else:
+			$Sprites/Down.position.x=-3
+	else:
+		if $Sprites/Up.scale.x>0:
+			$Sprites/Down.position.x=3
+		else:
+			$Sprites/Down.position.x=1
 func update_animation():
+	manageSpriteDownPos()
 	if Input.is_action_pressed("rClick"):
+		if get_global_mouse_position()>global_position:
+			$Sprites/Up.scale.x=1
+		else:
+			$Sprites/Up.scale.x=-1
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool".show()
 		if $Inventory.getToolType()=="Pickaxe" or $Inventory.getToolType()=="Sword":
 			up_animation.play("toolSwing")
@@ -99,43 +115,37 @@ func update_animation():
 			$Sprites/Up/FrontArm.look_at(get_global_mouse_position())
 			#$Sprites/Up/FrontArm.rotation-=75
 			up_animation.play("Pointing")
-			
 	else:
+		if velocity.x<0:
+			$Sprites/Up.scale.x=-1
+		elif velocity.x>0:
+			$Sprites/Up.scale.x=1
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool".hide()
 		$dirtPickaxing.emitting=false
 	if velocity.x<0:
 		$Sprites/Down.scale.x=-1
-		$Sprites/Up.scale.x=-1
+		#$Sprites/Up.scale.x=-1
 		down_animJumpWalk()
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Walk")
+			$Sprites/GeneralAnimationManager.play("walk")
 	elif velocity.x>0:
 		$Sprites/Down.scale.x=1
 		#$Sprites/Up.scale.x=1
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Walk")
+			$Sprites/GeneralAnimationManager.play("walk")
 		down_animJumpWalk()
 	else: 
 		if is_on_floor():
 			down_animation.play("Idle")
+			#$Sprites/GeneralAnimationManager.play("RESET")
 		else:
 			down_animation.play("jump")
 		if !Input.is_action_pressed("rClick"):
 			up_animation.play("Idle")
+			#$Sprites/GeneralAnimationManager.play("RESET")
 			
-	if get_global_mouse_position()>global_position:
-		$Sprites/Up.scale.x=1
-		$Sprites/Down.position.x=0.5
-		if $Sprites/Down.scale.x>0:
-			$Sprites/Down.position.x=-1.5
-		else:
-			$Sprites/Down.position.x=3
-	else:
-		$Sprites/Up.scale.x=-1
-		if $Sprites/Down.scale.x>0:
-			$Sprites/Down.position.x=-3
-		else:
-			$Sprites/Down.position.x=0.5
 func down_animJumpWalk():
 	if is_on_floor():
 		down_animation.play("Walk")
@@ -153,13 +163,17 @@ func movement():
 		velocity.x = 0
 	#velocity=Velocity
 	if !is_on_floor():
+		onAir=true
 		velocity.y+=gravity
 	else:
-		#Velocity.y=0
+		if onAir:
+			$Sprites/LandJumpAnimationManager.play("landed")
+			onAir=false
 		jumps_available=maxConsecutiveJumps
 	if  Input.is_action_just_pressed("jump") and jumps_available>0:
 		down_animation.play("jump")
 		jumps_available-=1
+		$Sprites/LandJumpAnimationManager.play("jump")
 		velocity.y=jump
 func switchTexture(texture,editedScale):
 	get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool").texture=null

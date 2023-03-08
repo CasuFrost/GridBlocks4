@@ -1,12 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfhhnoal64ncc"]
+[gd_scene load_steps=33 format=3 uid="uid://dfhhnoal64ncc"]
 
 [ext_resource type="Script" path="res://DebugScene/player_test.gd" id="1_c3738"]
+[ext_resource type="Shader" path="res://Sprites/astronauta/helmet.gdshader" id="2_lwdit"]
 [ext_resource type="Texture2D" uid="uid://bgkglw02oghax" path="res://Sprites/astronauta/head.png" id="2_u0k7e"]
 [ext_resource type="Texture2D" uid="uid://d4lvhygoarked" path="res://Sprites/astronauta/body.png" id="3_m0r8j"]
 [ext_resource type="Texture2D" uid="uid://2hknk3mxs7js" path="res://Sprites/astronauta/arm.png" id="4_2i6uu"]
 [ext_resource type="Texture2D" uid="uid://bp50vmjyj14l6" path="res://Sprites/astronauta/leg.png" id="5_jo7lf"]
+[ext_resource type="Animation" uid="uid://c3ykc6puppbgu" path="res://tmp/jump.res" id="6_xbnde"]
+[ext_resource type="Animation" uid="uid://bm0urbjknaw5r" path="res://tmp/landed.res" id="7_0njvk"]
 [ext_resource type="PackedScene" uid="uid://lj3inpq4m08q" path="res://Inventory/inventory.tscn" id="9_icx0y"]
 [ext_resource type="Texture2D" uid="uid://c54iycyo4mfl1" path="res://Sprites/dirt.png" id="9_s5j7l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtgm"]
+shader = ExtResource("2_lwdit")
+shader_parameter/active = true
 
 [sub_resource type="Animation" id="Animation_0t14g"]
 resource_name = "Idle"
@@ -1121,6 +1128,124 @@ _data = {
 "jump": SubResource("Animation_dsfps")
 }
 
+[sub_resource type="Animation" id="Animation_5a4cd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.796, 0.796)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_itpp0"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -0.5), Vector2(0, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.796, 0.796)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:skew")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0174533, 0.0174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_14u2d"]
+_data = {
+"RESET": SubResource("Animation_5a4cd"),
+"jump": ExtResource("6_xbnde"),
+"landed": ExtResource("7_0njvk"),
+"walk": SubResource("Animation_itpp0")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o1reh"]
+_data = {
+"jump": ExtResource("6_xbnde"),
+"landed": ExtResource("7_0njvk")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sr2sa"]
 radius = 7.0
 height = 44.0
@@ -1169,6 +1294,7 @@ position = Vector2(3, -12)
 [node name="NewPiskel-2png" type="Sprite2D" parent="Sprites/Up/Head"]
 z_index = 1
 texture_filter = 1
+material = SubResource("ShaderMaterial_ydtgm")
 position = Vector2(0, -8)
 texture = ExtResource("2_u0k7e")
 
@@ -1240,8 +1366,18 @@ libraries = {
 "": SubResource("AnimationLibrary_4po1c")
 }
 
+[node name="GeneralAnimationManager" type="AnimationPlayer" parent="Sprites"]
+libraries = {
+"": SubResource("AnimationLibrary_14u2d")
+}
+
+[node name="LandJumpAnimationManager" type="AnimationPlayer" parent="Sprites"]
+libraries = {
+"": SubResource("AnimationLibrary_o1reh")
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(2.353, 2.353)
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
