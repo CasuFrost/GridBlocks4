@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1opk360idrgv"]
+[gd_scene load_steps=10 format=3 uid="uid://b1opk360idrgv"]
 
 [ext_resource type="Texture2D" uid="uid://d2b7654gm6uxn" path="res://Sprites/SpecialEffects/redPunch.png" id="1_8x08j"]
 [ext_resource type="Script" path="res://ToolsRes/violence_book_punch.gd" id="2_dbb2k"]
@@ -137,9 +137,26 @@ tracks/4/keys = {
 "values": [PackedColorArray(0.921569, 0.721569, 0, 0.490196, 1, 0, 0.101961, 1), PackedColorArray(0.921569, 0.721569, 0, 0, 1, 0, 0.101961, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_pco7h"]
+resource_name = "born"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_su841"]
 _data = {
 "RESET": SubResource("Animation_fofmq"),
+"born": SubResource("Animation_pco7h"),
 "deActive": SubResource("Animation_xfddm")
 }
 
@@ -164,7 +181,7 @@ texture_filter = 3
 scale = Vector2(0.507, 0.507)
 texture = ExtResource("1_8x08j")
 
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
+[node name="Area2D" type="Area2D" parent="Sprite2D" groups=["projectile"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 shape = SubResource("CircleShape2D_dqc02")

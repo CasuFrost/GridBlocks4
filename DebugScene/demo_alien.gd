@@ -74,3 +74,9 @@ func _on_timer_timeout():
 
 func _on_knock_back_timeout():
 	impulse=0
+
+
+func _on_area_2d_area_entered(area):
+	pass
+#	if area.is_in_group("projectile"):
+#		queue_free()
