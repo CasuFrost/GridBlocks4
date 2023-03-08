@@ -126,10 +126,10 @@ scale = Vector2(0.5, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 z_index = 2
-offset_left = 414.787
-offset_top = 634.453
-offset_right = 865.787
-offset_bottom = 695.453
+offset_left = 413.0
+offset_top = 633.0
+offset_right = 866.0
+offset_bottom = 695.0
 size_flags_horizontal = 4
 texture = SubResource("GradientTexture1D_6ht3v")
 
