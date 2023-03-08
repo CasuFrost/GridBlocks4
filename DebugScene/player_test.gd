@@ -14,12 +14,13 @@ var mouseOnPlayer : bool = false
 var speed = 20
 var maxSpeed = 100
 var jump = -300
+var selectedTerrain = 3
 var jumps_available 
 var onAir = false
 @export var maxConsecutiveJumps = 1
 var destrct_array = {}
 var pickacxePower = 1
-
+var testArray = []
 func _input(event):
 	
 	if event.is_action_pressed("zoomIn"):
@@ -30,6 +31,10 @@ func _input(event):
 		
 		
 func _ready():
+	for i in 4:
+		for j in 4:
+			testArray.append(Vector2i(j,i))
+	
 	#$Sprites/UpAnimationManager.play("toolSwing")
 	$dirtPickaxing.emitting=false
 	jumps_available= maxConsecutiveJumps
@@ -57,7 +62,8 @@ func interactWithTilemap():
 	if Input.is_action_pressed("lClick") and valid_distance() and !mouseOnPlayer:
 		var tile = tileMap.local_to_map(get_global_mouse_position())
 		if isTileValidPosition(tile) and !mouseOnPlayer:
-			tileMap.set_cell(0,tile,2,Vector2i(0,0))
+			tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
+			TileMap
 			#tileMap.set_cells_terrain_connect(0,[Vector2i(0,0),Vector2i(1,0),Vector2i(2,0),Vector2i(0,1),Vector2i(1,1),Vector2i(2,1),Vector2i(0,2),Vector2i(1,2),Vector2i(2,2),Vector2i(0,3),Vector2i(1,3)],0,0)
 	if Input.is_action_pressed("rClick") and valid_distance() and $Inventory.isSelectedPickaxe():
 		var tile = tileMap.local_to_map(get_global_mouse_position())
@@ -69,6 +75,7 @@ func interactWithTilemap():
 			else:
 				destrct_array[tile]-=pickacxePower
 				if destrct_array[tile]<=0:
+					#resetNearTiles(tile)
 					tileMap.erase_cell(0,tile)
 					destrct_array.erase(tile)
 		else:
@@ -204,3 +211,8 @@ func _on_blocko_forbidden_place_area_entered(area):
 func _on_blocko_forbidden_place_area_exited(area):
 	if area.is_in_group("mouse"):
 		mouseOnPlayer=false
+func resetNearTiles(tile):
+	var tmpArr = [tile+Vector2i(0,1),tile+Vector2i(1,0),tile-Vector2i(0,1),tile-Vector2i(1,0)]
+	for singleTile in tmpArr:
+		if tileMap.get_cell_tile_data(0,singleTile):
+			tileMap.set_cells_terrain_connect(0,[singleTile],0,selectedTerrain)
