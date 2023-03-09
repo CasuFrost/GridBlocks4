@@ -4,7 +4,7 @@
 class_name tool
 extends Node2D
 var scaleValue 
-@export var KnockBack : int 
+@export var KnockBack : int = 150
 @export var editedScale : Vector2 
 @export var pickAxepower : int
 @export var rotationTool : float =51
@@ -16,6 +16,9 @@ var scaleValue
 @export var iconOffset : Vector2
 @export var SpriteOffsetM : Vector2
 @export var SpriteOffsetL : Vector2
+@export var DamageAreaScaling : Vector2 = Vector2.ONE
+@export var Damage : int = 10
+
 var SpriteOffsetSetting : Vector2
 @onready var inventory=get_parent().get_parent()
 @onready var player = get_parent().get_parent().get_parent()

@@ -8,6 +8,7 @@ collision_layer = 2
 collision_mask = 2
 velocity = Vector2(0, 55107.4)
 script = ExtResource("1_dbase")
+hp = null
 jump = null
 patrollingSpeed = null
 attackingSpeed = null

@@ -80,11 +80,19 @@ func isSelectedPickaxe():
 			return false
 	else:
 		return false
+		
 func getToolType():
 	if currentToolSelected:
 		return currentToolSelected.type
 	else:
 		return "None"
+		
+func getToolDmgAreaScaling():
+	if currentToolSelected:
+		return currentToolSelected.DamageAreaScaling
+func getToolDmgAndKnockBack():
+	if currentToolSelected:
+		return Vector2(currentToolSelected.Damage,currentToolSelected.KnockBack)
 func getToolName():
 	if currentToolSelected:
 		return currentToolSelected.name

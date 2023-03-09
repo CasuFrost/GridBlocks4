@@ -186,12 +186,15 @@ texture = ExtResource("3_46bvj")
 
 [node name="DeathSickle" parent="Objects" instance=ExtResource("3_djbx4")]
 inventoryIndex = 1
+DamageAreaScaling = Vector2(2, 2)
 
 [node name="BloodyButcherSwords" parent="Objects" instance=ExtResource("5_bl4rx")]
-KnockBack = 0
+KnockBack = 170
 rotationTool = 51.0
+Damage = 40
 
 [node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
+DamageAreaScaling = Vector2(4, 4)
 
 [node name="DebugRedGun" parent="Objects" instance=ExtResource("6_fdy80")]
 type = "PointingWeapon"

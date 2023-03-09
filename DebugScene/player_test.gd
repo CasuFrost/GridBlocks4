@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var placingParticles = get_node("PlacedBlockParticle")
 @onready var inventory = get_node("Inventory")
 @onready var camera = get_node("Camera2D")
+@onready var DamageArea = get_node("Sprites/Up/DamageArea")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
 var maxTileInfoStored=150
 var cell :Vector2
@@ -29,6 +30,8 @@ var pickacxePower = 1
 var Hp = 100
 var MaxHp = 100
 var hearthToShow=0
+var Damage
+var Knockback
 
 @export var maxConsecutiveJumps = 1
 
@@ -59,6 +62,13 @@ func _process(delta):
 	$mousePointer.global_position=get_global_mouse_position() #I have a node called mousePointer that is an area that follows mouse position
 	if inventory.getToolType()=="None":
 		activeSelectedTools.texture=null
+	if inventory.getToolType()=="Sword":
+		DamageArea.scale=inventory.getToolDmgAreaScaling()
+		var data = inventory.getToolDmgAndKnockBack()
+		Damage=data.x
+		Knockback=data.y
+	else:
+		DamageArea.scale=Vector2.ZERO
 	pickacxePower=inventory.getPickaxePower()
 	print_information()
 	
@@ -207,7 +217,8 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 	activeSelectedTools.texture=texture
 	
 func print_information():
-	get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
+	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
+	get_parent().get_node("CanvasLayer/Label").set_text(str(Damage)+" "+str(Knockback))
 	pass
 	
 func valid_distance():
@@ -249,3 +260,9 @@ func _on_blocko_forbidden_place_mouse_entered():
 
 func _on_blocko_forbidden_place_mouse_exited():
 	mouseOnPlayer=false
+
+
+func _on_damage_area_area_entered(area):
+	if area.is_in_group("enemy"):
+		print(Knockback)
+		area.get_parent().applyKnockBack(Knockback,DamageArea.global_position.x)

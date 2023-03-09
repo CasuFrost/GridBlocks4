@@ -8,13 +8,14 @@ visible = false
 z_index = 2
 scale = Vector2(0.85, 0.85)
 script = ExtResource("1_c60vx")
-KnockBack = null
+KnockBack = 170
 rotationTool = 0.0
 icon = ExtResource("2_scwd0")
 objectId = 2
 rarity = "common"
 inventoryIndex = 2
 ToolSprite = NodePath("Sprite2D")
+DamageAreaScaling = Vector2(3.5, 3.5)
 type = "Sword"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

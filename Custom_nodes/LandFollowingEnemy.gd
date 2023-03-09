@@ -14,6 +14,7 @@ class_name LandFollowingEnemy
 
 extends CharacterBody2D
 
+@export var hp : int = 100
 @export var jump : int = -400
 @export var patrollingSpeed : int 
 @export var attackingSpeed : int 
@@ -72,7 +73,7 @@ func _physics_process(delta):
 			velocity.y=jump
 			LandJumpAnim.play("jump")
 	move_and_slide()
-
+	
 func patroling():
 	if playerPos.distance_to(global_position)>10:
 		Sprite.scale.x=rng_dir
@@ -80,8 +81,13 @@ func patroling():
 	DownAnim.play("walk")
 	GeneralAnim.play("walk")
 	
-	velocity.x += rng_dir*accelleration 
-	velocity.x=clamp(velocity.x,-patrollingSpeed,patrollingSpeed)
+	if rng_dir>0:
+		if velocity.x<patrollingSpeed:
+				velocity.x += accelleration 
+	else:
+		if velocity.x>-patrollingSpeed:
+				velocity.x -= accelleration 
+
 	
 func followingPlayer():
 	if playerPos.distance_to(global_position)>10:
@@ -89,23 +95,26 @@ func followingPlayer():
 	UpAnim.play("walkAttack")
 	DownAnim.play("walkAttack")
 	GeneralAnim.play("walkAttack")
-	if global_position.x>playerPos.x:
-		playerDir=-1
-	else:
-		playerDir=1
+	
+		
 	if playerPos.distance_to(global_position)>10:
-		velocity.x += playerDir*accelleration 
-	velocity.x=clamp(velocity.x,-attackingSpeed,attackingSpeed)
+		if global_position.x<playerPos.x:
+			if velocity.x<attackingSpeed:
+				velocity.x += accelleration 
+			playerDir=1
+		else:
+			if velocity.x>-attackingSpeed:
+				velocity.x -= accelleration 
+			playerDir=-1
+			
+		#velocity.x += playerDir*accelleration 
+	#velocity.x=clamp(velocity.x,-attackingSpeed,attackingSpeed)
 	
 func applyKnockBack(value,xPos):
-	#print("debug")
 	var knockBackDir
 	if xPos>global_position.x:
-		#print("minus")
 		knockBackDir=-1
 	else:
-		#print("plus")
 		knockBackDir=1
-	
 	velocity.x=value*knockBackDir
 	

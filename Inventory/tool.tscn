@@ -9,3 +9,5 @@ texture_filter = 1
 position = Vector2(525, 208)
 rotation = -0.806342
 script = ExtResource("1_b7sqh")
+KnockBack = 0
+Damage = null

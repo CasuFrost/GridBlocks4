@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://82jgq31xb12l" path="res://Sprites/Enemies/DebugEnemy/New Piskel-3.png.png" id="6_6y8lv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfbkq"]
-radius = 17.0
+radius = 15.0
 
 [sub_resource type="Animation" id="Animation_c0pry"]
 resource_name = "walk"
@@ -95,6 +95,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"default"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area2D/CollisionShape2D2:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_xmamv"]
@@ -860,7 +872,7 @@ damage = 10
 SecToChangeDir = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_lfbkq")
 
 [node name="UpAnimationManager" type="AnimationPlayer" parent="."]
