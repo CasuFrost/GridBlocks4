@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dfhhnoal64ncc"]
+[gd_scene load_steps=46 format=3 uid="uid://dfhhnoal64ncc"]
 
 [ext_resource type="Script" path="res://DebugScene/player_test.gd" id="1_c3738"]
 [ext_resource type="Shader" path="res://DebugScene/player_test.gdshader" id="2_2jwxw"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c54iycyo4mfl1" path="res://Sprites/dirt.png" id="9_s5j7l"]
 [ext_resource type="Texture2D" uid="uid://c1qik8p4b61i7" path="res://Sprites/pointer.png" id="11_1xsyc"]
 [ext_resource type="Texture2D" uid="uid://bw5hbcrchri6n" path="res://ParticlesEffect/light.png" id="13_b8eaj"]
+[ext_resource type="Texture2D" uid="uid://bsjsfpffmlv0k" path="res://Sprites/SpecialEffects/random_selection.png" id="15_lm4eq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtgm"]
 shader = ExtResource("2_lwdit")
@@ -1262,7 +1263,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sr2sa"]
 radius = 7.0
-height = 44.0
+height = 45.88
 
 [sub_resource type="Curve" id="Curve_7u1hs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.127273), -1.89339, 0.0, 0, 0]
@@ -1292,11 +1293,45 @@ scale_curve = SubResource("CurveTexture_k4lgv")
 radius = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mocm"]
-size = Vector2(36, 65)
+size = Vector2(39, 69)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yjdx5"]
 radius = 12.0
 height = 56.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k1v1e"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_8uvyj"]
+offsets = PackedFloat32Array(0, 0.535433, 0.984252)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_66ro3"]
+gradient = SubResource("Gradient_8uvyj")
+
+[sub_resource type="Curve" id="Curve_jprsa"]
+_data = [Vector2(0.0253165, 0.0636363), 0.0, 0.199495, 0, 0, Vector2(1, 1), -0.41039, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iyvw0"]
+curve = SubResource("Curve_jprsa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8hvpj"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 360.0
+angle_max = 360.0
+scale_min = 0.05
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_iyvw0")
+color_ramp = SubResource("GradientTexture1D_66ro3")
+anim_offset_max = 1.0
 
 [node name="PlayerTest" type="CharacterBody2D"]
 script = ExtResource("1_c3738")
@@ -1341,10 +1376,11 @@ z_index = -1
 material = SubResource("ShaderMaterial_lklmv")
 
 [node name="torch" type="PointLight2D" parent="Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition"]
-position = Vector2(268.115, -0.719416)
-scale = Vector2(0.606123, 0.779421)
+position = Vector2(381.6, -0.719416)
+scale = Vector2(0.874527, 0.779421)
 energy = 0.5
 texture = ExtResource("7_gvnyp")
+offset = Vector2(15.186, 0)
 
 [node name="BackArm" type="Marker2D" parent="Sprites/Up"]
 position = Vector2(8, -6)
@@ -1434,9 +1470,8 @@ texture = ExtResource("11_1xsyc")
 [node name="BlockoForbiddenPlace" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockoForbiddenPlace"]
-position = Vector2(1, -3.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_7mocm")
-disabled = true
 
 [node name="PlayerArea" type="Area2D" parent="."]
 
@@ -1453,7 +1488,16 @@ scale = Vector2(0.582, 0.582)
 shadow_color = Color(1, 1, 1, 0.32549)
 texture = ExtResource("13_b8eaj")
 
-[connection signal="area_entered" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_area_entered"]
-[connection signal="area_exited" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_area_exited"]
+[node name="PlacedBlockParticle" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_k1v1e")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_8hvpj")
+texture = ExtResource("15_lm4eq")
+lifetime = 0.5
+one_shot = true
+speed_scale = 2.0
+
+[connection signal="mouse_entered" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_mouse_entered"]
+[connection signal="mouse_exited" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_mouse_exited"]
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

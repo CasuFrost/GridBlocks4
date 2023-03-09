@@ -6,7 +6,7 @@
 [node name="Torch" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 visible = false
 script = ExtResource("1_0k57f")
-editedScale = Vector2(2, 2)
+editedScale = Vector2(1.5, 1.5)
 icon = ExtResource("2_amvr3")
 inventoryIndex = 3
 ToolSprite = NodePath("Sprite2D")

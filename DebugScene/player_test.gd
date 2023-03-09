@@ -9,10 +9,10 @@ extends CharacterBody2D
 @onready var downSprites = get_node("Sprites/Down")
 @onready var upSprites = get_node("Sprites/Up")
 @onready var pickaxeParticles = get_node("dirtPickaxing")
+@onready var placingParticles = get_node("PlacedBlockParticle")
 @onready var inventory = get_node("Inventory")
 @onready var camera = get_node("Camera2D")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
-
 var maxTileInfoStored=150
 var cell :Vector2
 const gravity = 13
@@ -40,9 +40,9 @@ func _input(event):
 		inventory.selected-=1
 
 func _ready():
+	input_pickable=true
 	pickaxeParticles.emitting=false #The particles animation of blocks breaking should not emit when the game starts
 	jumps_available= maxConsecutiveJumps #Setting initial jumpes available as equal as max possible consecutive jumps
-
 func clampingValues(): #all the values that has to be clamped 
 	velocity.x = clamp(velocity.x,-maxSpeed,maxSpeed)
 	Hp=clamp(Hp,0,MaxHp)
@@ -62,7 +62,6 @@ func _process(delta):
 	pickacxePower=inventory.getPickaxePower()
 	print_information()
 	
-	
 	if tileMap :
 		interactWithTilemap()
 		
@@ -71,13 +70,13 @@ func interactWithTilemap():
 		destrct_array.erase(destrct_array.keys()[0]) 
 
 	pickaxeParticles.global_position=get_global_mouse_position()
-	
-	if Input.is_action_pressed("lClick") and valid_distance() and !mouseOnPlayer:
-		var tile = tileMap.local_to_map(get_global_mouse_position())
-		if isTileValidPosition(tile):
-			tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
-			
-	if Input.is_action_pressed("rClick") and valid_distance() and inventory.isSelectedPickaxe():
+	placingParticles.global_position=get_global_mouse_position()
+	if Input.is_action_pressed("lClick") and valid_distance() and !mouseOnPlayer and !mouseOnPlayer and !Input.is_action_pressed("rClick"):
+			var tile = tileMap.local_to_map(get_global_mouse_position())
+			if isTileValidPosition(tile):
+				tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
+				placingParticles.emitting=true
+	if Input.is_action_pressed("rClick") and valid_distance() and inventory.isSelectedPickaxe() and !Input.is_action_pressed("lClick"):
 		var tile = tileMap.local_to_map(get_global_mouse_position())
 		if tileMap.get_cell_tile_data(0,tile):
 			pickaxeParticles.emitting=true
@@ -86,6 +85,7 @@ func interactWithTilemap():
 			else:
 				destrct_array[tile]-=pickacxePower
 				if destrct_array[tile]<=0:
+					resetNearBlocks(tile)
 					tileMap.erase_cell(0,tile)
 					destrct_array.erase(tile)
 		else:
@@ -138,7 +138,9 @@ func update_animation():
 			$Sprites/Up/FrontArm.look_at(get_global_mouse_position())
 			
 			up_animation.play("Pointing")
+	
 	else:
+		
 		if velocity.x<0:
 			upSprites.scale.x=-1
 		elif velocity.x>0:
@@ -200,9 +202,12 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 	activeSelectedTools.texture=null
 	if editedScale!=Vector2.ZERO:
 		activeSelectedTools.scale=editedScale
+	else:
+		activeSelectedTools.scale=Vector2.ONE
 	activeSelectedTools.texture=texture
 	
 func print_information():
+	
 	pass
 	
 func valid_distance():
@@ -211,13 +216,7 @@ func valid_distance():
 	else:
 		return false
 
-func _on_blocko_forbidden_place_area_entered(area):
-	if area.is_in_group("mouse"):
-		mouseOnPlayer=true
 
-func _on_blocko_forbidden_place_area_exited(area):
-	if area.is_in_group("mouse"):
-		mouseOnPlayer=false
 		
 func resetNearTiles(tile):
 	var tmpArr = [tile+Vector2i(0,1),tile+Vector2i(1,0),tile-Vector2i(0,1),tile-Vector2i(1,0)]
@@ -234,3 +233,19 @@ func _on_player_area_area_entered(area):
 func _on_regen_timer_timeout():
 	Hp+=5
 	inventory.reset_heart(hearthToShow)
+func resetNearBlocks(BrokenTile):
+	var tmpArray = [BrokenTile+Vector2i(0,1),BrokenTile+Vector2i(1,0),BrokenTile-Vector2i(0,1),BrokenTile-Vector2i(1,0),BrokenTile-Vector2i(1,1),BrokenTile+Vector2i(1,1)]
+	for k in tmpArray:
+		var data = tileMap.get_cell_tile_data(0,k)
+		if data:
+			tileMap.erase_cell(0,k)
+			tileMap.set_cells_terrain_connect(0,[k],0,data.get_custom_data("blockId"))
+
+
+
+func _on_blocko_forbidden_place_mouse_entered():
+	mouseOnPlayer=true
+
+
+func _on_blocko_forbidden_place_mouse_exited():
+	mouseOnPlayer=false
