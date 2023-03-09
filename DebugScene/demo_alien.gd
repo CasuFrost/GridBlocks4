@@ -14,6 +14,7 @@ var distOnPlayer = 0
 var rng_dir = 1
 var knockback = 360
 var impulse = 0
+
 func _ready():
 	rng.randomize()
 func _physics_process(delta):

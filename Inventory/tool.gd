@@ -1,4 +1,4 @@
-@tool
+#@tool
 @icon("res://editor/icons/toolIcon.png")
 
 class_name tool

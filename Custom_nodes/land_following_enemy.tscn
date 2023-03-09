@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bggxypwucycdj"]
+
+[ext_resource type="Script" path="res://Custom_nodes/LandFollowingEnemy.gd" id="1_dbase"]
+
+[node name="LandFollowingEnemy" type="CharacterBody2D"]
+position = Vector2(0, 1.49959e+07)
+collision_layer = 2
+collision_mask = 2
+velocity = Vector2(0, 55107.4)
+script = ExtResource("1_dbase")
+jump = null
+patrollingSpeed = null
+attackingSpeed = null
+playerDetectRange = null
+gravity = null
+MaxYSpeed = null
+damage = null
+SecToChangeDir = null
+accelleration = null

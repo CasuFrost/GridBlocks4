@@ -207,7 +207,7 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 	activeSelectedTools.texture=texture
 	
 func print_information():
-	
+	get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
 	pass
 	
 func valid_distance():

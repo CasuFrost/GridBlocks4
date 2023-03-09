@@ -45,8 +45,8 @@ func activate(pos):
 
 
 func _on_area_2d_area_entered(area):
-	pass
-#	if area.is_in_group("enemy"):
+	if area.is_in_group("enemy"):
+		area.get_parent().applyKnockBack(150,$Sprite2D/Area2D.global_position.x)
 #		if area.global_position.x-$Sprite2D/Area2D.global_position.x>0:
 #			area.get_parent().KnockBack(1)
 #		else:
