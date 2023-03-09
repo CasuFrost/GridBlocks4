@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://diniqyx8gjhh1"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_0k57f"]
+[ext_resource type="Texture2D" uid="uid://ftkhj7b87dci" path="res://Sprites/torch.png" id="2_amvr3"]
+
+[node name="Torch" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+visible = false
+script = ExtResource("1_0k57f")
+editedScale = Vector2(2, 2)
+icon = ExtResource("2_amvr3")
+inventoryIndex = 3
+ToolSprite = NodePath("Sprite2D")
+type = "PointingWeapon"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_amvr3")

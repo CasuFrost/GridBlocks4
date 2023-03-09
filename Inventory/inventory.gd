@@ -85,7 +85,11 @@ func getToolType():
 		return currentToolSelected.type
 	else:
 		return "None"
-		
+func getToolName():
+	if currentToolSelected:
+		return currentToolSelected.name
+	else:
+		return "None"
 func reset_heart(hearthToShow):
 	for i in $CanvasLayer/LifeBarStart.get_children():
 		var n = Array(i.name.split())

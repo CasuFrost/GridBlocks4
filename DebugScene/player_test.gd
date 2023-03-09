@@ -47,8 +47,13 @@ func clampingValues(): #all the values that has to be clamped
 	velocity.x = clamp(velocity.x,-maxSpeed,maxSpeed)
 	Hp=clamp(Hp,0,MaxHp)
 	camera.zoom=clamp(camera.zoom,Vector2(1.5,1.5),Vector2(5,5))
-
+func manageTorch():
+	if inventory.getToolName()=="Torch" and Input.is_action_pressed("rClick"):
+		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".show()
+	else:
+		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".hide()
 func _process(delta):
+	manageTorch()
 	clampingValues() 
 	hearthToShow=int(Hp/10) #this variable manage the hearth shown in the UI
 	$mousePointer.global_position=get_global_mouse_position() #I have a node called mousePointer that is an area that follows mouse position
