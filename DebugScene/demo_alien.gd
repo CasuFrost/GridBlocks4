@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var rng = RandomNumberGenerator.new()
-const attckSpeed = 100
+const attckSpeed = 75
 const SPEED = 50
 const damage = 10
 const JUMP_VELOCITY = -400.0

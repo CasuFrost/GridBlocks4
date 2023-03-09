@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dfhhnoal64ncc"]
+[gd_scene load_steps=38 format=3 uid="uid://dfhhnoal64ncc"]
 
 [ext_resource type="Script" path="res://DebugScene/player_test.gd" id="1_c3738"]
 [ext_resource type="Shader" path="res://DebugScene/player_test.gdshader" id="2_2jwxw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://lj3inpq4m08q" path="res://Inventory/inventory.tscn" id="9_icx0y"]
 [ext_resource type="Texture2D" uid="uid://c54iycyo4mfl1" path="res://Sprites/dirt.png" id="9_s5j7l"]
 [ext_resource type="Texture2D" uid="uid://c1qik8p4b61i7" path="res://Sprites/pointer.png" id="11_1xsyc"]
+[ext_resource type="Texture2D" uid="uid://bw5hbcrchri6n" path="res://ParticlesEffect/light.png" id="13_b8eaj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtgm"]
 shader = ExtResource("2_lwdit")
@@ -1439,6 +1440,9 @@ shape = SubResource("CapsuleShape2D_yjdx5")
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("13_b8eaj")
 
 [connection signal="area_entered" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_area_entered"]
 [connection signal="area_exited" from="BlockoForbiddenPlace" to="." method="_on_blocko_forbidden_place_area_exited"]

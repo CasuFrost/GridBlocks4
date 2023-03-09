@@ -758,3 +758,7 @@ position = Vector2(-125, 93)
 position = Vector2(-125, 93)
 
 [node name="DemoAlien" parent="." instance=ExtResource("10_oehhb")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_index = 5
+color = Color(0.27451, 0.27451, 0.27451, 1)
