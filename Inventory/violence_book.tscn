@@ -8,6 +8,7 @@
 visible = false
 texture_filter = 1
 script = ExtResource("1_eso62")
+KnockBack = 230
 editedScale = Vector2(0.8, 0.8)
 icon = ExtResource("2_w7udi")
 rarity = "common"

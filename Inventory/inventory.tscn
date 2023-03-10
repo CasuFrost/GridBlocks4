@@ -189,6 +189,7 @@ inventoryIndex = 1
 DamageAreaScaling = Vector2(2, 2)
 
 [node name="BloodyButcherSwords" parent="Objects" instance=ExtResource("5_bl4rx")]
+KnockBack = 300
 rotationTool = 51.0
 Damage = 40
 

@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
 var maxTileInfoStored=150
 var cell :Vector2
+var decelleration = 4
 const gravity = 13
 var maxDistBlocksRange = 120
 var mouseOnPlayer : bool = false
@@ -48,7 +49,6 @@ func _ready():
 	pickaxeParticles.emitting=false #The particles animation of blocks breaking should not emit when the game starts
 	jumps_available= maxConsecutiveJumps #Setting initial jumpes available as equal as max possible consecutive jumps
 func clampingValues(): #all the values that has to be clamped 
-	velocity.x = clamp(velocity.x,-maxSpeed,maxSpeed)
 	Hp=clamp(Hp,0,MaxHp)
 	camera.zoom=clamp(camera.zoom,Vector2(1.5,1.5),Vector2(5,5))
 func manageTorch():
@@ -190,11 +190,17 @@ func down_animJumpWalk():
 		
 func movement():
 	if Input.is_action_pressed("move_left"):
-		velocity.x-=speed
+		if velocity.x>-maxSpeed:
+			velocity.x-=speed
 	elif Input.is_action_pressed("move_right"):
-		velocity.x+=speed
+		if velocity.x<maxSpeed:
+			velocity.x+=speed
 	else:
-		velocity.x = 0
+		if velocity.x>0:
+			velocity.x-=decelleration
+		if velocity.x<0:
+			velocity.x+=decelleration
+		#velocity.x = 0
 	if !is_on_floor():
 		onAir=true
 		velocity.y+=gravity
@@ -240,6 +246,7 @@ func resetNearTiles(tile):
 func _on_player_area_area_entered(area):
 	if area.is_in_group("damage"):
 		Hp-=area.get_parent().damage
+		applyKnockback(area.get_parent().knockBack,area.get_parent().global_position.x)
 		inventory.reset_heart(hearthToShow)
 
 func _on_regen_timer_timeout():
@@ -269,8 +276,9 @@ func _on_damage_area_area_entered(area):
 		area.get_parent().applyKnockBack(Knockback,DamageArea.global_position.x)
 func applyKnockback(value,Xpos):
 	var knockbackDir
-	if global_position.x>Xpos:
+	if global_position.x<Xpos:
 		knockbackDir=-1
 	else:
 		knockbackDir=1
 	velocity.x =value*knockbackDir
+	velocity.y = -value*0.5

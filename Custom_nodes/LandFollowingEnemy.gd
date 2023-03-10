@@ -13,7 +13,7 @@ class_name LandFollowingEnemy
 #damage area
 
 extends CharacterBody2D
-
+@export var knockBack : int = 100
 @export var hp : int = 100
 @export var jump : int = -400
 @export var patrollingSpeed : int 
@@ -30,6 +30,7 @@ extends CharacterBody2D
 @onready var LandJumpAnim = get_node("LandJumpAnimationManager")
 @onready var GeneralAnim = get_node("GeneralAnimationManager")
 @onready var Sprite = get_node("DirectionScaler")
+
 
 var rng = RandomNumberGenerator.new()
 var rng_dir : int = 1
@@ -117,4 +118,5 @@ func applyKnockBack(value,xPos):
 	else:
 		knockBackDir=1
 	velocity.x=value*knockBackDir
+	velocity.y=-value*0.5
 	

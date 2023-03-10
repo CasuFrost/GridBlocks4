@@ -988,3 +988,4 @@ script = ExtResource("13_rdkwh")
 
 [node name="LandFollowingEnemy" parent="." instance=ExtResource("16_6h7a8")]
 position = Vector2(688, 38)
+knockBack = 150
