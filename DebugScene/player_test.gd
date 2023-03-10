@@ -32,6 +32,7 @@ var MaxHp = 100
 var hearthToShow=0
 var Damage
 var Knockback
+var KnockbackResistence = 1
 
 @export var maxConsecutiveJumps = 1
 
@@ -266,3 +267,10 @@ func _on_damage_area_area_entered(area):
 	if area.is_in_group("enemy"):
 		print(Knockback)
 		area.get_parent().applyKnockBack(Knockback,DamageArea.global_position.x)
+func applyKnockback(value,Xpos):
+	var knockbackDir
+	if global_position.x>Xpos:
+		knockbackDir=-1
+	else:
+		knockbackDir=1
+	velocity.x =value*knockbackDir
