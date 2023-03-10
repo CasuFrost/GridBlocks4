@@ -14,14 +14,17 @@ extends CharacterBody2D
 @onready var camera = get_node("Camera2D")
 @onready var DamageArea = get_node("Sprites/Up/DamageArea")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
+var knockBackResistence : float = 1
 var maxTileInfoStored=150
 var cell :Vector2
-var decelleration = 4
+var decelleration = 10
+var MovingDecelleration = 10
+var notMovingDecelleration = 5
 const gravity = 13
 var maxDistBlocksRange = 120
 var mouseOnPlayer : bool = false
-var speed = 20
-var maxSpeed = 100
+var speed = 15
+var maxSpeed = 150
 var jump = -300
 var selectedTerrain = 3
 var jumps_available 
@@ -43,8 +46,18 @@ func _input(event):
 		
 	if event.is_action_pressed("zoomout"):
 		inventory.selected-=1
-
+		
+func manageDownAnimationSpeed():
+	if up_animation.current_animation=="toolSwing":
+		up_animation.speed_scale=inventory.getToolSpeed()
+	else:
+		up_animation.speed_scale=1
+	if down_animation.current_animation=="Walk":
+		down_animation.speed_scale=abs(velocity.x)/100
+	else:
+		down_animation.speed_scale=1
 func _ready():
+	
 	input_pickable=true
 	pickaxeParticles.emitting=false #The particles animation of blocks breaking should not emit when the game starts
 	jumps_available= maxConsecutiveJumps #Setting initial jumpes available as equal as max possible consecutive jumps
@@ -57,6 +70,7 @@ func manageTorch():
 	else:
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".hide()
 func _process(delta):
+	manageDownAnimationSpeed()
 	manageTorch()
 	clampingValues() 
 	hearthToShow=int(Hp/10) #this variable manage the hearth shown in the UI
@@ -187,20 +201,23 @@ func down_animJumpWalk():
 		down_animation.play("Walk")
 	else:
 		down_animation.play("jump")
-		
+func decellerate():
+	if velocity.x>0:
+			velocity.x-=decelleration
+	if velocity.x<0:
+		velocity.x+=decelleration
 func movement():
 	if Input.is_action_pressed("move_left"):
 		if velocity.x>-maxSpeed:
 			velocity.x-=speed
+			decelleration=MovingDecelleration
 	elif Input.is_action_pressed("move_right"):
 		if velocity.x<maxSpeed:
 			velocity.x+=speed
+			decelleration=MovingDecelleration
 	else:
-		if velocity.x>0:
-			velocity.x-=decelleration
-		if velocity.x<0:
-			velocity.x+=decelleration
-		#velocity.x = 0
+		decelleration=notMovingDecelleration
+	decellerate()
 	if !is_on_floor():
 		onAir=true
 		velocity.y+=gravity
@@ -225,7 +242,7 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 	
 func print_information():
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
-	get_parent().get_node("CanvasLayer/Label").set_text(str(Damage)+" "+str(Knockback))
+	get_parent().get_node("CanvasLayer/Label").set_text(str(down_animation.speed_scale))
 	pass
 	
 func valid_distance():
@@ -272,13 +289,13 @@ func _on_blocko_forbidden_place_mouse_exited():
 
 func _on_damage_area_area_entered(area):
 	if area.is_in_group("enemy"):
-		print(Knockback)
-		area.get_parent().applyKnockBack(Knockback,DamageArea.global_position.x)
+		var dir = -upSprites.scale.x*900000
+		area.get_parent().applyKnockBack(Knockback,dir)
 func applyKnockback(value,Xpos):
 	var knockbackDir
 	if global_position.x<Xpos:
 		knockbackDir=-1
 	else:
 		knockbackDir=1
-	velocity.x =value*knockbackDir
-	velocity.y = -value*0.5
+	velocity.x =value*knockbackDir*knockBackResistence
+	velocity.y = -value*0.5*knockBackResistence

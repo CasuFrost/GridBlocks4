@@ -13,6 +13,7 @@ class_name LandFollowingEnemy
 #damage area
 
 extends CharacterBody2D
+@export var knockBackResistence : float = 1
 @export var knockBack : int = 100
 @export var hp : int = 100
 @export var jump : int = -400
@@ -117,6 +118,6 @@ func applyKnockBack(value,xPos):
 		knockBackDir=-1
 	else:
 		knockBackDir=1
-	velocity.x=value*knockBackDir
-	velocity.y=-value*0.5
+	velocity.x=(value*knockBackDir)*knockBackResistence
+	velocity.y=-(value*0.5)*knockBackResistence
 	

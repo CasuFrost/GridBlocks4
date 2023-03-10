@@ -86,7 +86,9 @@ func getToolType():
 		return currentToolSelected.type
 	else:
 		return "None"
-		
+func getToolSpeed():
+	if currentToolSelected:
+		return currentToolSelected.speed
 func getToolDmgAreaScaling():
 	if currentToolSelected:
 		return currentToolSelected.DamageAreaScaling

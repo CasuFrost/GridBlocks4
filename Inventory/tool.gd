@@ -4,6 +4,7 @@
 class_name tool
 extends Node2D
 var scaleValue 
+@export var speed : float = 0.8
 @export var KnockBack : int = 150
 @export var editedScale : Vector2 
 @export var pickAxepower : int
