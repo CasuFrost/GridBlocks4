@@ -63,6 +63,8 @@ func _process(delta):
 	managePickedObject()
 	centeredPos=$CanvasLayer/centerInventory.position
 	picker.global_position=get_viewport().get_mouse_position()
+	picker.get_node("GPUParticles2D").emitting=InventaryOpen and mousePicked!="0"
+	picker.get_node("GPUParticles2D").texture=picker.texture
 	if !InventaryOpen:
 		for i in $CanvasLayer/centerInventory.get_children():
 			i.get_child(0).scale=Vector2(0.8,0.8)
@@ -202,16 +204,22 @@ func managePickedObject():
 			picker.texture=pickerIcon
 			mousePicked=mouseSelected
 			if mousePicked.to_int()<8:
-				from="ITP" #Inventary to pocket
+				from="ITP"
 			else:
 				from="PTI"
 	else:
 		pass
 
 func switchObject(obj1,obj2):
+	var newIndex1=null
+	var newIndex2=null
 	for i in $Objects.get_children():
 		if i.inventoryIndex==obj1.to_int():
-			i.inventoryIndex=obj2.to_int()
+			newIndex1=i
 		if i.inventoryIndex==obj2.to_int():
-			i.inventoryIndex=obj1.to_int()
+			newIndex2=i
+	if newIndex1:
+		newIndex1.inventoryIndex=obj2.to_int()
+	if newIndex2:
+		newIndex2.inventoryIndex=obj1.to_int()
 	setIconInv()

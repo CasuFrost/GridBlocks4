@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 #onready variables
 @onready var toolMarker = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition")
-@onready var toolPosition = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition").global_position
+@onready var toolPosition = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition")
 @onready var tileMap = get_parent().get_node("TileMap")
 @onready var up_animation = get_node("Sprites/UpAnimationManager")
 @onready var down_animation = get_node("Sprites/DownAnimationManager")
@@ -89,7 +89,7 @@ func _process(delta):
 	$mousePointer.global_position=get_global_mouse_position() #I have a node called mousePointer that is an area that follows mouse position
 	if inventory.getToolType()=="None" and !swingTooling:
 		activeSelectedTools.texture=null
-	if inventory.getToolType()=="Sword":
+	if inventory.getToolType()=="Sword" or inventory.getToolType()=="Pickaxe":
 		#DamageArea.get_child(0).shape.extents=Vector2(20,70)
 		DamageArea.get_child(0).shape.extents=inventory.getToolAreaLenght()
 		var data = inventory.getToolDmgAndKnockBack()
@@ -99,7 +99,6 @@ func _process(delta):
 		DamageArea.get_child(0).shape.extents=Vector2.ZERO
 	pickacxePower=inventory.getPickaxePower()
 	print_information()
-	
 	if tileMap :
 		interactWithTilemap()
 		
@@ -237,9 +236,10 @@ func down_animJumpWalk():
 		down_animation.play("jump")
 func decellerate():
 	if velocity.x>0:
-			velocity.x-=decelleration
-	if velocity.x<0:
+		velocity.x-=decelleration
+	elif velocity.x<0:
 		velocity.x+=decelleration
+		
 func movement():
 	if Input.is_action_pressed("move_left"):
 		if velocity.x>-maxSpeed:
@@ -274,12 +274,7 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 		activeSelectedTools.scale=Vector2.ONE
 	activeSelectedTools.texture=texture
 	
-func print_information():
-	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
-	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
-	get_parent().get_node("CanvasLayer/Label").set_text(str(inventory.mousePicked)+" "+str(inventory.mouseSelected))
-	#get_parent().get_node("CanvasLayer/Label2").set_text(str(inventory.getToolOnMouse()[1]))
-	pass
+
 	
 func valid_distance():
 	if get_global_mouse_position().distance_to(global_position)<maxDistBlocksRange:
@@ -355,3 +350,10 @@ func _on_up_animation_manager_animation_finished(anim_name):
 	if anim_name=="toolSwing":
 		#print("CAZZO")
 		swingTooling=false
+		
+func print_information():
+	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
+	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
+	get_parent().get_node("CanvasLayer/Label").set_text(str(decelleration))
+	get_parent().get_node("CanvasLayer/Label2").set_text("xVelocity : "+str(velocity.x))
+	pass

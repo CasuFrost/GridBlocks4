@@ -1,16 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=20 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
 [ext_resource type="Texture2D" uid="uid://btb2vuc0pm1nc" path="res://Sprites/heart.png" id="3_46bvj"]
 [ext_resource type="PackedScene" uid="uid://ysghs45okrr0" path="res://ToolsRes/death_sickle.tscn" id="3_djbx4"]
 [ext_resource type="Texture2D" uid="uid://ckx2tg420jg22" path="res://DebugScene/Inventary.png" id="3_ss1xj"]
+[ext_resource type="Texture2D" uid="uid://k8yeso7x1dfa" path="res://icon.svg" id="3_xoyxe"]
 [ext_resource type="PackedScene" uid="uid://cbslbm1emedoj" path="res://ToolsRes/bloody_butcher_swords.tscn" id="5_bl4rx"]
 [ext_resource type="PackedScene" uid="uid://i3y6fjludpv3" path="res://ToolsRes/mazza.tscn" id="5_vrr8u"]
 [ext_resource type="PackedScene" uid="uid://cs1m5l566fl3h" path="res://Inventory/violence_book.tscn" id="7_r4pd8"]
 [ext_resource type="Texture2D" uid="uid://doba66qmwvn32" path="res://Sprites/Swords/icon/ViolenceBookIcon.png" id="8_hlg3e"]
 [ext_resource type="PackedScene" uid="uid://diniqyx8gjhh1" path="res://ToolsRes/torch.tscn" id="9_3221a"]
 [ext_resource type="PackedScene" uid="uid://b4160007kh20t" path="res://ToolsRes/gem_swords.tscn" id="10_f6os1"]
+[ext_resource type="Shader" path="res://Shaders/colorfulOutline.gdshader" id="12_c6d1u"]
 
 [sub_resource type="Gradient" id="Gradient_0io4t"]
 offsets = PackedFloat32Array(0)
@@ -18,6 +20,35 @@ colors = PackedColorArray(1, 0.831373, 0.419608, 0.376471)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6ht3v"]
 gradient = SubResource("Gradient_0io4t")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gp4pv"]
+shader = ExtResource("12_c6d1u")
+shader_parameter/intensity = 64
+shader_parameter/precision = 0.013
+shader_parameter/flipColors = false
+shader_parameter/outline_color = Color(0.513726, 0.352941, 0, 1)
+shader_parameter/outline_color_2 = Color(1, 0.690196, 0, 1)
+shader_parameter/use_outline_uv = false
+shader_parameter/useTexture = false
+
+[sub_resource type="Curve" id="Curve_t8wu6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h7njn"]
+curve = SubResource("Curve_t8wu6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j2j51"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_h7njn")
+color = Color(1, 1, 1, 0.337255)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -433,5 +464,11 @@ position = Vector2(1009, 997)
 [node name="InventaryPicker" type="Sprite2D" parent="CanvasLayer2"]
 z_index = 50
 texture_filter = 1
-position = Vector2(3, 13)
+material = SubResource("ShaderMaterial_gp4pv")
+position = Vector2(48, -7)
 scale = Vector2(3, 3)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasLayer2/InventaryPicker"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_j2j51")
+texture = ExtResource("3_xoyxe")

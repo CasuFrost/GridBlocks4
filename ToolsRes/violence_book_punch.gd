@@ -35,7 +35,7 @@ func activate(pos):
 	if !active:
 		$AnimationPlayer.play("born")
 		$Line2D.clear_points()
-		$Sprite2D.global_position=get_tree().root.get_child(0).get_node("PlayerTest").global_position
+		$Sprite2D.global_position=get_tree().root.get_child(0).get_node("PlayerTest").toolPosition.global_position
 		$Sprite2D.show()
 		speed=30
 		modulate.a=160

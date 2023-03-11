@@ -10,11 +10,13 @@ texture_filter = 1
 position = Vector2(525, 208)
 rotation = 45.0
 script = ExtResource("1_baym3")
+KnockBack = 30
 pickAxepower = 1
 icon = ExtResource("2_5xhwr")
 InventaryIcon = ExtResource("3_34k47")
 inventoryIndex = 3
 ToolSprite = NodePath("Sprite2D")
+Damage = 5
 type = "Pickaxe"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
