@@ -13,12 +13,13 @@ class_name LandFollowingEnemy
 #damage area
 
 extends CharacterBody2D
+@export var decell : int = 5
 @export var knockBackResistence : float = 1
 @export var knockBack : int = 100
 @export var hp : int = 100
 @export var jump : int = -400
-@export var patrollingSpeed : int 
-@export var attackingSpeed : int 
+@export var patrollingSpeed : int = 40
+@export var attackingSpeed : int = 80
 @export var playerDetectRange : int = 200
 @export var gravity : int
 @export var MaxYSpeed : int = 1000
@@ -82,7 +83,10 @@ func patroling():
 	UpAnim.play("walk")
 	DownAnim.play("walk")
 	GeneralAnim.play("walk")
-	
+	if velocity.x<-patrollingSpeed:
+		velocity.x+=decell
+	if velocity.x>patrollingSpeed:
+		velocity.x-=decell
 	if rng_dir>0:
 		if velocity.x<patrollingSpeed:
 				velocity.x += accelleration 

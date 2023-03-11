@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b3owun45f62rk" path="res://Sprites/Swords/mazza.png" id="2_ost3q"]
 
 [node name="Mazza" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
-visible = false
 script = ExtResource("1_1og0f")
 icon = ExtResource("2_ost3q")
 inventoryIndex = 6

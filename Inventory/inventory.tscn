@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=13 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://crfqdaaab5sgs" path="res://ToolsRes/debug_red_gun.tscn" id="6_fdy80"]
 [ext_resource type="PackedScene" uid="uid://cs1m5l566fl3h" path="res://Inventory/violence_book.tscn" id="7_r4pd8"]
 [ext_resource type="PackedScene" uid="uid://diniqyx8gjhh1" path="res://ToolsRes/torch.tscn" id="9_3221a"]
+[ext_resource type="PackedScene" uid="uid://b4160007kh20t" path="res://ToolsRes/gem_swords.tscn" id="10_f6os1"]
 
 [sub_resource type="Gradient" id="Gradient_0io4t"]
 offsets = PackedFloat32Array(0)
@@ -190,6 +191,7 @@ inventoryIndex = 1
 DamageAreaScaling = Vector2(2, 2)
 
 [node name="BloodyButcherSwords" parent="Objects" instance=ExtResource("5_bl4rx")]
+visible = false
 KnockBack = 300
 rotationTool = 51.0
 Damage = 40
@@ -204,3 +206,7 @@ type = "PointingWeapon"
 [node name="ViolenceBook" parent="Objects" instance=ExtResource("7_r4pd8")]
 
 [node name="Torch" parent="Objects" instance=ExtResource("9_3221a")]
+
+[node name="GemSwords" parent="Objects" instance=ExtResource("10_f6os1")]
+visible = false
+KnockBack = 400

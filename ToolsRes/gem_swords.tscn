@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4160007kh20t"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_s37oh"]
+[ext_resource type="Texture2D" uid="uid://byw572wkewjhg" path="res://Sprites/Swords/GemSword.png" id="2_xk2ec"]
+
+[node name="GemSwords" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+texture_filter = 1
+script = ExtResource("1_s37oh")
+speed = 0.6
+KnockBack = 200
+icon = ExtResource("2_xk2ec")
+objectId = 5
+inventoryIndex = 7
+ToolSprite = NodePath("Sprite2D")
+Damage = 20
+type = "Sword"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xk2ec")

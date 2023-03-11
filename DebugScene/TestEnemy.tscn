@@ -1,9 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://mid5xtkso8rl"]
+[gd_scene load_steps=24 format=3 uid="uid://dttgkb2fjdqnw"]
 
 [ext_resource type="Script" path="res://Custom_nodes/LandFollowingEnemy.gd" id="1_v6ic4"]
+[ext_resource type="Animation" uid="uid://4tgntlewxwmk" path="res://GeneralAnimation/jump.res" id="2_y4jit"]
 [ext_resource type="Texture2D" uid="uid://qn178txvb2f7" path="res://Sprites/Enemies/DebugEnemy/New Piskel-4.png.png" id="3_h6jpo"]
+[ext_resource type="Animation" uid="uid://c6g2wcmwammo1" path="res://GeneralAnimation/land.res" id="3_llekx"]
 [ext_resource type="Texture2D" uid="uid://bqy0i7wlbwgo5" path="res://Sprites/Enemies/DebugEnemy/New Piskel-1.png.png" id="4_5mcfk"]
+[ext_resource type="Animation" uid="uid://dfbswq5kpwm6s" path="res://GeneralAnimation/walk.res" id="4_svtd1"]
 [ext_resource type="Texture2D" uid="uid://d0b0lsdtvrw8b" path="res://Sprites/Enemies/DebugEnemy/New Piskel-2.png.png" id="5_pmcwl"]
+[ext_resource type="Animation" uid="uid://r3mlej7jrcfb" path="res://GeneralAnimation/walkAttack.res" id="5_rshcn"]
 [ext_resource type="Texture2D" uid="uid://82jgq31xb12l" path="res://Sprites/Enemies/DebugEnemy/New Piskel-3.png.png" id="6_6y8lv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfbkq"]
@@ -592,91 +596,11 @@ tracks/2/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_vx440"]
-resource_name = "jump"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionScaler/Sprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionScaler/Sprite:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0610865, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DirectionScaler/Sprite:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.814, 1.237), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_3agh1"]
-resource_name = "land"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionScaler/Sprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionScaler/Sprite:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DirectionScaler/Sprite:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.111, 0.872), Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alyik"]
 _data = {
 "RESET": SubResource("Animation_02u22"),
-"jump": SubResource("Animation_vx440"),
-"land": SubResource("Animation_3agh1")
+"jump": ExtResource("2_y4jit"),
+"land": ExtResource("3_llekx")
 }
 
 [sub_resource type="Animation" id="Animation_a8f3a"]
@@ -730,117 +654,11 @@ tracks/3/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_68ss3"]
-resource_name = "walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionScaler/Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 1.057), Vector2(0, 0), Vector2(0, 1.057)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionScaler/Sprite:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0453786, -0.0872665, 0.0453786]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DirectionScaler/Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DirectionScaler/Sprite:skew")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-0.0855211, 0.0698132, -0.0855211]
-}
-
-[sub_resource type="Animation" id="Animation_owxoo"]
-resource_name = "walkAttack"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionScaler/Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 1.057), Vector2(0, 0), Vector2(0, 1.057)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionScaler/Sprite:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0453786, -0.0872665, 0.0453786]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DirectionScaler/Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DirectionScaler/Sprite:skew")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-0.0855211, 0.0698132, -0.0855211]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_52gdt"]
 _data = {
 "RESET": SubResource("Animation_a8f3a"),
-"walk": SubResource("Animation_68ss3"),
-"walkAttack": SubResource("Animation_owxoo")
+"walk": ExtResource("4_svtd1"),
+"walkAttack": ExtResource("5_rshcn")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2nms4"]
@@ -862,10 +680,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TestEnemy" type="CharacterBody2D"]
+[node name="TestEnemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_v6ic4")
-patrollingSpeed = 40
-attackingSpeed = 80
 playerDetectRange = 250
 gravity = 13
 damage = 10

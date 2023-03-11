@@ -6,16 +6,19 @@ extends CharacterBody2D
 @onready var tileMap = get_parent().get_node("TileMap")
 @onready var up_animation = get_node("Sprites/UpAnimationManager")
 @onready var down_animation = get_node("Sprites/DownAnimationManager")
+@onready var damage_animation = get_node("Sprites/DamageAnimationManager")
 @onready var downSprites = get_node("Sprites/Down")
 @onready var upSprites = get_node("Sprites/Up")
 @onready var pickaxeParticles = get_node("dirtPickaxing")
 @onready var placingParticles = get_node("PlacedBlockParticle")
 @onready var inventory = get_node("Inventory")
 @onready var camera = get_node("Camera2D")
-@onready var DamageArea = get_node("Sprites/Up/DamageArea")
+@onready var DamageArea = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool/DamageArea2")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
+@onready var bloodyParticles = get_node("BloodyParticles")
 var knockBackResistence : float = 1
 var maxTileInfoStored=150
+var canBeDamaged : bool = true
 var cell :Vector2
 var decelleration = 10
 var MovingDecelleration = 10
@@ -70,6 +73,16 @@ func manageTorch():
 	else:
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".hide()
 func _process(delta):
+	if velocity.x>1.8 and velocity.x<1.9:
+		velocity.x=0
+	if Hp<=0:
+		dead()
+	if !canBeDamaged:
+		damage_animation.play("immunity")
+	else:
+		if damage_animation.current_animation!="damaged":
+			damage_animation.play("RESET")
+	canBeDamaged=$ImmunityTimer.time_left==0
 	manageDownAnimationSpeed()
 	manageTorch()
 	clampingValues() 
@@ -78,12 +91,13 @@ func _process(delta):
 	if inventory.getToolType()=="None":
 		activeSelectedTools.texture=null
 	if inventory.getToolType()=="Sword":
-		DamageArea.scale=inventory.getToolDmgAreaScaling()
+		#DamageArea.get_child(0).shape.extents=Vector2(20,70)
+		DamageArea.get_child(0).shape.extents=inventory.getToolAreaLenght()
 		var data = inventory.getToolDmgAndKnockBack()
 		Damage=data.x
 		Knockback=data.y
 	else:
-		DamageArea.scale=Vector2.ZERO
+		DamageArea.get_child(0).shape.extents=Vector2.ZERO
 	pickacxePower=inventory.getPickaxePower()
 	print_information()
 	
@@ -242,7 +256,8 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 	
 func print_information():
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
-	get_parent().get_node("CanvasLayer/Label").set_text(str(down_animation.speed_scale))
+	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
+	get_parent().get_node("CanvasLayer/Label").set_text(str(velocity.x))
 	pass
 	
 func valid_distance():
@@ -261,10 +276,12 @@ func resetNearTiles(tile):
 
 
 func _on_player_area_area_entered(area):
-	if area.is_in_group("damage"):
-		Hp-=area.get_parent().damage
+	if area.is_in_group("damage") and canBeDamaged:
+		$ImmunityTimer.start()
+		damage_animation.play("damaged")
 		applyKnockback(area.get_parent().knockBack,area.get_parent().global_position.x)
 		inventory.reset_heart(hearthToShow)
+
 
 func _on_regen_timer_timeout():
 	Hp+=5
@@ -287,10 +304,6 @@ func _on_blocko_forbidden_place_mouse_exited():
 	mouseOnPlayer=false
 
 
-func _on_damage_area_area_entered(area):
-	if area.is_in_group("enemy"):
-		var dir = -upSprites.scale.x*900000
-		area.get_parent().applyKnockBack(Knockback,dir)
 func applyKnockback(value,Xpos):
 	var knockbackDir
 	if global_position.x<Xpos:
@@ -299,3 +312,18 @@ func applyKnockback(value,Xpos):
 		knockbackDir=1
 	velocity.x =value*knockbackDir*knockBackResistence
 	velocity.y = -value*0.5*knockBackResistence
+
+
+
+func _on_damage_animation_manager_animation_finished(anim_name):
+	if anim_name=="damaged":
+		damage_animation.play("RESET")
+
+func dead():
+	pass
+
+
+func _on_damage_area_2_body_entered(body):
+	if body.is_in_group("enemy"):
+		var dir = -upSprites.scale.x*900000
+		body.applyKnockBack(Knockback,dir)

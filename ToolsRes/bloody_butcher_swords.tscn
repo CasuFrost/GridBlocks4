@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://brrkqsqev5gja" path="res://Sprites/Swords/BloodyButcherSword.png" id="2_scwd0"]
 
 [node name="BloodyButcherSwords" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
-visible = false
 z_index = 2
 scale = Vector2(0.85, 0.85)
 script = ExtResource("1_c60vx")
@@ -15,7 +14,6 @@ objectId = 2
 rarity = "common"
 inventoryIndex = 2
 ToolSprite = NodePath("Sprite2D")
-DamageAreaScaling = Vector2(3.5, 3.5)
 type = "Sword"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

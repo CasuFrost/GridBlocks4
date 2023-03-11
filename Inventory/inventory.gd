@@ -89,9 +89,11 @@ func getToolType():
 func getToolSpeed():
 	if currentToolSelected:
 		return currentToolSelected.speed
-func getToolDmgAreaScaling():
+
+func getToolAreaLenght():
 	if currentToolSelected:
-		return currentToolSelected.DamageAreaScaling
+		return currentToolSelected.areaLenght()
+
 func getToolDmgAndKnockBack():
 	if currentToolSelected:
 		return Vector2(currentToolSelected.Damage,currentToolSelected.KnockBack)
