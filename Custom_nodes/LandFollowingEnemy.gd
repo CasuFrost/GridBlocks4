@@ -31,9 +31,10 @@ extends CharacterBody2D
 @onready var DownAnim = get_node("DownAnimationManager")
 @onready var LandJumpAnim = get_node("LandJumpAnimationManager")
 @onready var GeneralAnim = get_node("GeneralAnimationManager")
+@onready var DamageAnim = get_node("Damage")
 @onready var Sprite = get_node("DirectionScaler")
 
-
+var alive = true
 var rng = RandomNumberGenerator.new()
 var rng_dir : int = 1
 var playerDir : int = 0
@@ -51,7 +52,7 @@ func clamping_values():
 	velocity.y=clamp(velocity.y,-MaxYSpeed,MaxYSpeed)
 	
 func _process(delta):
-	
+	alive=hp>0
 	
 	playerPos = get_tree().root.get_child(0).get_node("PlayerTest").global_position
 	
@@ -62,12 +63,15 @@ func _process(delta):
 			rng_dir = rng.randi_range(-1,1)
 			
 func _physics_process(delta):
-	
 	timerValue+=1
-	if playerPos.distance_to(global_position)<playerDetectRange:
-		followingPlayer()
+	if  alive:
+		if playerPos.distance_to(global_position)<playerDetectRange:
+			followingPlayer()
+		else:
+			patroling()
 	else:
-		patroling()
+		velocity.x=0
+		dead()
 	clamping_values()
 	if !is_on_floor():
 		velocity.y+=gravity
@@ -125,3 +129,16 @@ func applyKnockBack(value,xPos):
 	velocity.x=(value*knockBackDir)*knockBackResistence
 	velocity.y=-(value*0.5)*knockBackResistence
 	
+func applyDamage(value):
+	if alive:
+		hp-=value
+		DamageAnim.play("damaged")
+		
+func dead():
+	UpAnim.play("RESET")
+	GeneralAnim.play("dead")
+
+
+func _on_general_animation_manager_animation_finished(anim_name):
+	if anim_name=="dead":
+		queue_free()

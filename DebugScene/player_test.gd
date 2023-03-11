@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var DamageArea = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool/DamageArea2")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
 @onready var bloodyParticles = get_node("BloodyParticles")
+var swingTooling : bool = false
 var knockBackResistence : float = 1
 var maxTileInfoStored=150
 var canBeDamaged : bool = true
@@ -73,8 +74,6 @@ func manageTorch():
 	else:
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".hide()
 func _process(delta):
-	if velocity.x>1.8 and velocity.x<1.9:
-		velocity.x=0
 	if Hp<=0:
 		dead()
 	if !canBeDamaged:
@@ -88,7 +87,7 @@ func _process(delta):
 	clampingValues() 
 	hearthToShow=int(Hp/10) #this variable manage the hearth shown in the UI
 	$mousePointer.global_position=get_global_mouse_position() #I have a node called mousePointer that is an area that follows mouse position
-	if inventory.getToolType()=="None":
+	if inventory.getToolType()=="None" and !swingTooling:
 		activeSelectedTools.texture=null
 	if inventory.getToolType()=="Sword":
 		#DamageArea.get_child(0).shape.extents=Vector2(20,70)
@@ -165,38 +164,55 @@ func manageSpriteDownPos():
 			
 func update_animation():
 	manageSpriteDownPos()
-	if Input.is_action_pressed("rClick"):
-		if get_global_mouse_position()>global_position:
-			upSprites.scale.x=1
+	if inventory.getToolType()=="Pickaxe" or inventory.getToolType()=="Sword":
+		if swingTooling:
+			if get_global_mouse_position()>global_position:
+				upSprites.scale.x=1
+			else:
+				upSprites.scale.x=-1
 		else:
-			upSprites.scale.x=-1
+			if velocity.x<0:
+				upSprites.scale.x=-1
+			elif velocity.x>0:
+				upSprites.scale.x=1
+	elif inventory.getToolType()=="PointingWeapon":
+		if Input.is_action_pressed("rClick"):
+			if get_global_mouse_position()>global_position:
+				upSprites.scale.x=1
+			else:
+				upSprites.scale.x=-1
+		else:
+			if velocity.x<0:
+				upSprites.scale.x=-1
+			elif velocity.x>0:
+				upSprites.scale.x=1
+				
+	if Input.is_action_pressed("rClick"):
+		
 		activeSelectedTools.show()
 		if inventory.getToolType()=="Pickaxe" or inventory.getToolType()=="Sword":
+			swingTooling=true
 			up_animation.play("toolSwing")
 		if inventory.getToolType()=="PointingWeapon":
 			$Sprites/Up/FrontArm.look_at(get_global_mouse_position())
-			
+			swingTooling=false
 			up_animation.play("Pointing")
-	
 	else:
 		
-		if velocity.x<0:
-			upSprites.scale.x=-1
-		elif velocity.x>0:
-			upSprites.scale.x=1
-		activeSelectedTools.hide()
+		if  !swingTooling:
+			activeSelectedTools.hide()
 		pickaxeParticles.emitting=false
 		
 	if velocity.x<0:
 		downSprites.scale.x=-1
 		down_animJumpWalk()
-		if !Input.is_action_pressed("rClick"):
+		if !Input.is_action_pressed("rClick") and !swingTooling:
 			up_animation.play("Walk")
 			$Sprites/GeneralAnimationManager.play("walk")
 	elif velocity.x>0:
 		downSprites.scale.x=1
 		
-		if !Input.is_action_pressed("rClick"):
+		if !Input.is_action_pressed("rClick") and !swingTooling:
 			up_animation.play("Walk")
 			$Sprites/GeneralAnimationManager.play("walk")
 		down_animJumpWalk()
@@ -206,7 +222,7 @@ func update_animation():
 			$Sprites/GeneralAnimationManager.play("RESET")
 		else:
 			down_animation.play("jump")
-		if !Input.is_action_pressed("rClick"):
+		if !Input.is_action_pressed("rClick") and !swingTooling:
 			up_animation.play("Idle")
 			$Sprites/GeneralAnimationManager.play("RESET")
 			
@@ -257,7 +273,7 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 func print_information():
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
-	get_parent().get_node("CanvasLayer/Label").set_text(str(velocity.x))
+	get_parent().get_node("CanvasLayer/Label").set_text(str(swingTooling))
 	pass
 	
 func valid_distance():
@@ -327,3 +343,10 @@ func _on_damage_area_2_body_entered(body):
 	if body.is_in_group("enemy"):
 		var dir = -upSprites.scale.x*900000
 		body.applyKnockBack(Knockback,dir)
+		body.applyDamage(Damage)
+
+
+func _on_up_animation_manager_animation_finished(anim_name):
+	if anim_name=="toolSwing":
+		#print("CAZZO")
+		swingTooling=false

@@ -12,7 +12,7 @@ icon = ExtResource("2_xk2ec")
 objectId = 5
 inventoryIndex = 7
 ToolSprite = NodePath("Sprite2D")
-Damage = 20
+Damage = 50
 type = "Sword"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

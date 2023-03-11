@@ -2,6 +2,7 @@ extends Node2D
 var maxPoints : int =15
 @export var active = false
 @export var knockBack : int = 70
+var damage : int = 20
 var speed = 20
 var followPos : Vector2 = Vector2(500,500)
 func _ready():
@@ -45,11 +46,8 @@ func activate(pos):
 		$Sprite2D.look_at(followPos)
 
 
-func _on_area_2d_area_entered(area):
-	if area.is_in_group("enemy"):
-		area.get_parent().applyKnockBack(knockBack,$Sprite2D/Area2D.global_position.x)
-#		if area.global_position.x-$Sprite2D/Area2D.global_position.x>0:
-#			area.get_parent().KnockBack(1)
-#		else:
-#			area.get_parent().KnockBack(-1)
-		
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.applyKnockBack(knockBack,$Sprite2D/Area2D.global_position.x)
+		body.applyDamage(damage)
