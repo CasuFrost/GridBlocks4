@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d0su35fgfnkdf"]
+[gd_scene load_steps=35 format=3 uid="uid://d0su35fgfnkdf"]
 
 [ext_resource type="PackedScene" uid="uid://dfhhnoal64ncc" path="res://DebugScene/player_test.tscn" id="2_7m6yp"]
 [ext_resource type="Texture2D" uid="uid://dxnni6t6alnpw" path="res://Sprites/terrainsTest.png" id="2_8qhcs"]
@@ -16,6 +16,7 @@
 [ext_resource type="Shader" path="res://Shaders/wind.gdshader" id="10_kbya5"]
 [ext_resource type="Texture2D" uid="uid://b22i207gp2dv1" path="res://Sprites/Enviorment/Trees/martianTreeWithFlower.png" id="12_08cmt"]
 [ext_resource type="Script" path="res://DebugScene/CanvasModulate.gd" id="13_rdkwh"]
+[ext_resource type="PackedScene" uid="uid://bl6yd3koexaej" path="res://Weapon/Guns/Revolver/revolver_bullet.tscn" id="16_ia7ja"]
 [ext_resource type="PackedScene" uid="uid://bi67ae7dxk4gl" path="res://Sprites/Enemies/PredatorAlien/predator_alien.tscn" id="16_q0xl7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1x7l4"]
@@ -1171,6 +1172,14 @@ position = Vector2(-125, 93)
 
 [node name="ViolenceBookPunch6" parent="ProjectilePool" instance=ExtResource("6_ywplx")]
 position = Vector2(-125, 93)
+
+[node name="RevolverBullet" parent="ProjectilePool" instance=ExtResource("16_ia7ja")]
+
+[node name="RevolverBullet2" parent="ProjectilePool" instance=ExtResource("16_ia7ja")]
+
+[node name="RevolverBullet3" parent="ProjectilePool" instance=ExtResource("16_ia7ja")]
+
+[node name="RevolverBullet4" parent="ProjectilePool" instance=ExtResource("16_ia7ja")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false

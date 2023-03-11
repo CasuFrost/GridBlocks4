@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce5v4r50fjxh4"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_mixej"]
+[ext_resource type="Texture2D" uid="uid://b2hd0u213rvui" path="res://Weapon/Guns/Revolver/Revolver.png" id="2_x5ffu"]
+[ext_resource type="Texture2D" uid="uid://b7b2wy68su5u7" path="res://Weapon/Guns/Revolver/RevolverIcon.png" id="3_6fnb3"]
+[ext_resource type="Script" path="res://Weapon/Guns/Revolver/Revolver.gd" id="4_k501w"]
+
+[node name="Revolver" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+texture_filter = 1
+script = ExtResource("1_mixej")
+speed = 0.5
+icon = ExtResource("2_x5ffu")
+InventaryIcon = ExtResource("3_6fnb3")
+inventoryIndex = 30
+ToolSprite = NodePath("Sprite2D")
+type = "PointingWeapon"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x5ffu")
+script = ExtResource("4_k501w")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
