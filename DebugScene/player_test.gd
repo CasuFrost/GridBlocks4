@@ -239,7 +239,8 @@ func decellerate():
 		velocity.x-=decelleration
 	elif velocity.x<0:
 		velocity.x+=decelleration
-		
+	if abs(velocity.x)<0.3:
+		velocity.x=lerpf(velocity.x,0,0.8)
 func movement():
 	if Input.is_action_pressed("move_left"):
 		if velocity.x>-maxSpeed:

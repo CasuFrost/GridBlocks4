@@ -1181,14 +1181,9 @@ script = ExtResource("13_rdkwh")
 [node name="PredatorAlien" parent="." instance=ExtResource("16_q0xl7")]
 position = Vector2(492, -141)
 
-[node name="PredatorAlien2" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(1109, -138)
-
-[node name="PredatorAlien3" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(1287, -172)
-
-[node name="PredatorAlien4" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(1644, -222)
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(442, 666)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.0
+max_distance = 7945.0

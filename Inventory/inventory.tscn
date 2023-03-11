@@ -438,7 +438,7 @@ Damage = 40
 
 [node name="ViolenceBook" parent="Objects" instance=ExtResource("7_r4pd8")]
 InventaryIcon = ExtResource("8_hlg3e")
-inventoryIndex = 22
+inventoryIndex = 3
 
 [node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
 inventoryIndex = 8
