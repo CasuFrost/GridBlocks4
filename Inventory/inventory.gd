@@ -170,7 +170,7 @@ func getToolOnMouse():
 	if InventaryOpen:
 		var founded = false
 		for i in $CanvasLayer/centerInventory.get_children():
-			if ((i.position)+centeredPos+Vector2(20,70)).distance_to(get_viewport().get_mouse_position())<40:
+			if ((i.position)+centeredPos+Vector2(40,70)).distance_to(get_viewport().get_mouse_position())<42:
 				mouseSelected=i.name
 				founded=true
 				i.get_child(0).scale=Vector2(1.3,1.3)
