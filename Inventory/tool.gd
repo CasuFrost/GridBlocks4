@@ -10,6 +10,7 @@ var scaleValue
 @export var pickAxepower : int
 @export var rotationTool : float =51
 @export  var icon : Texture2D
+@export  var InventaryIcon : Texture2D
 @export  var objectId : int
 @export  var rarity : String
 @export var inventoryIndex : int

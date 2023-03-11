@@ -52,7 +52,7 @@ func _input(event):
 		inventory.selected-=1
 		
 func manageDownAnimationSpeed():
-	if up_animation.current_animation=="toolSwing":
+	if up_animation.current_animation=="toolSwing" and inventory.getToolSpeed():
 		up_animation.speed_scale=inventory.getToolSpeed()
 	else:
 		up_animation.speed_scale=1
@@ -186,7 +186,11 @@ func update_animation():
 				upSprites.scale.x=-1
 			elif velocity.x>0:
 				upSprites.scale.x=1
-				
+	elif inventory.getToolType()=="None":
+			if velocity.x<0:
+				upSprites.scale.x=-1
+			elif velocity.x>0:
+				upSprites.scale.x=1
 	if Input.is_action_pressed("rClick"):
 		
 		activeSelectedTools.show()
@@ -273,7 +277,8 @@ func switchTexture(texture,editedScale): #this function give to the sprite that 
 func print_information():
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
-	get_parent().get_node("CanvasLayer/Label").set_text(str(swingTooling))
+	get_parent().get_node("CanvasLayer/Label").set_text(str(inventory.mousePicked)+" "+str(inventory.mouseSelected))
+	#get_parent().get_node("CanvasLayer/Label2").set_text(str(inventory.getToolOnMouse()[1]))
 	pass
 	
 func valid_distance():

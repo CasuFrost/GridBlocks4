@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=14 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
 [ext_resource type="Texture2D" uid="uid://btb2vuc0pm1nc" path="res://Sprites/heart.png" id="3_46bvj"]
-[ext_resource type="PackedScene" uid="uid://dheu3h1fm0qgv" path="res://ToolsRes/death_sickle.tscn" id="3_djbx4"]
+[ext_resource type="PackedScene" uid="uid://ysghs45okrr0" path="res://ToolsRes/death_sickle.tscn" id="3_djbx4"]
+[ext_resource type="Texture2D" uid="uid://ckx2tg420jg22" path="res://DebugScene/Inventary.png" id="3_ss1xj"]
 [ext_resource type="PackedScene" uid="uid://cbslbm1emedoj" path="res://ToolsRes/bloody_butcher_swords.tscn" id="5_bl4rx"]
 [ext_resource type="PackedScene" uid="uid://i3y6fjludpv3" path="res://ToolsRes/mazza.tscn" id="5_vrr8u"]
-[ext_resource type="PackedScene" uid="uid://crfqdaaab5sgs" path="res://ToolsRes/debug_red_gun.tscn" id="6_fdy80"]
 [ext_resource type="PackedScene" uid="uid://cs1m5l566fl3h" path="res://Inventory/violence_book.tscn" id="7_r4pd8"]
+[ext_resource type="Texture2D" uid="uid://doba66qmwvn32" path="res://Sprites/Swords/icon/ViolenceBookIcon.png" id="8_hlg3e"]
 [ext_resource type="PackedScene" uid="uid://diniqyx8gjhh1" path="res://ToolsRes/torch.tscn" id="9_3221a"]
 [ext_resource type="PackedScene" uid="uid://b4160007kh20t" path="res://ToolsRes/gem_swords.tscn" id="10_f6os1"]
 
@@ -29,13 +30,11 @@ script = ExtResource("1_4ep7e")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-scale = Vector2(1.5, 1.5)
-transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="centerInventory" type="Marker2D" parent="CanvasLayer"]
 z_index = 3
-position = Vector2(606.787, 615.453)
-scale = Vector2(0.812, 0.812)
+position = Vector2(964.1, 920.1)
+scale = Vector2(1.21, 1.21)
 
 [node name="4" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -46,8 +45,8 @@ hframes = 2
 
 [node name="toolIcon" type="Sprite2D" parent="CanvasLayer/centerInventory/4"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1525, 25.2284)
+scale = Vector2(0.8, 0.8)
 
 [node name="5" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -59,8 +58,7 @@ hframes = 2
 
 [node name="toolIcon2" type="Sprite2D" parent="CanvasLayer/centerInventory/5"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1525, 25.2284)
 
 [node name="3" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -72,8 +70,8 @@ hframes = 2
 
 [node name="toolIcon3" type="Sprite2D" parent="CanvasLayer/centerInventory/3"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1525, 25.2284)
+scale = Vector2(0.8, 0.8)
 
 [node name="2" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -85,8 +83,8 @@ hframes = 2
 
 [node name="toolIcon4" type="Sprite2D" parent="CanvasLayer/centerInventory/2"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1526, 25.2284)
+scale = Vector2(0.8, 0.8)
 
 [node name="6" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -98,8 +96,8 @@ hframes = 2
 
 [node name="toolIcon5" type="Sprite2D" parent="CanvasLayer/centerInventory/6"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1525, 25.2284)
+scale = Vector2(0.8, 0.8)
 
 [node name="7" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -111,8 +109,8 @@ hframes = 2
 
 [node name="toolIcon6" type="Sprite2D" parent="CanvasLayer/centerInventory/7"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1525, 25.2284)
+scale = Vector2(0.8, 0.8)
 
 [node name="1" type="Sprite2D" parent="CanvasLayer/centerInventory"]
 texture_filter = 1
@@ -124,21 +122,232 @@ hframes = 2
 
 [node name="toolIcon7" type="Sprite2D" parent="CanvasLayer/centerInventory/1"]
 texture_filter = 1
-position = Vector2(15.147, 30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(15.1525, 25.2284)
+scale = Vector2(0.8, 0.8)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="OpenedInventary" type="Marker2D" parent="CanvasLayer"]
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/OpenedInventary"]
 z_index = 2
-offset_left = 413.0
-offset_top = 633.0
-offset_right = 866.0
-offset_bottom = 695.0
+offset_left = 363.0
+offset_top = 165.0
+offset_right = 1646.0
+offset_bottom = 802.0
 size_flags_horizontal = 4
 texture = SubResource("GradientTexture1D_6ht3v")
 
+[node name="Inventary" type="Sprite2D" parent="CanvasLayer/OpenedInventary"]
+z_index = 2
+texture_filter = 1
+position = Vector2(1002, 482)
+scale = Vector2(10.128, 10.128)
+texture = ExtResource("3_ss1xj")
+
+[node name="NumberedObject" type="Node2D" parent="CanvasLayer/OpenedInventary"]
+
+[node name="8" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(434, 241)
+scale = Vector2(2.5, 2.5)
+
+[node name="9" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(598, 241)
+scale = Vector2(2.5, 2.5)
+
+[node name="10" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(757, 241)
+scale = Vector2(2.5, 2.5)
+
+[node name="11" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(921, 244)
+scale = Vector2(2.5, 2.5)
+
+[node name="12" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1080, 244)
+scale = Vector2(2.5, 2.5)
+
+[node name="13" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1239, 241)
+scale = Vector2(2.5, 2.5)
+
+[node name="14" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1403, 244)
+scale = Vector2(2.5, 2.5)
+
+[node name="15" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1569, 241)
+scale = Vector2(2.5, 2.5)
+
+[node name="16" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(436, 403)
+scale = Vector2(2.5, 2.5)
+
+[node name="17" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(600, 403)
+scale = Vector2(2.5, 2.5)
+
+[node name="18" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(759, 403)
+scale = Vector2(2.5, 2.5)
+
+[node name="19" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(923, 406)
+scale = Vector2(2.5, 2.5)
+
+[node name="20" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1082, 406)
+scale = Vector2(2.5, 2.5)
+
+[node name="21" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1241, 403)
+scale = Vector2(2.5, 2.5)
+
+[node name="22" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1405, 406)
+scale = Vector2(2.5, 2.5)
+
+[node name="23" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1571, 403)
+scale = Vector2(2.5, 2.5)
+
+[node name="24" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(432, 560)
+scale = Vector2(2.5, 2.5)
+
+[node name="25" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(596, 560)
+scale = Vector2(2.5, 2.5)
+
+[node name="26" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(755, 560)
+scale = Vector2(2.5, 2.5)
+
+[node name="27" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(919, 563)
+scale = Vector2(2.5, 2.5)
+
+[node name="28" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1078, 563)
+scale = Vector2(2.5, 2.5)
+
+[node name="29" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1237, 560)
+scale = Vector2(2.5, 2.5)
+
+[node name="30" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1401, 563)
+scale = Vector2(2.5, 2.5)
+
+[node name="31" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1567, 560)
+scale = Vector2(2.5, 2.5)
+
+[node name="32" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(434, 722)
+scale = Vector2(2.5, 2.5)
+
+[node name="33" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(598, 722)
+scale = Vector2(2.5, 2.5)
+
+[node name="34" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(757, 722)
+scale = Vector2(2.5, 2.5)
+
+[node name="35" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(921, 725)
+scale = Vector2(2.5, 2.5)
+
+[node name="36" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1080, 725)
+scale = Vector2(2.5, 2.5)
+
+[node name="37" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1239, 722)
+scale = Vector2(2.5, 2.5)
+
+[node name="38" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1403, 725)
+scale = Vector2(2.5, 2.5)
+
+[node name="39" type="Sprite2D" parent="CanvasLayer/OpenedInventary/NumberedObject"]
+z_index = 3
+texture_filter = 1
+position = Vector2(1569, 722)
+scale = Vector2(2.5, 2.5)
+
 [node name="start" type="Marker2D" parent="CanvasLayer"]
-position = Vector2(412.787, 642.927)
-scale = Vector2(0.812, 0.812)
+position = Vector2(676, 963)
+scale = Vector2(1.21, 1.21)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/start"]
+z_index = 2
+offset_top = -13.0
+offset_right = 557.0
+offset_bottom = 65.0
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_6ht3v")
 
 [node name="LifeBarStart" type="Marker2D" parent="CanvasLayer"]
 position = Vector2(35.3333, 36.6667)
@@ -196,17 +405,33 @@ KnockBack = 300
 rotationTool = 51.0
 Damage = 40
 
-[node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
-speed = 1.3
-DamageAreaScaling = Vector2(3.5, 3.5)
-
-[node name="DebugRedGun" parent="Objects" instance=ExtResource("6_fdy80")]
-type = "PointingWeapon"
-
 [node name="ViolenceBook" parent="Objects" instance=ExtResource("7_r4pd8")]
+InventaryIcon = ExtResource("8_hlg3e")
+inventoryIndex = 22
+
+[node name="Mazza" parent="Objects" instance=ExtResource("5_vrr8u")]
+inventoryIndex = 8
+
+[node name="Mazza2" parent="Objects" instance=ExtResource("5_vrr8u")]
+inventoryIndex = 30
 
 [node name="Torch" parent="Objects" instance=ExtResource("9_3221a")]
+inventoryIndex = 4
 
 [node name="GemSwords" parent="Objects" instance=ExtResource("10_f6os1")]
 visible = false
 KnockBack = 400
+inventoryIndex = 5
+
+[node name="PocketObjects" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1009, 997)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="InventaryPicker" type="Sprite2D" parent="CanvasLayer2"]
+z_index = 50
+texture_filter = 1
+position = Vector2(3, 13)
+scale = Vector2(3, 3)

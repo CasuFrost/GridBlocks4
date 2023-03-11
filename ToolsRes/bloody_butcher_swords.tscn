@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbslbm1emedoj"]
+[gd_scene load_steps=4 format=3 uid="uid://cbslbm1emedoj"]
 
 [ext_resource type="Script" path="res://Inventory/tool.gd" id="1_c60vx"]
 [ext_resource type="Texture2D" uid="uid://brrkqsqev5gja" path="res://Sprites/Swords/BloodyButcherSword.png" id="2_scwd0"]
+[ext_resource type="Texture2D" uid="uid://brnqc3j6sy8dn" path="res://Sprites/Swords/icon/BloodyButcherIcon.png" id="3_mh1ub"]
 
 [node name="BloodyButcherSwords" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 z_index = 2
@@ -10,6 +11,7 @@ script = ExtResource("1_c60vx")
 KnockBack = 170
 rotationTool = 0.0
 icon = ExtResource("2_scwd0")
+InventaryIcon = ExtResource("3_mh1ub")
 objectId = 2
 rarity = "common"
 inventoryIndex = 2

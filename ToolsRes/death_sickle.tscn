@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dheu3h1fm0qgv"]
+[gd_scene load_steps=4 format=3 uid="uid://ysghs45okrr0"]
 
 [ext_resource type="Script" path="res://Inventory/tool.gd" id="1_baym3"]
 [ext_resource type="Texture2D" uid="uid://c37nosxcdc4al" path="res://Sprites/DebugSickle.png" id="2_5xhwr"]
+[ext_resource type="Texture2D" uid="uid://bk7aydbdwvvkv" path="res://Sprites/Swords/icon/DebugSickleIcon.png" id="3_34k47"]
 
 [node name="DeathSickle" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 visible = false
@@ -11,6 +12,7 @@ rotation = 45.0
 script = ExtResource("1_baym3")
 pickAxepower = 1
 icon = ExtResource("2_5xhwr")
+InventaryIcon = ExtResource("3_34k47")
 inventoryIndex = 3
 ToolSprite = NodePath("Sprite2D")
 type = "Pickaxe"
