@@ -8,6 +8,7 @@
 [node name="Revolver" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 texture_filter = 1
 script = ExtResource("1_mixej")
+objectName = "Revolver"
 speed = 0.5
 icon = ExtResource("2_x5ffu")
 InventaryIcon = ExtResource("3_6fnb3")

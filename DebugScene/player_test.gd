@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var placingParticles = get_node("PlacedBlockParticle")
 @onready var inventory = get_node("Inventory")
 @onready var camera = get_node("Camera2D")
+
 @onready var DamageArea = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool/DamageArea2")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
 @onready var bloodyParticles = get_node("BloodyParticles")

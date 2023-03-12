@@ -8,6 +8,7 @@
 z_index = 2
 scale = Vector2(0.85, 0.85)
 script = ExtResource("1_c60vx")
+objectName = "Butcher Sword"
 KnockBack = 170
 rotationTool = 0.0
 icon = ExtResource("2_scwd0")

@@ -16,6 +16,7 @@ var mousePicked = "0"
 var from="ITP"
 var FoundedArray = []
 func _ready():
+	
 	for i in $CanvasLayer/LifeBarStart.get_children():
 		var n = Array(i.name.split())
 		var sum=0
@@ -66,9 +67,12 @@ func _process(delta):
 	picker.get_node("GPUParticles2D").emitting=InventaryOpen and mousePicked!="0"
 	picker.get_node("GPUParticles2D").texture=picker.texture
 	if !InventaryOpen:
+		#player.textOnMouse.visible=false
 		for i in $CanvasLayer/centerInventory.get_children():
 			i.get_child(0).scale=Vector2(0.8,0.8)
 		picker.texture=null
+	else:
+		pass#player.textOnMouse.visible=true
 	$CanvasLayer/OpenedInventary.visible=InventaryOpen
 	if Input.is_action_just_pressed("tab"):
 		mouseSelected="0"
@@ -223,3 +227,18 @@ func switchObject(obj1,obj2):
 	if newIndex2:
 		newIndex2.inventoryIndex=obj1.to_int()
 	setIconInv()
+	
+func collectObject(object):
+	#object=object.instantiate()
+	for i in InventoryMarker.get_children():
+		if i.get_child(0).texture==null:
+			object.inventoryIndex=i.name.to_int()
+			$Objects.add_child(object)
+			return null
+	for i in NumberedObject.get_children():
+		if i.texture==null:
+			object.inventoryIndex=i.name.to_int()
+			$Objects.add_child(object)
+			return null
+			
+

@@ -1070,8 +1070,8 @@ texture_region_size = Vector2i(48, 48)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_cn0jm"]
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 7
+physics_layer_0/collision_mask = 7
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Test"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
@@ -1187,12 +1187,33 @@ z_index = 5
 color = Color(0.27451, 0.176471, 0.176471, 1)
 script = ExtResource("13_rdkwh")
 
-[node name="PredatorAlien" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(492, -141)
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(442, 666)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.0
 max_distance = 7945.0
+
+[node name="PredatorAlien" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(586, -188)
+
+[node name="PredatorAlien2" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(1633, -297)
+
+[node name="PredatorAlien3" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(2856, -378)
+
+[node name="PredatorAlien4" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(3555, -373)
+
+[node name="PredatorAlien5" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(254, -287)
+
+[node name="PredatorAlien6" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-383, -197)
+
+[node name="PredatorAlien7" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-826, -130)
+
+[node name="PredatorAlien8" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-1197, -101)

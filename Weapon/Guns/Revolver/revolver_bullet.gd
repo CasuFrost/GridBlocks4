@@ -32,7 +32,6 @@ func _on_area_2d_body_entered(body):
 		body.applyKnockBack(knockBack,$Area2D.global_position.x)
 		body.applyDamage(damage)
 	active=false
-	
 func activate(pos):
 	if !active:
 		global_position=get_tree().root.get_child(0).get_node("PlayerTest").toolPosition.global_position
@@ -40,6 +39,6 @@ func activate(pos):
 		speed = shootingSpeed
 		$Area2D/CollisionShape2D.disabled=false
 		followPos=pos
-		look_at(pos)
 		dir = global_position.direction_to(pos)
+		look_at(pos)
 		active=true

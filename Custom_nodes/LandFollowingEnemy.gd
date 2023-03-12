@@ -13,6 +13,8 @@ class_name LandFollowingEnemy
 #damage area
 
 extends CharacterBody2D
+@export var ObjectToSpawn : Array
+#@export var ObjectToProb : Array
 @export var decell : int = 5
 @export var knockBackResistence : float = 1
 @export var knockBack : int = 100
@@ -141,4 +143,16 @@ func dead():
 
 func _on_general_animation_manager_animation_finished(anim_name):
 	if anim_name=="dead":
+		spawnObj()
 		queue_free()
+func spawnObj():
+	if len(ObjectToSpawn)>0:
+			var n = rng.randi_range(0,100)
+			for i in ObjectToSpawn:
+				#print(i[1].x," ",n," ",i[1].y," ---  ",i[1].y>n and i[1].x<n)
+				if i[1].y>n and i[1].x<n:
+					var ObjContainer = load("res://ToolsRes/ToolContainer.tscn").instantiate()
+					ObjContainer.object=i[0].instantiate()
+					ObjContainer.global_position=global_position
+					get_tree().root.get_child(0).add_child(ObjContainer)
+	

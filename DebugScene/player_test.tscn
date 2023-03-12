@@ -1668,7 +1668,7 @@ scale_curve = SubResource("CurveTexture_tvatm")
 color = Color(1, 0.988235, 0.937255, 1)
 hue_variation_curve = SubResource("CurveTexture_kcgfy")
 
-[node name="PlayerTest" type="CharacterBody2D"]
+[node name="PlayerTest" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_c3738")
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -1803,9 +1803,10 @@ amount = 20
 process_material = SubResource("ParticleProcessMaterial_yjq5g")
 texture = ExtResource("9_s5j7l")
 
-[node name="Inventory" parent="." instance=ExtResource("9_icx0y")]
+[node name="Inventory" parent="." groups=["player"] instance=ExtResource("9_icx0y")]
 
 [node name="mousePointer" type="Area2D" parent="." groups=["mouse"]]
+position = Vector2(-34, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mousePointer"]
 shape = SubResource("CircleShape2D_jmgw2")
