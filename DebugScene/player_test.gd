@@ -252,7 +252,10 @@ func movement():
 			velocity.x+=speed
 			decelleration=MovingDecelleration
 	else:
-		decelleration=notMovingDecelleration
+		if abs(velocity.x)<5:
+			velocity.x=lerpf(velocity.x,0,0.5)
+		else:
+			decelleration=notMovingDecelleration
 	decellerate()
 	if !is_on_floor():
 		onAir=true
