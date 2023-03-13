@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=27 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d3hk6344nt74l" path="res://Blocks/nice_brick.tscn" id="17_d485e"]
 [ext_resource type="Script" path="res://Inventory/block.gd" id="18_53rda"]
 [ext_resource type="PackedScene" uid="uid://bfpfuot2wk4lt" path="res://Blocks/mars_dirt.tscn" id="19_dtesv"]
+[ext_resource type="PackedScene" uid="uid://bsem0iaesy8kc" path="res://Blocks/mars_block.tscn" id="20_nq2jh"]
 
 [sub_resource type="Gradient" id="Gradient_0io4t"]
 offsets = PackedFloat32Array(0, 0.926966)
@@ -785,3 +786,5 @@ script = ExtResource("18_53rda")
 
 [node name="MarsDirt" parent="Blocks" instance=ExtResource("19_dtesv")]
 availableBlocks = 30
+
+[node name="MarsBlock" parent="Blocks" instance=ExtResource("20_nq2jh")]

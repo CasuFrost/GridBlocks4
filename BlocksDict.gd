@@ -2,8 +2,9 @@ class_name blockDict
 extends Node
 
 var blocDict = {
-	"NiceBricks": 3,
-	"MarsDirt": 5  
+	"Nice Bricks": 3,
+	"Mars Dirt": 5,  
+	"Mars Rock": 6  
 }
 
 func _ready():
