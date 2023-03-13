@@ -2,6 +2,7 @@ extends Control
 @onready var InventoryMarker = get_node("CanvasLayer/centerInventory")
 @onready var picker = get_node("CanvasLayer2/InventaryPicker")
 @onready var player = get_parent()
+@onready var toolName = get_node("CanvasLayer3/ToolName")
 @onready var PocketObjects = get_node("PocketObjects")
 @onready var NumberedObject = get_node("CanvasLayer/OpenedInventary/NumberedObject")
 var selected = 2
@@ -60,8 +61,14 @@ func checkInvFreeSpace():
 			freeSpace[i.inventoryIndex-1]=true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if mousePicked=="0":
+		toolName.set_text("")
+	else:
+		toolName.set_text("Weapon Picked")
+	toolName.global_position = get_global_mouse_position()
 	getToolOnMouse()
 	managePickedObject()
+	toolName.visible=InventaryOpen
 	centeredPos=$CanvasLayer/centerInventory.position
 	picker.global_position=get_viewport().get_mouse_position()
 	picker.get_node("GPUParticles2D").emitting=InventaryOpen and mousePicked!="0"
@@ -194,6 +201,7 @@ func getToolOnMouse():
 				i.scale=Vector2(2.5,2.5)
 		if !founded:
 			mouseSelected="0"
+			
 	
 	
 func managePickedObject():

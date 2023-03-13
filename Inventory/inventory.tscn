@@ -471,15 +471,18 @@ emitting = false
 process_material = SubResource("ParticleProcessMaterial_j2j51")
 texture = ExtResource("3_xoyxe")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="ToolName" type="RichTextLabel" parent="CanvasLayer3"]
+offset_left = -80.0
+offset_top = -30.0
+offset_right = 80.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("14_u0oxr")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
-text = "[center]aaaaaaaaaaaaaaaaa[center]"
+text = "[center]aaaaaaaaa[center]"
