@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3hk6344nt74l"]
+
+[ext_resource type="Script" path="res://Inventory/block.gd" id="1_807x3"]
+[ext_resource type="Texture2D" uid="uid://btfwpqcdeotxf" path="res://Sprites/niceBricksIcong.png" id="2_8i00v"]
+
+[node name="NiceBrick" type="Node2D"]
+script = ExtResource("1_807x3")
+objectName = "Brick"
+icon = ExtResource("2_8i00v")
+blockId = 3
+InventoryIndex = 1

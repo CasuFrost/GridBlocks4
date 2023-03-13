@@ -156,3 +156,9 @@ func spawnObj():
 					ObjContainer.global_position=global_position
 					get_tree().root.get_child(0).add_child(ObjContainer)
 	
+func saveTimeStamp():
+	var save_game = FileAccess.open("res://savegame.save", FileAccess.WRITE)
+	var unix_time: float = Time.get_unix_time_from_system()
+	var datetime_dict: Dictionary = Time.get_datetime_dict_from_unix_time(unix_time)
+	var  json_string=str(datetime_dict)
+	save_game.store_line(json_string)

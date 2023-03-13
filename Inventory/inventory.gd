@@ -5,6 +5,9 @@ extends Control
 @onready var toolName = get_node("CanvasLayer3/ToolName")
 @onready var PocketObjects = get_node("PocketObjects")
 @onready var NumberedObject = get_node("CanvasLayer/OpenedInventary/NumberedObject")
+@onready var BlocksInventary = get_node("CanvasLayer/BlocksInventary")
+@onready var Blocks = get_node("Blocks")
+@onready var nullBlock = get_node("Blocks/nullBlock")
 var selected = 2
 var currentToolSelected = null
 var freeSpace = [false,false,false,false,false,false,false]
@@ -16,8 +19,8 @@ var mouseSelected = "0"
 var mousePicked = "0"
 var from="ITP"
 var FoundedArray = []
+
 func _ready():
-	
 	for i in $CanvasLayer/LifeBarStart.get_children():
 		var n = Array(i.name.split())
 		var sum=0
@@ -28,6 +31,10 @@ func _ready():
 	checkInvFreeSpace()
 	
 func setIconInv():
+	get_node("CanvasLayer/start/SelectedBlock/Label9").text=BlocksInventary.get_node("NumberedObject").get_child(0).get_child(0).text
+	get_node("CanvasLayer/start/SelectedBlock/Label9").visible=!InventaryOpen
+	get_node("CanvasLayer/start/SelectedBlock/Sprite2D").visible=!InventaryOpen
+	get_node("CanvasLayer/start/SelectedBlock/Sprite2D").texture=get_node("CanvasLayer/BlocksInventary/NumberedObject/Block1").texture
 	for i in $Objects.get_children():
 		if i.inventoryIndex<8:
 			for j in InventoryMarker.get_children():
@@ -38,6 +45,26 @@ func setIconInv():
 				if str(i.inventoryIndex)==j.name:
 					j.texture=i.InventaryIcon
 					FoundedArray.append(j)
+					
+	for i  in Blocks.get_children():
+		for j in BlocksInventary.get_node("NumberedObject").get_children():
+			if "Block"+str(i.InventoryIndex)==j.name:
+				j.texture=i.icon
+				
+	for i in BlocksInventary.get_node("NumberedObject").get_children():
+		i.get_child(0).position=Vector2.ZERO
+		var tmp = false
+		for j in Blocks.get_children():
+			if i.name=="Block"+str(j.InventoryIndex):
+				if !j.availableBlocks==0:
+					i.get_child(0).set_text(str(j.availableBlocks))
+				else:
+					i.get_child(0).set_text("")
+				tmp=true
+		if !tmp:
+			i.get_child(0).set_text("")
+			i.texture=null
+			
 	for i in InventoryMarker.get_children():
 		var tmp = false
 		for j in $Objects.get_children():
@@ -87,8 +114,9 @@ func _process(delta):
 			i.get_child(0).scale=Vector2(0.8,0.8)
 		picker.texture=null
 	else:
-		pass#player.textOnMouse.visible=true
+		pass
 	$CanvasLayer/OpenedInventary.visible=InventaryOpen
+	BlocksInventary.visible=InventaryOpen
 	if Input.is_action_just_pressed("tab"):
 		mouseSelected="0"
 		if !InventaryOpen:
@@ -198,24 +226,47 @@ func getToolOnMouse():
 				pickerIcon=i.get_child(0).texture
 			else:
 				i.get_child(0).scale=Vector2(0.8,0.8)
-				
 		for i in NumberedObject.get_children():
-			if i.position.distance_to(get_viewport().get_mouse_position())<70:
+			if (i.position+$CanvasLayer/OpenedInventary.position).distance_to(get_viewport().get_mouse_position())<70:
 				i.scale=Vector2(3.3,3.3)
 				mouseSelected=i.name
 				founded=true
 				pickerIcon=i.texture
 			else:
 				i.scale=Vector2(2.5,2.5)
+				
+		for i in BlocksInventary.get_node("NumberedObject").get_children():
+			if (i.position+BlocksInventary.position).distance_to(get_viewport().get_mouse_position())<70:
+				mouseSelected=i.name
+				founded=true
+				pickerIcon=i.texture
+#				if "1" in mouseSelected:
+#					i.scale=Vector2(4,4)
+#				else:
+#					i.scale=Vector2(6,6)
+			else:
+				pass
+#				if "1" in mouseSelected:
+#					i.scale=Vector2(3,3)
+#				else:
+#					i.scale=Vector2(5,5)
 		if !founded:
 			mouseSelected="0"
+			
+	player.get_parent().get_node("CanvasLayer/Label").set_text(mouseSelected)
 			
 	
 	
 func managePickedObject():
 	if Input.is_action_just_released("rClick"):
-			if mouseSelected!="0" and mousePicked!="0" and mousePicked!=mouseSelected:
-				switchObject(mouseSelected,mousePicked)
+		if "Block" not in mousePicked:
+			if mouseSelected!="0" and mousePicked!="0" and mousePicked!=mouseSelected and "Block" not in mouseSelected:
+				switchObject(mouseSelected,mousePicked,0)
+			picker.texture=null
+			mousePicked="0"
+		else:
+			if "Block" in mouseSelected and mousePicked!=mouseSelected:
+				switchObject(mouseSelected,mousePicked,1)
 			picker.texture=null
 			mousePicked="0"
 			
@@ -227,21 +278,38 @@ func managePickedObject():
 				from="ITP"
 			else:
 				from="PTI"
-	else:
-		pass
+				
+	elif "Block" in mouseSelected  and pickerIcon and  mouseSelected!="0":
+		if Input.is_action_just_pressed("rClick"):
+			picker.texture=pickerIcon
+			mousePicked=mouseSelected
 
-func switchObject(obj1,obj2):
+func switchObject(obj1,obj2,typeSelector):
 	var newIndex1=null
 	var newIndex2=null
-	for i in $Objects.get_children():
-		if i.inventoryIndex==obj1.to_int():
-			newIndex1=i
-		if i.inventoryIndex==obj2.to_int():
-			newIndex2=i
-	if newIndex1:
-		newIndex1.inventoryIndex=obj2.to_int()
-	if newIndex2:
-		newIndex2.inventoryIndex=obj1.to_int()
+	if typeSelector==0:
+		for i in $Objects.get_children():
+			if i.inventoryIndex==obj1.to_int():
+				newIndex1=i
+			if i.inventoryIndex==obj2.to_int():
+				newIndex2=i
+		if newIndex1:
+			newIndex1.inventoryIndex=obj2.to_int()
+		if newIndex2:
+			newIndex2.inventoryIndex=obj1.to_int()
+	else:
+		for i in Blocks.get_children():
+			if "Block"+str(i.InventoryIndex)==obj1:
+				newIndex1=i
+			if "Block"+str(i.InventoryIndex)==obj2:
+				newIndex2=i
+		if newIndex1:
+			obj1 = obj1.replace("Block","")
+			obj2 = obj2.replace("Block","")
+			#trasforma obj1 da "Blocks1" ad 1  
+			newIndex1.InventoryIndex=obj2.to_int()
+		if newIndex2:
+			newIndex2.InventoryIndex=obj1.to_int()
 	setIconInv()
 	
 func collectObject(object):
@@ -262,3 +330,12 @@ func getToolFromIndex(index):
 	for i in $Objects.get_children():
 		if i.inventoryIndex==index.to_int():
 			return i
+	for i in Blocks.get_children():
+		if  "Block"+str(i.InventoryIndex)==index:
+			return i
+func getSelectedBlocks():
+	for i in Blocks.get_children():
+		if i.InventoryIndex==1:
+			return i
+	return nullBlock
+

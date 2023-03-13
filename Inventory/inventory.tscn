@@ -1,11 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=26 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
 [ext_resource type="Texture2D" uid="uid://btb2vuc0pm1nc" path="res://Sprites/heart.png" id="3_46bvj"]
 [ext_resource type="PackedScene" uid="uid://ysghs45okrr0" path="res://ToolsRes/death_sickle.tscn" id="3_djbx4"]
+[ext_resource type="Texture2D" uid="uid://cmochrxojtp0d" path="res://DebugScene/BlocksInventary.png" id="3_snpq4"]
 [ext_resource type="Texture2D" uid="uid://ckx2tg420jg22" path="res://DebugScene/Inventary.png" id="3_ss1xj"]
 [ext_resource type="Texture2D" uid="uid://k8yeso7x1dfa" path="res://icon.svg" id="3_xoyxe"]
+[ext_resource type="Texture2D" uid="uid://bugajujtg8jua" path="res://DebugScene/selectedBlock.png" id="5_ad074"]
 [ext_resource type="PackedScene" uid="uid://cbslbm1emedoj" path="res://ToolsRes/bloody_butcher_swords.tscn" id="5_bl4rx"]
 [ext_resource type="PackedScene" uid="uid://cs1m5l566fl3h" path="res://Inventory/violence_book.tscn" id="7_r4pd8"]
 [ext_resource type="Texture2D" uid="uid://doba66qmwvn32" path="res://Sprites/Swords/icon/ViolenceBookIcon.png" id="8_hlg3e"]
@@ -14,10 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://ce5v4r50fjxh4" path="res://Weapon/Guns/Revolver/revolver.tscn" id="12_01det"]
 [ext_resource type="Shader" path="res://Shaders/colorfulOutline.gdshader" id="12_c6d1u"]
 [ext_resource type="FontFile" uid="uid://ckhwq7kx0nyhb" path="res://fonts/TT Marxiana Trial Grotesque.ttf" id="14_u0oxr"]
+[ext_resource type="PackedScene" uid="uid://d3hk6344nt74l" path="res://Blocks/nice_brick.tscn" id="17_d485e"]
+[ext_resource type="Script" path="res://Inventory/block.gd" id="18_53rda"]
+[ext_resource type="PackedScene" uid="uid://bfpfuot2wk4lt" path="res://Blocks/mars_dirt.tscn" id="19_dtesv"]
 
 [sub_resource type="Gradient" id="Gradient_0io4t"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.831373, 0.419608, 0.376471)
+offsets = PackedFloat32Array(0, 0.926966)
+colors = PackedColorArray(1, 0.745098, 0.862745, 0.317647, 0.721569, 0.709804, 0.698039, 0.419608)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6ht3v"]
 gradient = SubResource("Gradient_0io4t")
@@ -154,7 +159,260 @@ texture_filter = 1
 position = Vector2(15.1525, 25.2284)
 scale = Vector2(0.8, 0.8)
 
+[node name="BlocksInventary" type="Marker2D" parent="CanvasLayer"]
+position = Vector2(283, 483)
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/BlocksInventary"]
+z_index = 2
+offset_left = -236.0
+offset_top = -316.0
+offset_right = 237.0
+offset_bottom = 318.0
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_6ht3v")
+
+[node name="Inventary" type="Sprite2D" parent="CanvasLayer/BlocksInventary"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("3_snpq4")
+
+[node name="NumberedObject" type="Node2D" parent="CanvasLayer/BlocksInventary"]
+
+[node name="Block1" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(271, 498)
+scale = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block1"]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block2" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(-164, -234.08)
+scale = Vector2(5, 5)
+
+[node name="Label2" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block2"]
+offset_left = 87.0
+offset_top = 146.416
+offset_right = 127.0
+offset_bottom = 172.416
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block3" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(2, -234.08)
+scale = Vector2(5, 5)
+
+[node name="Label3" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block3"]
+offset_left = 53.8
+offset_top = 146.416
+offset_right = 93.8
+offset_bottom = 172.416
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block4" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(158, -234.08)
+scale = Vector2(5, 5)
+
+[node name="Label5" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block4"]
+offset_left = 22.6
+offset_top = 146.416
+offset_right = 62.6
+offset_bottom = 172.416
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block5" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(-162, -76)
+scale = Vector2(5, 5)
+
+[node name="Label4" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block5"]
+offset_left = 86.6
+offset_top = 114.8
+offset_right = 126.6
+offset_bottom = 140.8
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block6" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(4, -76)
+scale = Vector2(5, 5)
+
+[node name="Label5" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block6"]
+offset_left = 53.4
+offset_top = 114.8
+offset_right = 93.4
+offset_bottom = 140.8
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block7" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(160, -76)
+scale = Vector2(5, 5)
+
+[node name="Label7" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block7"]
+offset_left = 22.2
+offset_top = 114.8
+offset_right = 62.2
+offset_bottom = 140.8
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block8" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(-162, 82)
+scale = Vector2(5, 5)
+
+[node name="Label6" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block8"]
+offset_left = 86.6
+offset_top = 83.2
+offset_right = 126.6
+offset_bottom = 109.2
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block9" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(4, 82)
+scale = Vector2(5, 5)
+
+[node name="Label7" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block9"]
+offset_left = 53.4
+offset_top = 83.2
+offset_right = 93.4
+offset_bottom = 109.2
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block10" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(160, 82)
+scale = Vector2(5, 5)
+
+[node name="Label7" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block10"]
+offset_left = 22.2
+offset_top = 83.2
+offset_right = 62.2
+offset_bottom = 109.2
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block11" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(-164, 240)
+scale = Vector2(5, 5)
+
+[node name="Label8" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block11"]
+offset_left = 87.0
+offset_top = 51.6
+offset_right = 127.0
+offset_bottom = 77.6
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block12" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(2, 240)
+scale = Vector2(5, 5)
+
+[node name="Label7" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block12"]
+offset_left = 53.8
+offset_top = 51.6
+offset_right = 93.8
+offset_bottom = 77.6
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
+[node name="Block13" type="Sprite2D" parent="CanvasLayer/BlocksInventary/NumberedObject"]
+z_index = 5
+texture_filter = 1
+position = Vector2(158, 240)
+scale = Vector2(5, 5)
+
+[node name="Label8" type="Label" parent="CanvasLayer/BlocksInventary/NumberedObject/Block13"]
+offset_left = 22.6
+offset_top = 51.6
+offset_right = 62.6
+offset_bottom = 77.6
+scale = Vector2(0.714, 0.714)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "
+"
+
 [node name="OpenedInventary" type="Marker2D" parent="CanvasLayer"]
+position = Vector2(211.025, 0)
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/OpenedInventary"]
 z_index = 2
@@ -379,6 +637,36 @@ offset_bottom = 45.0
 size_flags_horizontal = 4
 texture = SubResource("GradientTexture1D_6ht3v")
 
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/start"]
+z_index = 2
+offset_left = -136.364
+offset_top = -23.967
+offset_right = 119.636
+offset_bottom = 232.033
+scale = Vector2(0.274, 0.274)
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_6ht3v")
+
+[node name="SelectedBlock" type="Sprite2D" parent="CanvasLayer/start"]
+z_index = 2
+texture_filter = 1
+position = Vector2(-101.653, 11.5703)
+scale = Vector2(2.28099, 2.28099)
+texture = ExtResource("5_ad074")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/start/SelectedBlock"]
+scale = Vector2(1.017, 1.017)
+
+[node name="Label9" type="Label" parent="CanvasLayer/start/SelectedBlock"]
+offset_left = 0.362366
+offset_top = 1.44922
+offset_right = 40.3624
+offset_bottom = 27.4492
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("14_u0oxr")
+text = "12"
+
 [node name="LifeBarStart" type="Marker2D" parent="CanvasLayer"]
 position = Vector2(35.3333, 36.6667)
 
@@ -445,10 +733,10 @@ inventoryIndex = 4
 [node name="GemSwords" parent="Objects" instance=ExtResource("10_f6os1")]
 visible = false
 KnockBack = 400
-inventoryIndex = 5
+inventoryIndex = 30
 
 [node name="Revolver" parent="Objects" instance=ExtResource("12_01det")]
-inventoryIndex = 6
+inventoryIndex = 22
 
 [node name="PocketObjects" type="Node" parent="."]
 
@@ -486,3 +774,14 @@ theme_override_fonts/normal_font = ExtResource("14_u0oxr")
 theme_override_font_sizes/normal_font_size = 19
 bbcode_enabled = true
 text = "[center]aaaaaaaaa[center]"
+
+[node name="Blocks" type="Node" parent="."]
+
+[node name="NiceBrick" parent="Blocks" instance=ExtResource("17_d485e")]
+availableBlocks = 30
+
+[node name="nullBlock" type="Node2D" parent="Blocks"]
+script = ExtResource("18_53rda")
+
+[node name="MarsDirt" parent="Blocks" instance=ExtResource("19_dtesv")]
+availableBlocks = 30

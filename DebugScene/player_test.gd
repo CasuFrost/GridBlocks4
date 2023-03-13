@@ -31,7 +31,10 @@ var mouseOnPlayer : bool = false
 var speed = 15
 var maxSpeed = 150
 var jump = -300
+
 var selectedTerrain = 3
+var avaliableBlockToPlace = 30
+
 var jumps_available 
 var onAir = false
 var destrct_array = {}
@@ -62,7 +65,7 @@ func manageDownAnimationSpeed():
 	else:
 		down_animation.speed_scale=1
 func _ready():
-	
+	saveTimeStamp()
 	input_pickable=true
 	pickaxeParticles.emitting=false #The particles animation of blocks breaking should not emit when the game starts
 	jumps_available= maxConsecutiveJumps #Setting initial jumpes available as equal as max possible consecutive jumps
@@ -104,16 +107,22 @@ func _process(delta):
 		interactWithTilemap()
 		
 func interactWithTilemap():
+	if avaliableBlockToPlace<0:
+		avaliableBlockToPlace=0
 	if len(destrct_array)>maxTileInfoStored:
 		destrct_array.erase(destrct_array.keys()[0]) 
 
 	pickaxeParticles.global_position=get_global_mouse_position()
 	placingParticles.global_position=get_global_mouse_position()
-	if Input.is_action_pressed("lClick") and valid_distance() and !mouseOnPlayer and !mouseOnPlayer and !Input.is_action_pressed("rClick"):
+	if Input.is_action_pressed("lClick") and valid_distance() and !mouseOnPlayer and !mouseOnPlayer and !Input.is_action_pressed("rClick") :
 			var tile = tileMap.local_to_map(get_global_mouse_position())
-			if isTileValidPosition(tile):
+			selectedTerrain=inventory.getSelectedBlocks().blockId
+			if isTileValidPosition(tile) and inventory.getSelectedBlocks().availableBlocks>0 and selectedTerrain!=0:
 				tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
 				placingParticles.emitting=true
+				inventory.getSelectedBlocks().availableBlocks-=1
+				if inventory.getSelectedBlocks().availableBlocks==0:
+					inventory.getSelectedBlocks().queue_free()
 	if Input.is_action_pressed("rClick") and valid_distance() and inventory.isSelectedPickaxe() and !Input.is_action_pressed("lClick"):
 		var tile = tileMap.local_to_map(get_global_mouse_position())
 		if tileMap.get_cell_tile_data(0,tile):
@@ -302,7 +311,6 @@ func _on_player_area_area_entered(area):
 		applyKnockback(area.get_parent().knockBack,area.get_parent().global_position.x)
 		inventory.reset_heart(hearthToShow)
 
-
 func _on_regen_timer_timeout():
 	Hp+=5
 	inventory.reset_heart(hearthToShow)
@@ -358,6 +366,14 @@ func _on_up_animation_manager_animation_finished(anim_name):
 func print_information():
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
-	get_parent().get_node("CanvasLayer/Label").set_text(str(decelleration))
 	get_parent().get_node("CanvasLayer/Label2").set_text("xVelocity : "+str(velocity.x))
 	pass
+
+func saveTimeStamp():
+	var save_game = FileAccess.open("res://savegame.txt", FileAccess.WRITE)
+	var unix_time: float = Time.get_unix_time_from_system()
+	var datetime_dict: Dictionary = Time.get_datetime_dict_from_unix_time(unix_time)
+	var system_time: String = Time.get_time_string_from_system()
+	var str = str(datetime_dict["day"])+"/"+str(datetime_dict["month"])+"/"+str(datetime_dict["year"])+" ore : "+str(system_time)
+	save_game.store_line(str)
+
