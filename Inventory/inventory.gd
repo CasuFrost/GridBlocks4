@@ -64,8 +64,16 @@ func _process(delta):
 	if mousePicked=="0":
 		toolName.set_text("")
 	else:
-		toolName.set_text("Weapon Picked")
-	toolName.global_position = get_global_mouse_position()
+		var tmpColor = ""
+		match getToolFromIndex(mousePicked).rarity:
+			"common":
+				tmpColor="#dedede"
+			"rare":
+				tmpColor="#62fc72"
+			"epic":
+				tmpColor="#c04dfa"
+		toolName.set_text("[center][color="+tmpColor+"]"+getToolFromIndex(mousePicked).objectName+"[center]")
+	toolName.global_position = Vector2i(get_global_mouse_position())+Vector2i(-80,20)
 	getToolOnMouse()
 	managePickedObject()
 	toolName.visible=InventaryOpen
@@ -250,3 +258,7 @@ func collectObject(object):
 			return null
 			
 
+func getToolFromIndex(index):
+	for i in $Objects.get_children():
+		if i.inventoryIndex==index.to_int():
+			return i

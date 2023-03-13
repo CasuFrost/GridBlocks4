@@ -42,3 +42,5 @@ func activate(pos):
 		dir = global_position.direction_to(pos)
 		look_at(pos)
 		active=true
+		
+		

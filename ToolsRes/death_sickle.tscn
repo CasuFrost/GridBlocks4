@@ -15,6 +15,7 @@ KnockBack = 30
 pickAxepower = 1
 icon = ExtResource("2_5xhwr")
 InventaryIcon = ExtResource("3_34k47")
+rarity = "common"
 inventoryIndex = 3
 ToolSprite = NodePath("Sprite2D")
 Damage = 5

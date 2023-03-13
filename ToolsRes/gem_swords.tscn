@@ -7,6 +7,7 @@
 [node name="GemSwords" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
 texture_filter = 1
 script = ExtResource("1_s37oh")
+objectName = "Gem Sword"
 speed = 0.6
 KnockBack = 200
 icon = ExtResource("2_xk2ec")

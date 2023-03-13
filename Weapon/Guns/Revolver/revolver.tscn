@@ -12,6 +12,7 @@ objectName = "Revolver"
 speed = 0.5
 icon = ExtResource("2_x5ffu")
 InventaryIcon = ExtResource("3_6fnb3")
+rarity = "rare"
 inventoryIndex = 30
 ToolSprite = NodePath("Sprite2D")
 type = "PointingWeapon"
