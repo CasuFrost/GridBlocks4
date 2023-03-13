@@ -1116,7 +1116,7 @@ gradient = SubResource("Gradient_nwwl6")
 [node name="DebugScene" type="Node2D"]
 
 [node name="PlayerTest" parent="." instance=ExtResource("2_7m6yp")]
-position = Vector2(834, -98)
+position = Vector2(836, 116)
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -4
@@ -1195,25 +1195,46 @@ energy = 0.0
 max_distance = 7945.0
 
 [node name="PredatorAlien" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(586, -188)
+position = Vector2(1404, -398)
 
 [node name="PredatorAlien2" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(1633, -297)
+position = Vector2(149, -257)
 
 [node name="PredatorAlien3" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(2856, -378)
+position = Vector2(1348, -247)
 
 [node name="PredatorAlien4" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(3555, -373)
+position = Vector2(1770, -295)
 
 [node name="PredatorAlien5" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(254, -287)
+position = Vector2(2283, -295)
 
 [node name="PredatorAlien6" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(-383, -197)
+position = Vector2(2854, -316)
 
 [node name="PredatorAlien7" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(-826, -130)
+position = Vector2(3297, -327)
 
 [node name="PredatorAlien8" parent="." instance=ExtResource("16_q0xl7")]
-position = Vector2(-1197, -101)
+position = Vector2(3527, -332)
+
+[node name="PredatorAlien9" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(1509, -439)
+
+[node name="PredatorAlien10" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(342, -403)
+
+[node name="PredatorAlien11" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-61, -284)
+
+[node name="PredatorAlien12" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-595, -209)
+
+[node name="PredatorAlien13" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-1006, 21)
+
+[node name="PredatorAlien14" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(-1113, -342)
+
+[node name="PredatorAlien15" parent="." instance=ExtResource("16_q0xl7")]
+position = Vector2(724, -913)

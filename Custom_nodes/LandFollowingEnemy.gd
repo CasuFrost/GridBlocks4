@@ -149,7 +149,6 @@ func spawnObj():
 	if len(ObjectToSpawn)>0:
 			var n = rng.randi_range(0,100)
 			for i in ObjectToSpawn:
-				#print(i[1].x," ",n," ",i[1].y," ---  ",i[1].y>n and i[1].x<n)
 				if i[1].y>n and i[1].x<n:
 					var ObjContainer = load("res://ToolsRes/ToolContainer.tscn").instantiate()
 					ObjContainer.object=i[0].instantiate()
