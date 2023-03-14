@@ -737,14 +737,15 @@ inventoryIndex = 4
 [node name="GemSwords" parent="Objects" instance=ExtResource("10_f6os1")]
 visible = false
 KnockBack = 400
-inventoryIndex = 30
+inventoryIndex = 5
 
 [node name="Revolver" parent="Objects" instance=ExtResource("12_01det")]
-inventoryIndex = 22
+inventoryIndex = 6
 
 [node name="little Knife" parent="Objects" instance=ExtResource("15_p3oh4")]
 speed = 3.0
 KnockBack = 130
+inventoryIndex = 7
 Damage = 20
 
 [node name="PocketObjects" type="Node" parent="."]

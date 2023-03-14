@@ -1,21 +1,26 @@
 shader_type canvas_item;
 
-float random(vec2 uv) {
-	return fract(sin(dot(uv, vec2(12.9898, 78.233))) * 438.5453);
+
+
+uniform float speed = 1.;
+
+uniform vec4 tint : source_color = vec4(1., 1., 0., 1.);
+
+uniform float span : hint_range(0.1, 1.) = .3;
+
+float luminance(vec4 colour) {
+	return 1.0 - sqrt(0.299*colour.r*colour.r + 0.587*colour.g*colour.g + 0.114*colour.b*colour.b);
 }
 
-uniform float sensitivity : hint_range(0.0, 1.0) = .5;
-
 void fragment() {
-	// Get size of texture in pixels
-	float size_x = float(textureSize(TEXTURE, 0).x);
-	float size_y = float(textureSize(TEXTURE, 0).y);
-	// 
-	vec4 pixelColor = texture(TEXTURE, UV);
-	// Create a new "UV" which remaps every UV value to a snapped pixel value
-	vec2 UVr = vec2(floor(UV.x*size_x)/size_x, floor(UV.y*size_y)/size_y);
-	// Determine whether pixel should be visible or not
-	float visible = step(sensitivity, random(UVr));
-	// Draw the pixel, or not depending on if it is visible or not
-	COLOR = vec4(pixelColor.r, pixelColor.g, pixelColor.b, min(visible, pixelColor.a));
+	vec4 colour = texture(TEXTURE, UV);
+	float target = abs(sin(TIME * PI * speed) * (1. + span));
+	if(colour.a > 0.) {
+		float lum = luminance(colour);
+		float diff = abs(lum - target);
+		float mx = clamp(1. - diff / span, 0., 1.);
+		colour = mix(colour, tint, mx);
+	}
+	
+	COLOR = colour;
 }
