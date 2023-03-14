@@ -3,9 +3,8 @@ extends Node
 
 var blocDict = {
 	6 : load("res://Blocks/mars_block.tscn"),
-	"Nice Bricks": 3,
-	"Mars Dirt": 5,  
-	"Mars Rock": 6  
+	5 : load("res://Blocks/mars_dirt.tscn"),
+	3 : load("res://Blocks/nice_brick.tscn")
 }
 
 func _ready():

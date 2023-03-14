@@ -347,3 +347,8 @@ func getBlockFromIndex(index):
 	for i in Blocks.get_children():
 		if  "Block"+str(i.InventoryIndex)==index:
 			return i
+func collectBlock(Block):
+	for i in Blocks.get_children():
+		if i.objectName==Block.objectName:
+			i.availableBlocks+=1
+		

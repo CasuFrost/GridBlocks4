@@ -133,6 +133,7 @@ func interactWithTilemap():
 			else:
 				destrct_array[tile]-=pickacxePower
 				if destrct_array[tile]<=0:
+					inventory.collectBlock(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")].instantiate())
 					resetNearBlocks(tile)
 					tileMap.erase_cell(0,tile)
 					destrct_array.erase(tile)
