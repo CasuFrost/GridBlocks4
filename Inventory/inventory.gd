@@ -331,7 +331,6 @@ func collectObject(object):
 			$Objects.add_child(object)
 			return null
 			
-
 func getToolFromIndex(index):
 	for i in $Objects.get_children():
 		if i.inventoryIndex==index.to_int():

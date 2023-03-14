@@ -65,6 +65,7 @@ func manageDownAnimationSpeed():
 	else:
 		down_animation.speed_scale=1
 func _ready():
+	#print(blockDict.new().blocDict[6].instantiate().objectName)
 	saveTimeStamp()
 	input_pickable=true
 	pickaxeParticles.emitting=false #The particles animation of blocks breaking should not emit when the game starts
