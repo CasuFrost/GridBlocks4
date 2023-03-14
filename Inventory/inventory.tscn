@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://lj3inpq4m08q"]
+[gd_scene load_steps=28 format=3 uid="uid://lj3inpq4m08q"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_4ep7e"]
 [ext_resource type="Texture2D" uid="uid://bl5waceq8yn04" path="res://Inventory/InventorySpritesheet.png" id="2_n5dab"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ce5v4r50fjxh4" path="res://Weapon/Guns/Revolver/revolver.tscn" id="12_01det"]
 [ext_resource type="Shader" path="res://Shaders/colorfulOutline.gdshader" id="12_c6d1u"]
 [ext_resource type="FontFile" uid="uid://ckhwq7kx0nyhb" path="res://fonts/TT Marxiana Trial Grotesque.ttf" id="14_u0oxr"]
+[ext_resource type="PackedScene" uid="uid://fjnqcf0n2eh7" path="res://Weapon/Swords/little Knife/little_knife.tscn" id="15_p3oh4"]
 [ext_resource type="PackedScene" uid="uid://d3hk6344nt74l" path="res://Blocks/nice_brick.tscn" id="17_d485e"]
 [ext_resource type="Script" path="res://Inventory/block.gd" id="18_53rda"]
 [ext_resource type="PackedScene" uid="uid://bfpfuot2wk4lt" path="res://Blocks/mars_dirt.tscn" id="19_dtesv"]
@@ -661,11 +662,13 @@ scale = Vector2(1.017, 1.017)
 [node name="Label9" type="Label" parent="CanvasLayer/start/SelectedBlock"]
 offset_left = 0.362366
 offset_top = 1.44922
-offset_right = 40.3624
-offset_bottom = 27.4492
+offset_right = 90.3624
+offset_bottom = 91.4492
+scale = Vector2(0.209, 0.209)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 28
 theme_override_fonts/font = ExtResource("14_u0oxr")
+theme_override_font_sizes/font_size = 92
 text = "12"
 
 [node name="LifeBarStart" type="Marker2D" parent="CanvasLayer"]
@@ -739,6 +742,11 @@ inventoryIndex = 30
 [node name="Revolver" parent="Objects" instance=ExtResource("12_01det")]
 inventoryIndex = 22
 
+[node name="little Knife" parent="Objects" instance=ExtResource("15_p3oh4")]
+speed = 3.0
+KnockBack = 130
+Damage = 20
+
 [node name="PocketObjects" type="Node" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -763,16 +771,18 @@ layer = 2
 follow_viewport_enabled = true
 
 [node name="ToolName" type="RichTextLabel" parent="CanvasLayer3"]
-offset_right = 160.0
-offset_bottom = 30.0
-pivot_offset = Vector2(80, 0)
+offset_left = -44.445
+offset_top = -0.491
+offset_right = 555.555
+offset_bottom = 88.159
+scale = Vector2(0.26, 0.26)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
+theme_override_constants/outline_size = 23
 theme_override_fonts/normal_font = ExtResource("14_u0oxr")
-theme_override_font_sizes/normal_font_size = 19
+theme_override_font_sizes/normal_font_size = 61
 bbcode_enabled = true
 text = "[center]aaaaaaaaa[center]"
 

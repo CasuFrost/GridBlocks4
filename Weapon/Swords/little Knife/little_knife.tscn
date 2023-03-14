@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://fjnqcf0n2eh7"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_sb5e0"]
+[ext_resource type="Texture2D" uid="uid://cxrxy4m2raw88" path="res://Weapon/Swords/little Knife/littleKnife.png" id="2_tfjww"]
+[ext_resource type="Texture2D" uid="uid://cdy3fkhsks4nh" path="res://Weapon/Swords/little Knife/littleKnifeIcon.png" id="3_pgrn1"]
+
+[node name="little Knife" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+texture_filter = 1
+script = ExtResource("1_sb5e0")
+objectName = "small knife"
+rotationTool = 0.0
+icon = ExtResource("2_tfjww")
+InventaryIcon = ExtResource("3_pgrn1")
+rarity = "rare"
+inventoryIndex = 12
+ToolSprite = NodePath("Sprite2D")
+type = "Sword"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tfjww")

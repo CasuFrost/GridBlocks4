@@ -31,7 +31,7 @@ var mouseOnPlayer : bool = false
 var speed = 15
 var maxSpeed = 150
 var jump = -300
-
+var speedMultiplayer = 1
 var selectedTerrain = 3
 var avaliableBlockToPlace = 30
 
@@ -108,6 +108,7 @@ func _process(delta):
 		interactWithTilemap()
 		
 func interactWithTilemap():
+	
 	if avaliableBlockToPlace<0:
 		avaliableBlockToPlace=0
 	if len(destrct_array)>maxTileInfoStored:
@@ -131,6 +132,7 @@ func interactWithTilemap():
 			if tile not in destrct_array:
 				destrct_array[tile] = tileMap.get_cell_tile_data(0,tile).get_custom_data("break")
 			else:
+				#tileMap.get_cell_tile_data(0,tile).material.set_shader_parameter("sensitivity",0.5)
 				destrct_array[tile]-=pickacxePower
 				if destrct_array[tile]<=0:
 					inventory.collectBlock(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")].instantiate())
@@ -253,19 +255,19 @@ func decellerate():
 		velocity.x+=decelleration
 func movement():
 	if Input.is_action_pressed("move_left"):
-		if velocity.x>-maxSpeed:
-			velocity.x-=speed
-			decelleration=MovingDecelleration
+		if velocity.x>-maxSpeed*speedMultiplayer:
+			velocity.x-=speed*speedMultiplayer
+			decelleration=MovingDecelleration*speedMultiplayer
 	elif Input.is_action_pressed("move_right"):
-		if velocity.x<maxSpeed:
-			velocity.x+=speed
-			decelleration=MovingDecelleration
+		if velocity.x<maxSpeed*speedMultiplayer:
+			velocity.x+=speed*speedMultiplayer
+			decelleration=MovingDecelleration*speedMultiplayer
 	else:
 		if abs(velocity.x)<5:
 			decelleration=0
 			velocity.x=lerpf(velocity.x,0,1)
 		else:
-			decelleration=notMovingDecelleration
+			decelleration=notMovingDecelleration*speedMultiplayer
 	decellerate()
 	if !is_on_floor():
 		onAir=true
@@ -323,8 +325,6 @@ func resetNearBlocks(BrokenTile):
 		if data:
 			tileMap.erase_cell(0,k)
 			tileMap.set_cells_terrain_connect(0,[k],0,data.get_custom_data("blockId"))
-
-
 
 func _on_blocko_forbidden_place_mouse_entered():
 	mouseOnPlayer=true

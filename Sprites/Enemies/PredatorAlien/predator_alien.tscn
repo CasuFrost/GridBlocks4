@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bi67ae7dxk4gl"]
+[gd_scene load_steps=38 format=3 uid="uid://bi67ae7dxk4gl"]
 
 [ext_resource type="Script" path="res://Custom_nodes/LandFollowingEnemy.gd" id="1_geyag"]
 [ext_resource type="Texture2D" uid="uid://d0w4oyfawpy6m" path="res://Sprites/Enemies/PredatorAlien/New Piskel-3.png.png" id="2_j52l8"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bj4oo4sw8dl4j" path="res://Sprites/Enemies/PredatorAlien/New Piskel-7.png.png" id="6_v1m5o"]
 [ext_resource type="Texture2D" uid="uid://c2vgbtxqpu6jp" path="res://Sprites/Enemies/PredatorAlien/New Piskel-8.png.png" id="7_nh00n"]
 [ext_resource type="Texture2D" uid="uid://b6i3aypxmxkk5" path="res://Sprites/Enemies/PredatorAlien/New Piskel-6.png.png" id="8_y0u7w"]
+[ext_resource type="PackedScene" uid="uid://b5cqfsfeksl5q" path="res://DebugScene/progress_bar.tscn" id="13_a8c2k"]
 [ext_resource type="PackedScene" uid="uid://dgrlmka4eg874" path="res://GeneralAnimation/damage.tscn" id="14_gd8i1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1xjg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3p0i3"]
 animations = [{
@@ -1671,6 +1674,7 @@ rotation = -0.223494
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="DirectionScaler/Sprite/Head"]
 z_index = 1
+material = SubResource("ShaderMaterial_e1xjg")
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_3p0i3")
 
@@ -1752,5 +1756,11 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_8ua8f")
+
+[node name="LifeBar" parent="." instance=ExtResource("13_a8c2k")]
+offset_left = -9.23077
+offset_top = -30.0
+offset_right = 22.7692
+offset_bottom = 2.0
 
 [connection signal="animation_finished" from="GeneralAnimationManager" to="." method="_on_general_animation_manager_animation_finished"]

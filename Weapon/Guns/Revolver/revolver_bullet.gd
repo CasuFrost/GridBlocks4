@@ -1,5 +1,5 @@
 extends Node2D
-var knockBack = 5
+var knockBack = 200
 var damage = 50
 var active = false
 var speed = 0

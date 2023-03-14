@@ -1,10 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://d0su35fgfnkdf"]
+[gd_scene load_steps=38 format=3 uid="uid://b4c2pmc76i8ad"]
 
 [ext_resource type="PackedScene" uid="uid://dfhhnoal64ncc" path="res://DebugScene/player_test.tscn" id="2_7m6yp"]
 [ext_resource type="Texture2D" uid="uid://dxnni6t6alnpw" path="res://Sprites/terrainsTest.png" id="2_8qhcs"]
 [ext_resource type="Texture2D" uid="uid://dh4chow7u14h7" path="res://Sprites/grids.png" id="2_311v6"]
 [ext_resource type="Texture2D" uid="uid://l43wisr0hgwp" path="res://Sprites/Blocks/mars.png" id="3_7w8cl"]
 [ext_resource type="Shader" path="res://DebugScene/debug_scene.gdshader" id="3_gf21t"]
+[ext_resource type="Shader" path="res://Shaders/PixelDissolving.gdshader" id="3_sermn"]
 [ext_resource type="Texture2D" uid="uid://gvkh5cqkov8l" path="res://Sprites/Blocks/MarsRock.png" id="4_4dns4"]
 [ext_resource type="Texture2D" uid="uid://dre0a6xwbjeqf" path="res://Sprites/terrainsTest2.png" id="4_xedmu"]
 [ext_resource type="Texture2D" uid="uid://bofpwfocjof1p" path="res://Sprites/BricksTerrain.png" id="5_f7u3k"]
@@ -892,9 +893,18 @@ texture_region_size = Vector2i(48, 80)
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mddvb"]
+shader = ExtResource("3_sermn")
+shader_parameter/sensitivity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k6jf0"]
+shader = ExtResource("3_sermn")
+shader_parameter/sensitivity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3k4w5"]
 texture = ExtResource("9_yabqy")
 0:0/0 = 0
+0:0/0/material = SubResource("ShaderMaterial_mddvb")
 0:0/0/terrain_set = 0
 0:0/0/terrain = 5
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -903,6 +913,7 @@ texture = ExtResource("9_yabqy")
 0:0/0/custom_data_0 = 20.0
 0:0/0/custom_data_1 = 5
 1:0/0 = 0
+1:0/0/material = SubResource("ShaderMaterial_k6jf0")
 1:0/0/terrain_set = 0
 1:0/0/terrain = 5
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -912,6 +923,7 @@ texture = ExtResource("9_yabqy")
 1:0/0/custom_data_0 = 20.0
 1:0/0/custom_data_1 = 5
 2:0/0 = 0
+2:0/0/material = SubResource("ShaderMaterial_k6jf0")
 2:0/0/terrain_set = 0
 2:0/0/terrain = 5
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -922,6 +934,7 @@ texture = ExtResource("9_yabqy")
 2:0/0/custom_data_0 = 20.0
 2:0/0/custom_data_1 = 5
 3:0/0 = 0
+3:0/0/material = SubResource("ShaderMaterial_k6jf0")
 3:0/0/terrain_set = 0
 3:0/0/terrain = 5
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -931,6 +944,7 @@ texture = ExtResource("9_yabqy")
 3:0/0/custom_data_0 = 20.0
 3:0/0/custom_data_1 = 5
 0:1/0 = 0
+0:1/0/material = SubResource("ShaderMaterial_k6jf0")
 0:1/0/terrain_set = 0
 0:1/0/terrain = 5
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -940,6 +954,7 @@ texture = ExtResource("9_yabqy")
 0:1/0/custom_data_0 = 20.0
 0:1/0/custom_data_1 = 5
 1:1/0 = 0
+1:1/0/material = SubResource("ShaderMaterial_k6jf0")
 1:1/0/terrain_set = 0
 1:1/0/terrain = 5
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -950,6 +965,7 @@ texture = ExtResource("9_yabqy")
 1:1/0/custom_data_0 = 20.0
 1:1/0/custom_data_1 = 5
 2:1/0 = 0
+2:1/0/material = SubResource("ShaderMaterial_k6jf0")
 2:1/0/terrain_set = 0
 2:1/0/terrain = 5
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -961,6 +977,7 @@ texture = ExtResource("9_yabqy")
 2:1/0/custom_data_0 = 20.0
 2:1/0/custom_data_1 = 5
 3:1/0 = 0
+3:1/0/material = SubResource("ShaderMaterial_k6jf0")
 3:1/0/terrain_set = 0
 3:1/0/terrain = 5
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -971,6 +988,7 @@ texture = ExtResource("9_yabqy")
 3:1/0/custom_data_0 = 20.0
 3:1/0/custom_data_1 = 5
 0:2/0 = 0
+0:2/0/material = SubResource("ShaderMaterial_k6jf0")
 0:2/0/terrain_set = 0
 0:2/0/terrain = 5
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -981,6 +999,7 @@ texture = ExtResource("9_yabqy")
 0:2/0/custom_data_0 = 20.0
 0:2/0/custom_data_1 = 5
 1:2/0 = 0
+1:2/0/material = SubResource("ShaderMaterial_k6jf0")
 1:2/0/terrain_set = 0
 1:2/0/terrain = 5
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -992,6 +1011,7 @@ texture = ExtResource("9_yabqy")
 1:2/0/custom_data_0 = 20.0
 1:2/0/custom_data_1 = 5
 2:2/0 = 0
+2:2/0/material = SubResource("ShaderMaterial_k6jf0")
 2:2/0/terrain_set = 0
 2:2/0/terrain = 5
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1004,6 +1024,7 @@ texture = ExtResource("9_yabqy")
 2:2/0/custom_data_0 = 20.0
 2:2/0/custom_data_1 = 5
 3:2/0 = 0
+3:2/0/material = SubResource("ShaderMaterial_k6jf0")
 3:2/0/terrain_set = 0
 3:2/0/terrain = 5
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1015,6 +1036,7 @@ texture = ExtResource("9_yabqy")
 3:2/0/custom_data_0 = 20.0
 3:2/0/custom_data_1 = 5
 0:3/0 = 0
+0:3/0/material = SubResource("ShaderMaterial_k6jf0")
 0:3/0/terrain_set = 0
 0:3/0/terrain = 5
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1024,6 +1046,7 @@ texture = ExtResource("9_yabqy")
 0:3/0/custom_data_0 = 20.0
 0:3/0/custom_data_1 = 5
 1:3/0 = 0
+1:3/0/material = SubResource("ShaderMaterial_k6jf0")
 1:3/0/terrain_set = 0
 1:3/0/terrain = 5
 1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1034,6 +1057,7 @@ texture = ExtResource("9_yabqy")
 1:3/0/custom_data_0 = 20.0
 1:3/0/custom_data_1 = 5
 2:3/0 = 0
+2:3/0/material = SubResource("ShaderMaterial_k6jf0")
 2:3/0/terrain_set = 0
 2:3/0/terrain = 5
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1045,6 +1069,7 @@ texture = ExtResource("9_yabqy")
 2:3/0/custom_data_0 = 20.0
 2:3/0/custom_data_1 = 5
 3:3/0 = 0
+3:3/0/material = SubResource("ShaderMaterial_k6jf0")
 3:3/0/terrain_set = 0
 3:3/0/terrain = 5
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)

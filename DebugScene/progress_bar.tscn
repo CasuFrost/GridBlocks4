@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5cqfsfeksl5q"]
+
+[ext_resource type="Texture2D" uid="uid://0012f0utukht" path="res://DebugScene/under.png" id="1_r31iy"]
+[ext_resource type="Texture2D" uid="uid://dpeksjn5ggewo" path="res://DebugScene/over.png" id="2_s6t2t"]
+[ext_resource type="Texture2D" uid="uid://bfaqk8t3ydlcb" path="res://DebugScene/progress.png" id="3_lee0x"]
+[ext_resource type="Texture2D" uid="uid://6qyrttx5qi2g" path="res://DebugScene/lifebarLight.png" id="4_42g6s"]
+
+[node name="ProgressBar" type="TextureProgressBar"]
+texture_filter = 1
+offset_left = -2.30769
+offset_top = -45.3846
+offset_right = 1.69231
+offset_bottom = -18.3846
+scale = Vector2(0.574, 0.574)
+step = 0.0
+texture_under = ExtResource("1_r31iy")
+texture_over = ExtResource("2_s6t2t")
+texture_progress = ExtResource("3_lee0x")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(16.3077, 16.3846)
+energy = 0.7
+texture = ExtResource("4_42g6s")

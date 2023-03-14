@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var knockBackResistence : float = 1
 @export var knockBack : int = 100
 @export var hp : int = 100
+@export var MaxHp : int = 100
 @export var jump : int = -400
 @export var patrollingSpeed : int = 40
 @export var attackingSpeed : int = 80
@@ -28,14 +29,15 @@ extends CharacterBody2D
 @export var damage : int
 @export var SecToChangeDir : int = 5
 @export var accelleration : int = 5
-@onready var playerPos = get_tree().root.get_child(0).get_node("PlayerTest").global_position
+@onready var playerPos #= get_tree().root.get_child(0).get_node("PlayerTest").global_position
+@onready var player
 @onready var UpAnim = get_node("UpAnimationManager")
 @onready var DownAnim = get_node("DownAnimationManager")
 @onready var LandJumpAnim = get_node("LandJumpAnimationManager")
 @onready var GeneralAnim = get_node("GeneralAnimationManager")
 @onready var DamageAnim = get_node("Damage")
 @onready var Sprite = get_node("DirectionScaler")
-
+@onready var LifeBar : TextureProgressBar = get_node("LifeBar")
 var alive = true
 var rng = RandomNumberGenerator.new()
 var rng_dir : int = 1
@@ -44,6 +46,10 @@ var timerValue = 0
 
 
 func _ready():
+	player=searchPlayer.new().do(get_tree().root.get_child(0))
+	playerPos = player.global_position
+	LifeBar.max_value=hp
+	MaxHp=hp
 	rng.randomize()
 	set_collision_layer_value(1,false)
 	set_collision_layer_value(2,true)
@@ -55,8 +61,9 @@ func clamping_values():
 	
 func _process(delta):
 	alive=hp>0
-	
-	playerPos = get_tree().root.get_child(0).get_node("PlayerTest").global_position
+	LifeBar.visible=hp!=MaxHp and hp>0
+	LifeBar.value=hp
+	playerPos = player.global_position
 	
 	if int(timerValue/60)>=SecToChangeDir:
 		timerValue=0
@@ -68,9 +75,11 @@ func _physics_process(delta):
 	timerValue+=1
 	if  alive:
 		if playerPos.distance_to(global_position)<playerDetectRange:
+			
 			followingPlayer()
 		else:
 			patroling()
+			
 	else:
 		velocity.x=0
 		dead()
