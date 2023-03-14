@@ -99,7 +99,13 @@ func _process(delta):
 				tmpColor="#62fc72"
 			"epic":
 				tmpColor="#c04dfa"
-		toolName.set_text("[center][color="+tmpColor+"]"+getToolFromIndex(mousePicked).objectName+"[center]")
+		var tmpToolName 
+		if "Block" not in mousePicked:
+			tmpToolName = getToolFromIndex(mousePicked).objectName
+		else:
+			tmpToolName = getBlockFromIndex(mousePicked).objectName
+			tmpColor="#ffffff"
+		toolName.set_text("[center][color="+tmpColor+"]"+tmpToolName+"[center]")
 	toolName.global_position = Vector2i(get_global_mouse_position())+Vector2i(-80,20)
 	getToolOnMouse()
 	managePickedObject()
@@ -311,7 +317,7 @@ func switchObject(obj1,obj2,typeSelector):
 		if newIndex2:
 			newIndex2.InventoryIndex=obj1.to_int()
 	setIconInv()
-	
+
 func collectObject(object):
 	#object=object.instantiate()
 	for i in InventoryMarker.get_children():
@@ -338,4 +344,7 @@ func getSelectedBlocks():
 		if i.InventoryIndex==1:
 			return i
 	return nullBlock
-
+func getBlockFromIndex(index):
+	for i in Blocks.get_children():
+		if  "Block"+str(i.InventoryIndex)==index:
+			return i

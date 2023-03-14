@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://bi67ae7dxk4gl"]
+[gd_scene load_steps=36 format=3 uid="uid://bi67ae7dxk4gl"]
 
 [ext_resource type="Script" path="res://Custom_nodes/LandFollowingEnemy.gd" id="1_geyag"]
 [ext_resource type="Texture2D" uid="uid://d0w4oyfawpy6m" path="res://Sprites/Enemies/PredatorAlien/New Piskel-3.png.png" id="2_j52l8"]
 [ext_resource type="PackedScene" uid="uid://i3y6fjludpv3" path="res://ToolsRes/mazza.tscn" id="2_sedwu"]
 [ext_resource type="Texture2D" uid="uid://rxs0nycbwt5p" path="res://Sprites/Enemies/PredatorAlien/New Piskel-4.png.png" id="3_onggw"]
+[ext_resource type="PackedScene" uid="uid://b4160007kh20t" path="res://ToolsRes/gem_swords.tscn" id="3_rnkn2"]
 [ext_resource type="Texture2D" uid="uid://bp6vnowaq26sh" path="res://Sprites/Enemies/PredatorAlien/New Piskel-2.png.png" id="4_6dn0r"]
 [ext_resource type="Texture2D" uid="uid://ckr8nort77vht" path="res://Sprites/Enemies/PredatorAlien/New Piskel-1.png.png" id="5_akdw5"]
 [ext_resource type="Texture2D" uid="uid://byxru7hbt8w8o" path="res://Sprites/Enemies/PredatorAlien/New Piskel-5.png.png" id="6_0a6yn"]
@@ -1649,7 +1650,7 @@ height = 42.0
 texture_filter = 1
 scale = Vector2(1.3, 1.3)
 script = ExtResource("1_geyag")
-ObjectToSpawn = [[ExtResource("2_sedwu"), Vector2(0, 10)]]
+ObjectToSpawn = [[ExtResource("2_sedwu"), Vector2(0, 10)], [ExtResource("3_rnkn2"), Vector2(11, 13)]]
 knockBack = 150
 attackingSpeed = 85
 playerDetectRange = 250
