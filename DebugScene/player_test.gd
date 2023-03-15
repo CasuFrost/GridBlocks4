@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var placingParticles = get_node("PlacedBlockParticle")
 @onready var inventory = get_node("Inventory")
 @onready var camera = get_node("Camera2D")
-
+var start : bool = true
 @onready var DamageArea = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool/DamageArea2")
 @onready var activeSelectedTools = get_node("Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool")
 @onready var bloodyParticles = get_node("BloodyParticles")
@@ -66,6 +66,7 @@ func manageDownAnimationSpeed():
 	else:
 		down_animation.speed_scale=1
 func _ready():
+	$Camera2D.zoom=Vector2(0.7,0.7)
 	#print(blockDict.new().blocDict[6].instantiate().objectName)
 	saveTimeStamp()
 	input_pickable=true
@@ -80,6 +81,11 @@ func manageTorch():
 	else:
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".hide()
 func _process(delta):
+	if start:
+		$Camera2D.zoom.x=lerpf($Camera2D.zoom.x,4,0.01)
+		$Camera2D.zoom.y=$Camera2D.zoom.x
+		if $Camera2D.zoom.x>3.7:
+			start=false
 	if Hp<=0:
 		dead()
 	if !canBeDamaged:
@@ -136,7 +142,8 @@ func interactWithTilemap():
 				#tileMap.get_cell_tile_data(0,tile).material.set_shader_parameter("sensitivity",0.5)
 				destrct_array[tile]-=inventory.getPickaxePower()
 				if destrct_array[tile]<=0:
-					inventory.collectBlock(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")].instantiate())
+					if tileMap.get_cell_tile_data(0,tile).get_custom_data("collectable"):
+						inventory.collectBlock(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")].instantiate())
 					resetNearBlocks(tile)
 					destroyBlock(tile)
 					destrct_array.erase(tile)
@@ -153,9 +160,9 @@ func isTileValidPosition(tile):
 	return false
 	
 func zoomCameraInput():
-	if Input.is_action_pressed("plus"):
+	if Input.is_action_pressed("plus") and !start:
 		camera.zoom+=Vector2(0.1,0.1)
-	if Input.is_action_pressed("minus"):
+	if Input.is_action_pressed("minus") and !start:
 		camera.zoom-=Vector2(0.1,0.1)
 		
 func _physics_process(delta):
@@ -313,7 +320,7 @@ func _on_player_area_area_entered(area):
 	if area.is_in_group("damage") and canBeDamaged:
 		$ImmunityTimer.start()
 		damage_animation.play("damaged")
-		applyKnockback(area.get_parent().knockBack,area.get_parent().global_position.x)
+		applyKnockback(area.get_parent().get_parent().knockBack,area.get_parent().global_position.x)
 		inventory.reset_heart(hearthToShow)
 
 func _on_regen_timer_timeout():

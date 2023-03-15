@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dfhhnoal64ncc"]
+[gd_scene load_steps=60 format=3 uid="uid://dfhhnoal64ncc"]
 
 [ext_resource type="Script" path="res://DebugScene/player_test.gd" id="1_c3738"]
 [ext_resource type="Shader" path="res://DebugScene/player_test.gdshader" id="2_2jwxw"]
@@ -1668,6 +1668,67 @@ scale_curve = SubResource("CurveTexture_tvatm")
 color = Color(1, 0.988235, 0.937255, 1)
 hue_variation_curve = SubResource("CurveTexture_kcgfy")
 
+[sub_resource type="Animation" id="Animation_dgwbe"]
+resource_name = "start"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1jnjx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhkc7"]
+_data = {
+"RESET": SubResource("Animation_1jnjx"),
+"start": SubResource("Animation_dgwbe")
+}
+
 [node name="PlayerTest" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_c3738")
 
@@ -1861,6 +1922,20 @@ explosiveness = 1.0
 
 [node name="ImmunityTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 100
+offset_left = -5499.0
+offset_top = -3152.0
+offset_right = 4292.0
+offset_bottom = 2628.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+autoplay = "start"
+libraries = {
+"": SubResource("AnimationLibrary_fhkc7")
+}
 
 [connection signal="body_entered" from="Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/ActiveSelectedTool/DamageArea2" to="." method="_on_damage_area_2_body_entered"]
 [connection signal="animation_finished" from="Sprites/UpAnimationManager" to="." method="_on_up_animation_manager_animation_finished"]

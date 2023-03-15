@@ -91,6 +91,7 @@ func _process(delta):
 	if mousePicked=="0":
 		toolName.set_text("")
 	else:
+		
 		var tmpColor = ""
 		match getToolFromIndex(mousePicked).rarity:
 			"common":
@@ -101,12 +102,20 @@ func _process(delta):
 				tmpColor="#c04dfa"
 		var tmpToolName 
 		if "Block" not in mousePicked:
-			tmpToolName = getToolFromIndex(mousePicked).objectName
+			var obj=getToolFromIndex(mousePicked)
+			$CanvasLayer3/Stats.set_text(
+				"[center]Damage : "+str(obj.Damage)+" [center]
+				[center]KnocBack : "+str(obj.KnockBack)+" [center]
+				[center]Speed : "+str(obj.speed*10)+" [center]")
+			tmpToolName = obj.objectName
 		else:
+			$CanvasLayer3/Stats.set_text("")
 			tmpToolName = getBlockFromIndex(mousePicked).objectName
 			tmpColor="#ffffff"
 		toolName.set_text("[center][color="+tmpColor+"]"+tmpToolName+"[center]")
 	toolName.global_position = Vector2i(get_global_mouse_position())+Vector2i(-80,20)
+	$CanvasLayer3/Stats.global_position=toolName.global_position+Vector2(0,20)
+	$CanvasLayer3/Stats.visible=len(toolName.text)>0
 	getToolOnMouse()
 	managePickedObject()
 	toolName.visible=InventaryOpen

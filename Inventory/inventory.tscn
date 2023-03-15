@@ -791,6 +791,25 @@ theme_override_font_sizes/normal_font_size = 61
 bbcode_enabled = true
 text = "[center]aaaaaaaaa[center]"
 
+[node name="Stats" type="RichTextLabel" parent="CanvasLayer3"]
+offset_left = -45.0
+offset_top = 22.0
+offset_right = 555.0
+offset_bottom = 334.0
+scale = Vector2(0.26, 0.26)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -40
+theme_override_constants/outline_size = 23
+theme_override_fonts/normal_font = ExtResource("14_u0oxr")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "[center]Damage : 10 [center]
+[center]KnocBack : 30 [center]
+[center]Speed : 10 [center]"
+
 [node name="Blocks" type="Node" parent="."]
 
 [node name="NiceBrick" parent="Blocks" instance=ExtResource("17_d485e")]

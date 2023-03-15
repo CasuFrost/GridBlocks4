@@ -11,8 +11,8 @@ class_name LandFollowingEnemy
 
 #collision shape
 #damage area
-
 extends CharacterBody2D
+@export var deadFinished : bool = false
 @export var ObjectToSpawn : Array
 #@export var ObjectToProb : Array
 @export var decell : int = 5
@@ -24,7 +24,7 @@ extends CharacterBody2D
 @export var patrollingSpeed : int = 40
 @export var attackingSpeed : int = 80
 @export var playerDetectRange : int = 200
-@export var gravity : int
+@export var gravity : int = 13
 @export var MaxYSpeed : int = 1000
 @export var damage : int
 @export var SecToChangeDir : int = 5
@@ -60,6 +60,9 @@ func clamping_values():
 	velocity.y=clamp(velocity.y,-MaxYSpeed,MaxYSpeed)
 	
 func _process(delta):
+	if deadFinished:
+		spawnObj()
+		queue_free()
 	alive=hp>0
 	LifeBar.visible=hp!=MaxHp and hp>0
 	LifeBar.value=hp
@@ -152,8 +155,7 @@ func dead():
 
 func _on_general_animation_manager_animation_finished(anim_name):
 	if anim_name=="dead":
-		spawnObj()
-		queue_free()
+		pass
 func spawnObj():
 	if len(ObjectToSpawn)>0:
 			var n = rng.randi_range(0,100)
