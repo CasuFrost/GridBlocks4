@@ -1647,12 +1647,12 @@ height = 42.0
 
 [node name="PredatorAlien" type="CharacterBody2D" groups=["enemy"]]
 texture_filter = 1
-scale = Vector2(1.3, 1.3)
+scale = Vector2(0.78, 0.78)
 script = ExtResource("1_geyag")
 ObjectToSpawn = [[ExtResource("2_sedwu"), Vector2(0, 10)], [ExtResource("3_rnkn2"), Vector2(11, 13)]]
-knockBack = 150
-attackingSpeed = 85
-playerDetectRange = 250
+jump = -300
+attackingSpeed = 70
+playerDetectRange = 150
 damage = 10
 SecToChangeDir = 3
 accelleration = 7

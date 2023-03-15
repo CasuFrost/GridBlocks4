@@ -142,7 +142,7 @@ func _process(delta):
 			InventaryOpen=false
 			selected=tmpSelected
 	if !InventaryOpen:
-		selected=clamp(selected,1,7)
+		selected=warpClamp(selected,1,7)
 	changeSelected()#centInventory.global_position=get_window().size*0.5
 	#print(freeSpace)
 func manageSelectedInventory(i):
@@ -268,7 +268,7 @@ func getToolOnMouse():
 		if !founded:
 			mouseSelected="0"
 			
-	player.get_parent().get_node("CanvasLayer/Label").set_text(mouseSelected)
+	#player.get_parent().get_node("CanvasLayer/Label").set_text(mouseSelected)
 			
 	
 	
@@ -368,3 +368,10 @@ func collectBlock(Block):
 			Block.InventoryIndex=tmpIndex
 			Blocks.add_child(Block)
 			return 0
+func warpClamp(value,min,max):
+	print(value)
+	if value>max:
+		return min
+	if value<min:
+		return max
+	return value

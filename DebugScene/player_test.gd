@@ -22,14 +22,14 @@ var knockBackResistence : float = 1
 var maxTileInfoStored=150
 var canBeDamaged : bool = true
 var cell :Vector2
-var decelleration = 10
-var MovingDecelleration = 10
-var notMovingDecelleration = 5
+var decelleration = 5
+var MovingDecelleration = 5
+var notMovingDecelleration = 2.5
 const gravity = 13
 var maxDistBlocksRange = 120
 var mouseOnPlayer : bool = false
-var speed = 15
-var maxSpeed = 150
+var speed = 10
+var maxSpeed = 100
 var jump = -300
 var speedMultiplayer = 1
 var selectedTerrain = 3
@@ -47,6 +47,9 @@ var Knockback
 var KnockbackResistence = 1
 
 @export var maxConsecutiveJumps = 1
+
+var tmp = Vector2(3,3)
+var camEn = true
 
 func _input(event):
 	if event.is_action_pressed("zoomIn"):
@@ -66,6 +69,9 @@ func manageDownAnimationSpeed():
 	else:
 		down_animation.speed_scale=1
 func _ready():
+	
+	#createTileMap()
+			
 	$Camera2D.zoom=Vector2(0.7,0.7)
 	#print(blockDict.new().blocDict[6].instantiate().objectName)
 	saveTimeStamp()
@@ -74,13 +80,14 @@ func _ready():
 	jumps_available= maxConsecutiveJumps #Setting initial jumpes available as equal as max possible consecutive jumps
 func clampingValues(): #all the values that has to be clamped 
 	Hp=clamp(Hp,0,MaxHp)
-	camera.zoom=clamp(camera.zoom,Vector2(1.5,1.5),Vector2(5,5))
+	camera.zoom=clamp(camera.zoom,Vector2(2.5,2.5),Vector2(6.5,6.5))
 func manageTorch():
 	if inventory.getToolName()=="Torch" and Input.is_action_pressed("rClick"):
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".show()
 	else:
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".hide()
 func _process(delta):
+	$Camera2D.enabled=camEn
 	if start:
 		$Camera2D.zoom.x=lerpf($Camera2D.zoom.x,4,0.01)
 		$Camera2D.zoom.y=$Camera2D.zoom.x
@@ -114,12 +121,14 @@ func _process(delta):
 	if tileMap :
 		interactWithTilemap()
 		
+		
 func interactWithTilemap():
 	
 	if avaliableBlockToPlace<0:
 		avaliableBlockToPlace=0
 	if len(destrct_array)>maxTileInfoStored:
 		destrct_array.erase(destrct_array.keys()[0]) 
+		
 
 	pickaxeParticles.global_position=get_global_mouse_position()
 	placingParticles.global_position=get_global_mouse_position()
@@ -376,7 +385,7 @@ func _on_up_animation_manager_animation_finished(anim_name):
 func print_information():
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(Engine.get_frames_per_second()))
 	#get_parent().get_node("CanvasLayer/Label").set_text(str(DamageArea.get_child(0).shape.extents)+" "+str(DamageArea.get_child(0).scale))
-	get_parent().get_node("CanvasLayer/Label2").set_text("xVelocity : "+str(velocity.x))
+	#get_parent().get_node("CanvasLayer/Label2").set_text("xVelocity : "+str(velocity.x))
 	pass
 
 func saveTimeStamp():
@@ -390,3 +399,25 @@ func saveTimeStamp():
 func destroyBlock(Tile):
 	tileMap.erase_cell(0,Tile)
 	#print(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,Tile).get_custom_data("blockId")])
+func createTileMap():
+	var worldMatrix : Array
+	var worldMatrixRows : Array
+	var matrixSize = 100
+	for i in matrixSize:
+		worldMatrixRows.append(0)
+	for i in matrixSize:
+		worldMatrix.append(worldMatrixRows)
+
+	for i in matrixSize:
+		for j in matrixSize:
+			var tile = tileMap.local_to_map(Vector2(j*8,i*8))
+			tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
+			if tileMap.get_cell_tile_data(0,tile):
+				worldMatrix[i][j] = tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")
+				#tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
+			else:
+				worldMatrix[i][j] = null
+	for i in worldMatrix:
+		for j in i:
+			if j!=null:
+				print(j)
