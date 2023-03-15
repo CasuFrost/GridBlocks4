@@ -1924,6 +1924,7 @@ explosiveness = 1.0
 one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = 100
 offset_left = -5499.0
 offset_top = -3152.0
