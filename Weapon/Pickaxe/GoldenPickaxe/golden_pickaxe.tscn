@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgayl16qe8rwy"]
+
+[ext_resource type="Script" path="res://Inventory/tool.gd" id="1_e11vj"]
+[ext_resource type="Texture2D" uid="uid://bq66o45e24okc" path="res://Weapon/Pickaxe/GoldenPickaxe/GoldenPickaxe.png" id="2_eoo3s"]
+[ext_resource type="Texture2D" uid="uid://d0f7hu1y8ccee" path="res://Weapon/Pickaxe/GoldenPickaxe/GoldenPickaxeIcon.png" id="3_fk3ak"]
+
+[node name="Golden Pickaxe" type="Node2D" node_paths=PackedStringArray("ToolSprite")]
+script = ExtResource("1_e11vj")
+objectName = "Golden Pickaxe"
+KnockBack = 30
+pickAxepower = 4
+icon = ExtResource("2_eoo3s")
+InventaryIcon = ExtResource("3_fk3ak")
+rarity = "rare"
+inventoryIndex = 8
+ToolSprite = NodePath("Sprite2D")
+Damage = 5
+type = "Pickaxe"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eoo3s")

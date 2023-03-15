@@ -351,4 +351,11 @@ func collectBlock(Block):
 	for i in Blocks.get_children():
 		if i.objectName==Block.objectName:
 			i.availableBlocks+=1
-		
+			return 0
+	for i in BlocksInventary.get_node("NumberedObject").get_children():
+		if i.texture==null:
+			var tmpIndex = i.name.replace("Block","").to_int()
+			Block.availableBlocks=1
+			Block.InventoryIndex=tmpIndex
+			Blocks.add_child(Block)
+			return 0

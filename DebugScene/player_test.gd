@@ -58,6 +58,7 @@ func _input(event):
 func manageDownAnimationSpeed():
 	if up_animation.current_animation=="toolSwing" and inventory.getToolSpeed():
 		up_animation.speed_scale=inventory.getToolSpeed()
+		
 	else:
 		up_animation.speed_scale=1
 	if down_animation.current_animation=="Walk":
@@ -133,11 +134,11 @@ func interactWithTilemap():
 				destrct_array[tile] = tileMap.get_cell_tile_data(0,tile).get_custom_data("break")
 			else:
 				#tileMap.get_cell_tile_data(0,tile).material.set_shader_parameter("sensitivity",0.5)
-				destrct_array[tile]-=pickacxePower
+				destrct_array[tile]-=inventory.getPickaxePower()
 				if destrct_array[tile]<=0:
 					inventory.collectBlock(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")].instantiate())
 					resetNearBlocks(tile)
-					tileMap.erase_cell(0,tile)
+					destroyBlock(tile)
 					destrct_array.erase(tile)
 		else:
 			pickaxeParticles.emitting=false
@@ -379,3 +380,6 @@ func saveTimeStamp():
 	var str = str(datetime_dict["day"])+"/"+str(datetime_dict["month"])+"/"+str(datetime_dict["year"])+" ore : "+str(system_time)
 	save_game.store_line(str)
 
+func destroyBlock(Tile):
+	tileMap.erase_cell(0,Tile)
+	#print(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,Tile).get_custom_data("blockId")])
