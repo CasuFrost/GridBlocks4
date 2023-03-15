@@ -9,7 +9,7 @@ func _ready():
 	for i in y:
 		for j in x:
 			var tile = tileMap.local_to_map(Vector2(j*8,i*8))
-			tileMap.set_cells_terrain_connect(0,[tile],0,5)
+			tileMap.set_cells_terrain_connect(0,Vector2i(0,0),0,5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
