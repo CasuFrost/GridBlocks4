@@ -1588,12 +1588,17 @@ layer_0/name = "Blocks"
 layer_0/tile_data = PackedInt32Array(-196608, 65546, 0, -196607, 196618, 0)
 
 [node name="PlayerTest" parent="." instance=ExtResource("17_8qeg6")]
-position = Vector2(16, -83)
+position = Vector2(9872, -172)
 scale = Vector2(0.611, 0.611)
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("18_wmrbi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(3102, 1788)
-zoom = Vector2(0.177, 0.177)
+position = Vector2(8225, 1263)
+zoom = Vector2(0.078, 0.078)
+
+[node name="LU" type="Marker2D" parent="."]
+
+[node name="RU" type="Marker2D" parent="."]
+position = Vector2(19200, 0)

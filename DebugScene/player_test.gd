@@ -153,9 +153,9 @@ func interactWithTilemap():
 				if destrct_array[tile]<=0:
 					if tileMap.get_cell_tile_data(0,tile).get_custom_data("collectable"):
 						inventory.collectBlock(blockDict.new().blocDict[tileMap.get_cell_tile_data(0,tile).get_custom_data("blockId")].instantiate())
-					resetNearBlocks(tile)
 					destroyBlock(tile)
 					destrct_array.erase(tile)
+					resetNearBlocks(tile)
 		else:
 			pickaxeParticles.emitting=false
 	else:
@@ -335,13 +335,15 @@ func _on_player_area_area_entered(area):
 func _on_regen_timer_timeout():
 	Hp+=5
 	inventory.reset_heart(hearthToShow)
+	
 func resetNearBlocks(BrokenTile):
-	var tmpArray = [BrokenTile+Vector2i(0,1),BrokenTile+Vector2i(1,0),BrokenTile-Vector2i(0,1),BrokenTile-Vector2i(1,0),BrokenTile-Vector2i(1,1),BrokenTile+Vector2i(1,1)]
+	var tmpArray = [BrokenTile,BrokenTile+Vector2i(0,1),BrokenTile+Vector2i(1,0),BrokenTile-Vector2i(0,1),BrokenTile-Vector2i(1,0),BrokenTile-Vector2i(1,1),BrokenTile+Vector2i(1,1)]
 	for k in tmpArray:
 		var data = tileMap.get_cell_tile_data(0,k)
 		if data:
 			tileMap.erase_cell(0,k)
-			tileMap.set_cells_terrain_connect(0,[k],0,data.get_custom_data("blockId"))
+			tileMap.set_cells_terrain_connect(0,[k],0,data.get_custom_data("blockId"),data.terrain)
+			#tileMap.set_cells_terrain_connect(0,[k],0,data.get_custom_data("blockId"))
 
 func _on_blocko_forbidden_place_mouse_entered():
 	mouseOnPlayer=true
