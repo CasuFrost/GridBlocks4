@@ -1573,7 +1573,7 @@ layer_0/name = "Blocks"
 layer_0/tile_data = PackedInt32Array(-196608, 65546, 0, -196607, 196618, 0)
 
 [node name="PlayerTest" parent="." instance=ExtResource("17_8qeg6")]
-position = Vector2(919, -24)
+position = Vector2(866, -98)
 scale = Vector2(0.611, 0.611)
 
 [node name="Node2D" type="Node2D" parent="."]
