@@ -1573,15 +1573,16 @@ layer_0/name = "Blocks"
 layer_0/tile_data = PackedInt32Array(-196608, 65546, 0, -196607, 196618, 0)
 
 [node name="PlayerTest" parent="." instance=ExtResource("17_8qeg6")]
-position = Vector2(866, -98)
+position = Vector2(823, 156)
 scale = Vector2(0.611, 0.611)
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("18_wmrbi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1294, 430)
-zoom = Vector2(0.5, 0.5)
+position = Vector2(31, -437)
+anchor_mode = 0
+zoom = Vector2(1.138, 1.138)
 
 [node name="LU" type="Marker2D" parent="."]
 
@@ -1593,6 +1594,7 @@ scale = Vector2(0.169, 0.169)
 texture = ExtResource("19_af700")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0.0509804, 1)
 scale = Vector2(0.169, 0.169)
 texture = ExtResource("19_af700")
 
@@ -1609,3 +1611,11 @@ texture = ExtResource("19_af700")
 modulate = Color(0.623529, 0, 0.623529, 1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("19_af700")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 53.0
+offset_top = -481.0
+offset_right = 93.0
+offset_bottom = -455.0
+scale = Vector2(20, 20)
+text = "aaa"

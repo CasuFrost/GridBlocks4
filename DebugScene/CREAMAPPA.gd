@@ -19,15 +19,26 @@ var rng = RandomNumberGenerator.new()
 var loadedTile=[]
 var first
 var last
-
+var searchAlgorithmArray = []
+var cestino = []
 var posToDraw
+var pivot = Vector2()
+var direction = true
+var researchDir = 1
+var lastXR
+var lastXL
+var pivotCanMove=false
+var resetJump = true
+var startMove=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player.camEn=false
-	for i in 100: #y
-		for j in 100: #x
-			if j!=30 or i>40:
-				
+	pivot=player.global_position
+	var lastXR=player.global_position.x+200
+	var lastXL=player.global_position.x-200
+	#player.camEn=false
+	for i in 200: #y
+		for j in 200: #x
+			if i>10:
 				if !rng.randi_range(0,5)==1:
 					loadedTile.append(Vector2i(j*16,i*16))
 					tm.set_cell(0,tm.local_to_map(Vector2i(j*16,i*16)),7,Vector2i(0,0))
@@ -36,27 +47,60 @@ func _ready():
 					tm.set_cell(0,tm.local_to_map(Vector2i(j*16,i*16)),10,Vector2i(0,0))
 				k.append(tm.local_to_map(Vector2(j*16,i*16)))
 				
-	loadTerrain(70,70,player.global_position)
+	loadTerrain(20,20,player.global_position)
 	for local in onRangeBlockMatrix:
 		tm.set_cells_terrain_connect(0,[local],0,tm.get_cell_tile_data(0,local).terrain)
 	onRangeBlockMatrix.clear()
 #	loadTerrain(30,30,last)
 #	loadTerrain(30,30,first)
 func _process(delta):
-	if (player.velocity.x!=0 or player.velocity.y!=0):
-		pass#loadTerrain(8,5)
-#	if onRangeBlockMatrix.size()>0:
-#		tm.set_cells_terrain_connect(0,[onRangeBlockMatrix[0]],0,tm.get_cell_tile_data(0,onRangeBlockMatrix[0]).terrain)
-#		onRangeBlockMatrix.pop_at(0)
-#		tm.set_cells_terrain_connect(0,[onRangeBlockMatrix[0]],0,tm.get_cell_tile_data(0,onRangeBlockMatrix[0]).terrain)
-#		onRangeBlockMatrix.pop_at(0)
-#		tm.set_cells_terrain_connect(0,[onRangeBlockMatrix[0]],0,tm.get_cell_tile_data(0,onRangeBlockMatrix[0]).terrain)
-#		onRangeBlockMatrix.pop_at(0)
-	#posToDraw=[tm.local_to_map(start+Vector2(cnt,0)),tm.local_to_map(start+Vector2(0,cnt)),tm.local_to_map(start+Vector2(-cnt,0)),tm.local_to_map(start+Vector2(0,-cnt)),tm.local_to_map(start+Vector2(-cnt,cnt)),tm.local_to_map(start+Vector2(cnt,cnt)),tm.local_to_map(start+Vector2(cnt,-cnt)),tm.local_to_map(start+Vector2(-cnt,-cnt))]
-#	for local in posToDraw:
-#		if tm.get_cell_tile_data(0,local):
-#			tm.set_cells_terrain_connect(0,[local],0,tm.get_cell_tile_data(0,local).terrain)
-#	cnt+=1
+	if pivotCanMove:
+		pivot.y+=64
+		var local = tm.local_to_map(pivot)
+		var local2 = tm.local_to_map(pivot-Vector2(0,16))
+		var local3 = tm.local_to_map(pivot-Vector2(0,32))
+		var local4 = tm.local_to_map(pivot-Vector2(0,48))
+		if tm.get_cell_tile_data(0,local) and (local not in searchAlgorithmArray or local not in cestino):
+			searchAlgorithmArray.append(local)
+		if tm.get_cell_tile_data(0,local2) and (local2 not in searchAlgorithmArray or local2 not in cestino):
+			searchAlgorithmArray.append(local2)
+		if tm.get_cell_tile_data(0,local3) and (local3 not in searchAlgorithmArray or local3 not in cestino):
+			searchAlgorithmArray.append(local3)
+		if tm.get_cell_tile_data(0,local4) and (local4 not in searchAlgorithmArray or local4 not in cestino):
+			searchAlgorithmArray.append(local4)
+			
+	for i in 2:
+		if searchAlgorithmArray.size()>1:
+			tm.set_cells_terrain_connect(0,[searchAlgorithmArray[0]],0,tm.get_cell_tile_data(0,searchAlgorithmArray[0]).terrain)
+			cestino.append(searchAlgorithmArray.pop_at(0))
+	get_parent().get_node("Sprite2D").global_position=pivot
+	ricercaRicorsivaQuadrata(200,player.velocity.x,player.global_position)
+	get_parent().get_node("Label").set_text(str(player.velocity.y))
+
+func ricercaRicorsivaQuadrata(h,dir,startPos):
+	if (dir>0 and direction):
+		direction=false
+		researchDir=1
+		if false:
+			pivot=Vector2(lastXR,player.global_position.y-h)
+		else:
+			pivot=player.global_position+Vector2(250*researchDir,-h)
+		pivotCanMove=true
+	if (direction==false and dir<0) or startMove:
+		startMove=false
+		direction=true
+		researchDir=-1
+		if false:
+			pivot=Vector2(lastXL,player.global_position.y-h)
+		else:
+			pivot=player.global_position+Vector2(250*researchDir,-h)
+		pivotCanMove=true
+		
+	if pivot.y>=player.global_position.y+h:
+		pivot.y=player.global_position.y-h
+		pivot.x+=16*researchDir
+		
+		
 func loadTerrain(x,y,center):
 	var tmpArray = []
 	for i in range(center.x-x*16,center.x+x*16,16):
@@ -96,3 +140,4 @@ func ricorsiv(start):
 #				print(local)
 #				onRangeBlockMatrix.append(local)
 #				ricorsiv(local)
+
