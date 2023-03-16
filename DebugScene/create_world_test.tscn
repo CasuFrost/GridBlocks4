@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://xbjhw44qj4ki"]
+[gd_scene load_steps=37 format=3 uid="uid://xbjhw44qj4ki"]
 
 [ext_resource type="Script" path="res://DebugScene/create_world_test.cs" id="1_ew5bi"]
 [ext_resource type="Texture2D" uid="uid://dxnni6t6alnpw" path="res://Sprites/terrainsTest.png" id="1_fxdy6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b22i207gp2dv1" path="res://Sprites/Enviorment/Trees/martianTreeWithFlower.png" id="15_g8tuk"]
 [ext_resource type="PackedScene" uid="uid://dfhhnoal64ncc" path="res://DebugScene/player_test.tscn" id="17_8qeg6"]
 [ext_resource type="Script" path="res://DebugScene/CREAMAPPA.gd" id="18_wmrbi"]
+[ext_resource type="Texture2D" uid="uid://k8yeso7x1dfa" path="res://icon.svg" id="19_af700"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1x7l4"]
 texture = ExtResource("1_fxdy6")
@@ -890,7 +891,6 @@ texture = ExtResource("8_vlqwt")
 0:0/0/terrain_set = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/terrains_peering_bit/right_side = 1
 0:0/0/terrains_peering_bit/bottom_side = 1
 0:0/0/terrains_peering_bit/left_side = 1
@@ -898,7 +898,6 @@ texture = ExtResource("8_vlqwt")
 1:0/0/terrain_set = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0/terrains_peering_bit/right_side = 1
 1:0/0/terrains_peering_bit/bottom_side = 1
 1:0/0/terrains_peering_bit/top_side = 1
@@ -906,7 +905,6 @@ texture = ExtResource("8_vlqwt")
 2:0/0/terrain_set = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0/terrains_peering_bit/right_side = 1
 2:0/0/terrains_peering_bit/left_side = 1
 2:0/0/terrains_peering_bit/top_side = 1
@@ -914,7 +912,6 @@ texture = ExtResource("8_vlqwt")
 3:0/0/terrain_set = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0/terrains_peering_bit/bottom_side = 1
 3:0/0/terrains_peering_bit/left_side = 1
 3:0/0/terrains_peering_bit/top_side = 1
@@ -922,45 +919,38 @@ texture = ExtResource("8_vlqwt")
 0:1/0/terrain_set = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0/terrains_peering_bit/bottom_side = 1
 0:1/0/terrains_peering_bit/top_side = 1
 1:1/0 = 0
 1:1/0/terrain_set = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0/terrains_peering_bit/right_side = 1
 1:1/0/terrains_peering_bit/left_side = 1
 2:1/0 = 0
 2:1/0/terrain_set = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0/terrains_peering_bit/bottom_side = 1
 3:1/0 = 0
 3:1/0/terrain_set = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0/terrains_peering_bit/right_side = 1
 0:2/0 = 0
 0:2/0/terrain_set = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0/terrains_peering_bit/top_side = 1
 1:2/0 = 0
 1:2/0/terrain_set = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0/terrains_peering_bit/left_side = 1
 2:2/0 = 0
 2:2/0/terrain_set = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0/terrains_peering_bit/right_side = 1
 2:2/0/terrains_peering_bit/bottom_side = 1
 2:2/0/terrains_peering_bit/left_side = 1
@@ -969,35 +959,30 @@ texture = ExtResource("8_vlqwt")
 3:2/0/terrain_set = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:2/0/terrains_peering_bit/bottom_side = 1
 3:2/0/terrains_peering_bit/left_side = 1
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0/terrains_peering_bit/right_side = 1
 0:3/0/terrains_peering_bit/bottom_side = 1
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:3/0/terrains_peering_bit/right_side = 1
 1:3/0/terrains_peering_bit/top_side = 1
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0/terrains_peering_bit/left_side = 1
 2:3/0/terrains_peering_bit/top_side = 1
 3:3/0 = 0
 3:3/0/terrain_set = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n8kcu"]
 texture = ExtResource("9_yd30h")
@@ -1588,17 +1573,39 @@ layer_0/name = "Blocks"
 layer_0/tile_data = PackedInt32Array(-196608, 65546, 0, -196607, 196618, 0)
 
 [node name="PlayerTest" parent="." instance=ExtResource("17_8qeg6")]
-position = Vector2(9872, -172)
+position = Vector2(919, -24)
 scale = Vector2(0.611, 0.611)
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("18_wmrbi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(8225, 1263)
-zoom = Vector2(0.078, 0.078)
+position = Vector2(1294, 430)
+zoom = Vector2(0.5, 0.5)
 
 [node name="LU" type="Marker2D" parent="."]
 
 [node name="RU" type="Marker2D" parent="."]
 position = Vector2(19200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.169, 0.169)
+texture = ExtResource("19_af700")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.169, 0.169)
+texture = ExtResource("19_af700")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.713726, 0, 0.466667, 1)
+scale = Vector2(0.169, 0.169)
+texture = ExtResource("19_af700")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+scale = Vector2(0.169, 0.169)
+texture = ExtResource("19_af700")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+modulate = Color(0.623529, 0, 0.623529, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("19_af700")

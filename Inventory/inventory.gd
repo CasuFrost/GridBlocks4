@@ -369,7 +369,7 @@ func collectBlock(Block):
 			Blocks.add_child(Block)
 			return 0
 func warpClamp(value,min,max):
-	print(value)
+	#print(value)
 	if value>max:
 		return min
 	if value<min:

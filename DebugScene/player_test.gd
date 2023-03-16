@@ -422,4 +422,4 @@ func createTileMap():
 	for i in worldMatrix:
 		for j in i:
 			if j!=null:
-				print(j)
+				pass

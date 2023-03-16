@@ -865,7 +865,6 @@ animations = [{
 [node name="TestEnemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_v6ic4")
 playerDetectRange = 250
-gravity = 13
 damage = 10
 SecToChangeDir = 3
 
