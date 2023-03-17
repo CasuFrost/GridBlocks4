@@ -80,7 +80,7 @@ func _ready():
 	jumps_available= maxConsecutiveJumps #Setting initial jumpes available as equal as max possible consecutive jumps
 func clampingValues(): #all the values that has to be clamped 
 	Hp=clamp(Hp,0,MaxHp)
-	camera.zoom=clamp(camera.zoom,Vector2(2.5,2.5),Vector2(6.5,6.5))
+	camera.zoom=clamp(camera.zoom,Vector2(3.5,3.5),Vector2(6.5,6.5))
 func manageTorch():
 	if inventory.getToolName()=="Torch" and Input.is_action_pressed("rClick"):
 		$"Sprites/Up/FrontArm/NewPiskel-3png/ToolPosition/torch".show()

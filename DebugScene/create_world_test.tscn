@@ -1582,7 +1582,7 @@ script = ExtResource("18_wmrbi")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(31, -437)
 anchor_mode = 0
-zoom = Vector2(1.138, 1.138)
+zoom = Vector2(0.87, 0.87)
 
 [node name="LU" type="Marker2D" parent="."]
 
