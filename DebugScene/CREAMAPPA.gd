@@ -36,7 +36,7 @@ func _ready():
 	pivot=player.global_position
 	var lastXR=player.global_position.x+200
 	var lastXL=player.global_position.x-200
-	player.camEn=false
+	#player.camEn=false
 	for i in 200: #y
 		for j in 200: #x
 			if i>10:
@@ -55,7 +55,9 @@ func _ready():
 #	loadTerrain(30,30,last)
 #	loadTerrain(30,30,first)
 func _process(delta):
-	
+	if tm.get_cell_tile_data(0,loadedTile[0]) :
+		tm.set_cells_terrain_connect(0,[loadedTile[0]],0,tm.get_cell_tile_data(0,loadedTile[0]).terrain)
+	loadedTile.pop_at(0)
 	if pivotCanMove:
 		pivot.y+=80
 		pivot2.y+=80
@@ -79,7 +81,8 @@ func _process(delta):
 		
 	for i in 4:
 		if searchAlgorithmArray.size()>1:
-			tm.set_cells_terrain_connect(0,[searchAlgorithmArray[0]],0,tm.get_cell_tile_data(0,searchAlgorithmArray[0]).terrain)
+			if  tm.get_cell_tile_data(0,searchAlgorithmArray[0]):
+				tm.set_cells_terrain_connect(0,[searchAlgorithmArray[0]],0,tm.get_cell_tile_data(0,searchAlgorithmArray[0]).terrain)
 			cestino.append(searchAlgorithmArray.pop_at(0))
 	get_parent().get_node("Sprite2D").global_position=pivot
 	get_parent().get_node("Sprite2D2").global_position=pivot2
@@ -110,7 +113,7 @@ func ricercaRicorsivaQuadrata(h,dir,startPos):
 		pivot.x+=16*researchDir
 		pivot2.y=player.global_position.y-h*1.2-5
 		pivot2.x+=16*-(researchDir)
-	if abs(pivot.x-(player.global_position.x))>220:
+	if abs(pivot.x-(player.global_position.x))>250:
 		pivot.x=player.global_position.x
 		pivot2.x=player.global_position.x
 		
