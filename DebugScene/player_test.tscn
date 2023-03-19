@@ -1328,7 +1328,7 @@ _data = {
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Sprites:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -1340,7 +1340,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Sprites:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -1352,7 +1352,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Sprites:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -1364,7 +1364,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("Sprites:skew")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -1388,7 +1388,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Sprites:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -1853,6 +1853,7 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.353, 2.353)
 position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 2)
