@@ -59,14 +59,16 @@ func _process(delta):
 		tm.set_cells_terrain_connect(0,[loadedTile[0]],0,tm.get_cell_tile_data(0,loadedTile[0]).terrain)
 	loadedTile.pop_at(0)
 	if pivotCanMove:
-		pivot.y+=80
-		pivot2.y+=80
+		pivot.y+=112
+		pivot2.y+=112
 		for i in [pivot,pivot2]:
 			var local = tm.local_to_map(i)
 			var local2 = tm.local_to_map(i-Vector2(0,16))
 			var local3 = tm.local_to_map(i-Vector2(0,32))
 			var local4 = tm.local_to_map(i-Vector2(0,48))
 			var local5 = tm.local_to_map(i-Vector2(0,64))
+			var local6 = tm.local_to_map(i-Vector2(0,80))
+			var local7 = tm.local_to_map(i-Vector2(0,96))
 			if tm.get_cell_tile_data(0,local) and (local not in searchAlgorithmArray or local not in cestino):
 				searchAlgorithmArray.append(local)
 			if tm.get_cell_tile_data(0,local2) and (local2 not in searchAlgorithmArray or local2 not in cestino):
@@ -77,16 +79,19 @@ func _process(delta):
 				searchAlgorithmArray.append(local4)
 			if tm.get_cell_tile_data(0,local5) and (local5 not in searchAlgorithmArray or local5 not in cestino):
 				searchAlgorithmArray.append(local5)
-			
+			if tm.get_cell_tile_data(0,local6) and (local6 not in searchAlgorithmArray or local6 not in cestino):
+				searchAlgorithmArray.append(local6)
+			if tm.get_cell_tile_data(0,local7) and (local7 not in searchAlgorithmArray or local7 not in cestino):
+				searchAlgorithmArray.append(local7)
 		
-	for i in 4:
+	for i in 10:
 		if searchAlgorithmArray.size()>1:
 			if  tm.get_cell_tile_data(0,searchAlgorithmArray[0]):
 				tm.set_cells_terrain_connect(0,[searchAlgorithmArray[0]],0,tm.get_cell_tile_data(0,searchAlgorithmArray[0]).terrain)
 			cestino.append(searchAlgorithmArray.pop_at(0))
 	get_parent().get_node("Sprite2D").global_position=pivot
 	get_parent().get_node("Sprite2D2").global_position=pivot2
-	ricercaRicorsivaQuadrata(200,player.velocity.x,player.global_position)
+	ricercaRicorsivaQuadrata(300,player.velocity.x,player.global_position)
 	get_parent().get_node("Label").set_text(str(searchAlgorithmArray.size()))
 
 func ricercaRicorsivaQuadrata(h,dir,startPos):
