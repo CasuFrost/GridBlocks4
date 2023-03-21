@@ -83,11 +83,12 @@ func _process(delta):
 				searchAlgorithmArray.append(local6)
 			if tm.get_cell_tile_data(0,local7) and (local7 not in searchAlgorithmArray or local7 not in cestino):
 				searchAlgorithmArray.append(local7)
-		
-	for i in 10:
+				
+	for i in 6:
 		if searchAlgorithmArray.size()>1:
-			if  tm.get_cell_tile_data(0,searchAlgorithmArray[0]):
-				tm.set_cells_terrain_connect(0,[searchAlgorithmArray[0]],0,tm.get_cell_tile_data(0,searchAlgorithmArray[0]).terrain)
+			TileMap
+			#if  tm.get_cell_tile_data(0,searchAlgorithmArray[0]):
+			tm.set_cells_terrain_connect(0,[searchAlgorithmArray[0]],0,tm.get_cell_tile_data(0,searchAlgorithmArray[0]).terrain)
 			cestino.append(searchAlgorithmArray.pop_at(0))
 	get_parent().get_node("Sprite2D").global_position=pivot
 	get_parent().get_node("Sprite2D2").global_position=pivot2
