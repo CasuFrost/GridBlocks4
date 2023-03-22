@@ -7,5 +7,5 @@
 script = ExtResource("1_807x3")
 objectName = "Brick"
 icon = ExtResource("2_8i00v")
-blockId = 3
+blockId = 5
 InventoryIndex = 1

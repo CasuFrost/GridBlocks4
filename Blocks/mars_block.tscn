@@ -8,5 +8,5 @@ script = ExtResource("1_atyum")
 objectName = "Mars Rock"
 availableBlocks = 45
 icon = ExtResource("2_lb1j5")
-blockId = 6
+blockId = 10
 InventoryIndex = 3

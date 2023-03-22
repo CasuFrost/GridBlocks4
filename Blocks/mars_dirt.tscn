@@ -7,5 +7,5 @@
 script = ExtResource("1_g7khx")
 objectName = "Mars dirt"
 icon = ExtResource("2_j3mv3")
-blockId = 5
+blockId = 7
 InventoryIndex = 2

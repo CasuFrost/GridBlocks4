@@ -136,7 +136,10 @@ func interactWithTilemap():
 			var tile = tileMap.local_to_map(get_global_mouse_position())
 			selectedTerrain=inventory.getSelectedBlocks().blockId
 			if isTileValidPosition(tile) and inventory.getSelectedBlocks().availableBlocks>0 and selectedTerrain!=0:
-				tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
+				#tileMap.set_cells_terrain_connect(0,[tile],0,selectedTerrain)
+				tileMap.set_cell(0,tile,selectedTerrain,Vector2i(0,0))
+				if get_parent().constructedArray:
+					get_parent().newBlock(Vector2i(get_global_mouse_position()),selectedTerrain)
 				placingParticles.emitting=true
 				inventory.getSelectedBlocks().availableBlocks-=1
 				if inventory.getSelectedBlocks().availableBlocks==0:
@@ -423,3 +426,62 @@ func createTileMap():
 		for j in i:
 			if j!=null:
 				pass
+func arrayToVector2(array):
+	# array = [up,left,right,down]
+	if sum_array(array)==0:
+		return  Vector2i(0,0)
+	if sum_array(array)==4:
+		return Vector2i(2,2)
+	if array==[0,0,0,1]:
+		return Vector2i(1,0)
+	if array==[1,0,0,1]:
+		return Vector2i(2,0)
+	if array==[1,0,0,0]:
+		return Vector2i(3,0)
+	if array==[0,0,1,0]:
+		return Vector2i(0,1)
+	if array==[0,1,1,0]:
+		return Vector2i(0,2)
+	if array==[0,1,0,0]:
+		return Vector2i(0,3)
+	# array = [up,left,right,down]
+	if array==[0,0,1,1]:
+		return Vector2i(1,1)
+		
+	if array==[0,1,1,1]:
+		return Vector2i(1,2)
+	
+	if array==[0,1,0,1]:
+		return Vector2i(1,3)
+		
+	if array==[1,0,1,1]:
+		return Vector2i(2,1)
+		
+	if array==[1,1,0,1]:
+		return Vector2i(2,3)
+		
+	if array==[1,0,1,0]:
+		return Vector2i(3,1)
+		
+	if array==[1,1,1,0]:
+		return Vector2i(3,2)
+	if array==[1,1,0,0]:
+		return Vector2i(3,3)
+func sum_array(array):
+	var sum = 0.0
+	for element in array:
+		sum+=element
+	return sum
+func calcNeigbhoor(tile):
+	#tile = tileMap.loca
+	var ne = [0,0,0,0]
+	var tiles = [tile+Vector2i(0,-16),tile+Vector2i(-16,0),tile+Vector2i(16,0),tile+Vector2i(0,16)]
+	pass
+	#up left right down
+	for i in 4 :
+		print(tileMap.get_cell_tile_data(0,tiles[i]))
+		if tileMap.get_cell_tile_data(0,tiles[i]):
+			ne[i]=1
+	print(ne)
+	return ne
+	

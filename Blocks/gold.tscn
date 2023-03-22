@@ -7,6 +7,6 @@
 script = ExtResource("1_3bl84")
 objectName = "Gold"
 icon = ExtResource("2_e8gss")
-blockId = 7
+blockId = 11
 InventoryIndex = 2
 rarity = "rare"

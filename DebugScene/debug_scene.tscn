@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4c2pmc76i8ad"]
+[gd_scene load_steps=12 format=3 uid="uid://b4c2pmc76i8ad"]
 
+[ext_resource type="Script" path="res://DebugScene/debug_scene.gd" id="1_y47n3"]
 [ext_resource type="PackedScene" uid="uid://dfhhnoal64ncc" path="res://DebugScene/player_test.tscn" id="2_7m6yp"]
 [ext_resource type="PackedScene" uid="uid://bv33foyl4kfyv" path="res://tile_map.tscn" id="2_fnhbx"]
 [ext_resource type="Shader" path="res://DebugScene/debug_scene.gdshader" id="3_gf21t"]
@@ -19,6 +20,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 gradient = SubResource("Gradient_nwwl6")
 
 [node name="DebugScene" type="Node2D"]
+script = ExtResource("1_y47n3")
 
 [node name="PlayerTest" parent="." instance=ExtResource("2_7m6yp")]
 position = Vector2(336, 43)

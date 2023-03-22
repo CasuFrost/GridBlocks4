@@ -7,5 +7,5 @@
 script = ExtResource("1_bpbu5")
 objectName = "Golden Brick"
 icon = ExtResource("2_s434v")
-blockId = 8
+blockId = 12
 rarity = "rare"

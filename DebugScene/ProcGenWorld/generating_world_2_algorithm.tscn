@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://6s2py1chnrm3"]
+[gd_scene load_steps=38 format=3 uid="uid://6s2py1chnrm3"]
 
 [ext_resource type="Script" path="res://DebugScene/ProcGenWorld/generating_world_2_algorithm.gd" id="1_gm6v1"]
 [ext_resource type="Texture2D" uid="uid://dxnni6t6alnpw" path="res://Sprites/terrainsTest.png" id="2_w8wea"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dnnagvvdv6qqe" path="res://Sprites/Enviorment/Trees/martianTree.png" id="15_2lo50"]
 [ext_resource type="Texture2D" uid="uid://b22i207gp2dv1" path="res://Sprites/Enviorment/Trees/martianTreeWithFlower.png" id="16_k8sd1"]
 [ext_resource type="PackedScene" uid="uid://dfhhnoal64ncc" path="res://DebugScene/player_test.tscn" id="17_7a323"]
+[ext_resource type="Script" path="res://DebugScene/ProcGenWorld/PlaceLayerLogic.gd" id="19_e820e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1x7l4"]
 texture = ExtResource("2_w8wea")
@@ -1728,6 +1729,7 @@ sources/13 = SubResource("TileSetAtlasSource_eg06v")
 
 [node name="GeneratingWorld2Algorithm" type="Node2D"]
 script = ExtResource("1_gm6v1")
+x = 100
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -4
@@ -1735,9 +1737,10 @@ texture_filter = 1
 tile_set = SubResource("TileSet_cn0jm")
 format = 2
 layer_0/name = "Blocks"
+layer_0/tile_data = PackedInt32Array(65535, 5, 0)
 
 [node name="PlayerTest" parent="." instance=ExtResource("17_7a323")]
-position = Vector2(50, 21)
+position = Vector2(-8, -28)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -1745,3 +1748,6 @@ zoom = Vector2(0.3, 0.3)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.27451, 0.176471, 0.176471, 1)
+
+[node name="PlaceLayerLogic" type="Node" parent="."]
+script = ExtResource("19_e820e")
