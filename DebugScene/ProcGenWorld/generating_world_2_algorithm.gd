@@ -3,7 +3,7 @@ extends Node2D
 @onready var plyer = get_node("PlayerTest")
 var constructedArray = []
 
-var x = 2500
+var x = 500
 var y = 700
 var rng = RandomNumberGenerator.new()
 
@@ -116,8 +116,10 @@ func save(a):
 	save_game.store_line(JSON.stringify(a))
 func placeBlockLogic(tmp,i,j,x,y,constructedArray,lastLayer):
 	var localHeight = y*0.1
-	if j<=y*0.03:
+	if j<y*0.03:
 		tmp.append([-1,Vector2i(0,0)])
+	elif  j==y*0.03:
+		tmp.append([7,0])
 	else:
 		if j<=y*0.15:
 			var r = rng.randi_range(0, 6)
