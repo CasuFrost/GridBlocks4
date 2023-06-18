@@ -159,6 +159,8 @@ func interactWithTilemap():
 					destroyBlock(tile)
 					destrct_array.erase(tile)
 					resetNearBlocks(tile)
+					if get_parent().constructedArray:
+						get_parent().removeBlock(Vector2i(get_global_mouse_position()))
 		else:
 			pickaxeParticles.emitting=false
 	else:

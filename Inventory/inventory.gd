@@ -34,6 +34,7 @@ func setIconInv():
 	get_node("CanvasLayer/start/SelectedBlock/Label9").text=BlocksInventary.get_node("NumberedObject").get_child(0).get_child(0).text
 	get_node("CanvasLayer/start/SelectedBlock/Label9").visible=!InventaryOpen
 	get_node("CanvasLayer/start/SelectedBlock/Sprite2D").visible=!InventaryOpen
+	get_node("CanvasLayer/Button").visible=InventaryOpen
 	get_node("CanvasLayer/start/SelectedBlock/Sprite2D").texture=get_node("CanvasLayer/BlocksInventary/NumberedObject/Block1").texture
 	for i in $Objects.get_children():
 		if i.inventoryIndex<8:
@@ -375,3 +376,8 @@ func warpClamp(value,min,max):
 	if value<min:
 		return max
 	return value
+
+
+func _on_button_pressed():
+	if get_parent().get_parent().constructedArray:
+		get_parent().get_parent().saveButton()

@@ -164,7 +164,7 @@ func newBlock(pos,tile):
 	constructedArray[pos.x][pos.y][0]=tile
 	constructedArray[pos.x][pos.y][1]=Vector2i(vec.y,vec.x)
 	resetNearBlock(pos)
-	save(constructedArray)
+	#save(constructedArray)
 	
 func setBlock(pos,tile):
 	pos=pos/Vector2i(16,16)
@@ -190,3 +190,11 @@ func resetNearBlock(pos):
 			constructedArray[nearTile.x][nearTile.y][1]=Vector2i(vec.y,vec.x)
 			tileMap.erase_cell(0,nearTile)
 			tileMap.set_cell(0,nearTile,sc,Vector2i(vec.y,vec.x))
+func removeBlock(pos):
+	pos=pos/Vector2i(16,16)
+	constructedArray[pos.x][pos.y+1][0]=-1
+	#save(constructedArray)
+
+
+func saveButton():
+	save(constructedArray)

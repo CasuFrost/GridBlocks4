@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://6s2py1chnrm3"]
+[gd_scene load_steps=40 format=3 uid="uid://6s2py1chnrm3"]
 
 [ext_resource type="Script" path="res://DebugScene/ProcGenWorld/generating_world_2_algorithm.gd" id="1_gm6v1"]
 [ext_resource type="Texture2D" uid="uid://dxnni6t6alnpw" path="res://Sprites/terrainsTest.png" id="2_w8wea"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://b22i207gp2dv1" path="res://Sprites/Enviorment/Trees/martianTreeWithFlower.png" id="16_k8sd1"]
 [ext_resource type="PackedScene" uid="uid://dfhhnoal64ncc" path="res://DebugScene/player_test.tscn" id="17_7a323"]
 [ext_resource type="Script" path="res://DebugScene/ProcGenWorld/PlaceLayerLogic.gd" id="19_e820e"]
+[ext_resource type="PackedScene" uid="uid://b1opk360idrgv" path="res://ToolsRes/violence_book_punch.tscn" id="20_v70ik"]
+[ext_resource type="PackedScene" uid="uid://bl6yd3koexaej" path="res://Weapon/Guns/Revolver/revolver_bullet.tscn" id="21_6pdjy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1x7l4"]
 texture = ExtResource("2_w8wea")
@@ -1729,7 +1731,8 @@ sources/13 = SubResource("TileSetAtlasSource_eg06v")
 
 [node name="GeneratingWorld2Algorithm" type="Node2D"]
 script = ExtResource("1_gm6v1")
-x = 100
+x = 500
+y = 500
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -4
@@ -1751,3 +1754,27 @@ color = Color(0.27451, 0.176471, 0.176471, 1)
 
 [node name="PlaceLayerLogic" type="Node" parent="."]
 script = ExtResource("19_e820e")
+
+[node name="ProjectilePool" type="Node" parent="."]
+
+[node name="ViolenceBookPunch" parent="ProjectilePool" instance=ExtResource("20_v70ik")]
+
+[node name="ViolenceBookPunch2" parent="ProjectilePool" instance=ExtResource("20_v70ik")]
+
+[node name="ViolenceBookPunch3" parent="ProjectilePool" instance=ExtResource("20_v70ik")]
+
+[node name="ViolenceBookPunch4" parent="ProjectilePool" instance=ExtResource("20_v70ik")]
+
+[node name="ViolenceBookPunch5" parent="ProjectilePool" instance=ExtResource("20_v70ik")]
+
+[node name="ViolenceBookPunch6" parent="ProjectilePool" instance=ExtResource("20_v70ik")]
+
+[node name="RevolverBullet" parent="ProjectilePool" instance=ExtResource("21_6pdjy")]
+
+[node name="RevolverBullet2" parent="ProjectilePool" instance=ExtResource("21_6pdjy")]
+
+[node name="RevolverBullet3" parent="ProjectilePool" instance=ExtResource("21_6pdjy")]
+
+[node name="RevolverBullet4" parent="ProjectilePool" instance=ExtResource("21_6pdjy")]
+
+[node name="RevolverBullet5" parent="ProjectilePool" instance=ExtResource("21_6pdjy")]

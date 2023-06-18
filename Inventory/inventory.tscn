@@ -716,6 +716,13 @@ texture = ExtResource("3_46bvj")
 texture_filter = 1
 texture = ExtResource("3_46bvj")
 
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 159.0
+offset_top = 905.0
+offset_right = 335.0
+offset_bottom = 988.0
+text = "save"
+
 [node name="Objects" type="Node" parent="."]
 
 [node name="DeathSickle" parent="Objects" instance=ExtResource("3_djbx4")]
@@ -826,3 +833,5 @@ availableBlocks = 30
 [node name="GoldenBrick" parent="Blocks" instance=ExtResource("23_jaujv")]
 availableBlocks = 50
 InventoryIndex = 8
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
